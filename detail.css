@@ -1,6 +1,7 @@
 body {
   margin: 0;
   overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 header {
@@ -106,7 +107,7 @@ header {
 .contain .kiri {
   height: fit-content;
   width: 45%;
-  background-color: aqua;
+  /* background-color: aqua;   */
   padding: 10px;
   margin-left: 10%;
 }
@@ -117,9 +118,9 @@ header {
 }
 
 .contain .kanan {
-  width: 280px;
+  width: 320px;
   height: fit-content;
-  background-color: aqua;
+  /* background-color: aqua; */
   margin: 10px 100px;
   border: 1px solid;
   text-align: center;
@@ -134,8 +135,8 @@ header {
   text-transform: uppercase;
   letter-spacing: 2.5px;
   font-weight: 500;
-  color: #000;
-  background-color: #fff;
+  color: #fff;
+  background-color: #242565;
   border: none;
   border-radius: 45px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
@@ -156,10 +157,19 @@ header {
   transform: translateY(-1px);
 }
 
+.kanan h1 {
+  color: #242565;
+}
+
+.kanan h2 {
+  font-style:italic;
+  font-weight: lighter;
+}
+
+
 .sosmed {
   width: 100%;
   height: 100px;
-  background-color: #23c483;
   display: inline;
   margin-left: 1000px;
 }
@@ -177,7 +187,6 @@ header {
 .event-inf {
   width: 100%;
   height: 200px;
-  background-color: #23c483;
 }
 
 .event-inf h1 {
@@ -192,7 +201,7 @@ header {
 }
 
 .event-inf .information img {
-  width: 20px;
+  width: 50px;
 }
 
 .event-inf .information p {
@@ -214,7 +223,6 @@ header {
 .desc {
   display: block;
   height: 150px;
-  background-color: lightgreen;
   margin: 10px 10%;
   text-align: start;
 }
@@ -222,7 +230,6 @@ header {
 .layout {
   display: block;
   height: 150px;
-  background-color: lightgreen;
   margin: 10px 10%;
   text-align: justify;
   clear: both;
@@ -237,16 +244,14 @@ header {
 
 .term {
   display: block;
-  background-color: lightblue;
-  margin: 10px 10% 200px;
+  /* background-color: lightblue; */
+  margin: 1280px 10% 200px;
   text-align: start;
 }
 .term h1,
 p {
   display: block;
 }
-
-
 
 /* upcoming event and load more */
 .container2 {
@@ -259,6 +264,7 @@ p {
   text-align: left;
   margin-left: 250px;
   display: inline;
+  color: #242565;
 }
 
 /* .tulisan a {
