@@ -1,0 +1,431 @@
+/* Header */
+body {
+  margin: 0;
+}
+header {
+  height: 750px;
+  width: 100%;
+  background-image: url(/drive-download-20240310T064708Z-001/Banner_Prambanan_Jazz.webp);
+  /* opacity: 50%; */
+  filter: sepia(0.7);
+}
+.navigation {
+  width: 80%;
+  height: 100px;
+  margin: auto;
+  padding-top: 10px;
+  /* text-align: end; */
+  background-color: #fff;
+  border-radius: 0px 0px 20px 20px;
+  display: flex;
+}
+#judul {
+  width: 50px;
+  text-align: left;
+  padding-left: 20px;
+}
+
+#judul img {
+  width: 50px;
+  display: inline;
+}
+
+#judul h1 {
+  width: 50px;
+  display: inline;
+  color: #242565;
+}
+
+.navigation #kanan ul {
+  list-style: none;
+  padding-top: 30px;
+  margin: 0 800px;
+  width: max-content;
+}
+
+.navigation #kanan ul a {
+  text-decoration: none;
+  color: #242565;
+  padding-top: 0px;
+  font-size: 30px;
+  display: inline;
+  margin-right: 15px;
+}
+
+.navigation #kanan ul a:hover {
+  color: rgb(255, 0, 0);
+}
+/* #WELCOME {
+  margin-top: 300px;
+  text-align: center;
+  color: #242565;
+  font-size: 60px;
+} */
+/* /* Header */
+
+main .container {
+  width: 80%;
+  height: 70px;
+  background-color: #242565;
+  margin: 10px auto;
+  display: flex;
+}
+
+main .container .box1,
+.box2,
+.box3 p {
+  color: white;
+}
+
+main .container .box1 {
+  flex: 1; /* Makes each child element take up 1/4 of the space */
+  text-align: center; /* Optional styling for boxes */
+}
+
+main .container .box2 {
+  flex: 2; /* Makes each child element take up 1/4 of the space */
+  text-align: center; /* Optional styling for boxes */
+}
+main .container .box3 {
+  flex: 1; /* Makes each child element take up 1/4 of the space */
+  text-align: center; /* Optional styling for boxes */
+}
+/* main .container .search {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+  margin: 0 auto;
+} */
+
+.button {
+  position: relative;
+  border: none;
+  background-color: white;
+  color: #212121;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  gap: 10px;
+  /* border-radius: 10px; */
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.button span {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.button::before {
+  content: "";
+  position: absolute;
+  background-color: #242565;
+  width: 100%;
+  height: 100%;
+  left: 0%;
+  bottom: 0%;
+  transform: translate(-100%, 100%);
+  /* border-radius: inherit; */
+}
+
+.button svg {
+  fill: black;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.button:hover::before {
+  animation: shakeBack 0.6s forwards;
+}
+
+.button:hover svg {
+  fill: black;
+  scale: 1.3;
+}
+
+.button:active {
+  box-shadow: none;
+}
+
+@keyframes shakeBack {
+  0% {
+    transform: translate(-100%, 100%);
+  }
+
+  50% {
+    transform: translate(20%, -20%);
+  }
+
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+#my-input {
+  width: 300px;
+  height: 15px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+#my-date {
+  width: 300px;
+  height: 15px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+main .container .search img {
+  height: 100%;
+}
+
+#my-input {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  border-bottom: 1px solid #ccc;
+  width: 70%;
+  text-decoration: none;
+  outline: none;
+  transition:border-color 0.2s ease-in-out;
+  color: white;
+}
+
+#my-input::-webkit-input-placeholder {
+  color: white;
+}
+
+#my-input:-moz-placeholder {
+  color: white;
+}
+
+#my-input::-moz-placeholder-color {
+  color: white;
+}
+
+#my-input:-ms-input-placeholder {
+  color: white;
+}
+
+.container-ft {
+  width: 500px;
+  margin: 50px 200px;
+  text-align: left;
+}
+/* Dropdown Menus */
+.dropdown-menus {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Button */
+.dropdown-button {
+  background-color: #f2f4ff;
+  color: #1d275f;
+  font-size: 16px;
+  padding: 10px 15px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown Content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Tautan Dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Tautan Dropdown Saat Diarahkan */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+/* Tampilkan Dropdown Menu Saat Diarahkan */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.container2 {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.tulisan h1 {
+  text-align: left;
+  margin-left: 250px;
+  display: inline;
+}
+
+/* .tulisan a {
+  margin-left: 28%;
+  display: inline;
+} */
+
+.readmore-btn {
+  width: fit-contentd;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: #242565;
+  border: none;
+  border-radius: 10px;
+  padding: 0px 15px;
+  gap: 0px;
+  transition: all 0.4s;
+  margin-left: 73%;
+}
+.book-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  width: 45px;
+  height: 100%;
+}
+.book-wrapper .book-page {
+  width: 50%;
+  height: auto;
+  position: absolute;
+}
+.readmore-btn:hover .book-page {
+  animation: paging 0.4s linear infinite;
+  transform-origin: left;
+}
+.readmore-btn:hover {
+  background-color: rgb(159, 74, 255);
+}
+@keyframes paging {
+  0% {
+    transform: rotateY(0deg) skewY(0deg);
+  }
+  50% {
+    transform: rotateY(90deg) skewY(-20deg);
+  }
+  100% {
+    transform: rotateY(180deg) skewY(0deg);
+  }
+}
+.text {
+  width: 105px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: rgb(255, 255, 255);
+}
+
+.box {
+  width: 300px;
+  height: 600px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20px 20px;
+  text-align: center;
+}
+
+.box img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.box h3 {
+  margin-top: 10px;
+  font-size: 40px;
+  text-align: center;
+}
+
+.box h3 {
+  margin-top: 10px;
+  font-size: 30px;
+}
+.box h4 {
+  margin-top: 0px;
+  font-size: 14px;
+  text-align: left;
+}
+.box h5 {
+  font-size: 10px;
+  text-align: left;
+}
+.box p {
+  margin-top: 5px;
+  font-size: 12px;
+  text-align: left;
+}
+
+.box a {
+  display: inline-block;
+  width: 200px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  font-size: 18px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+  background-color: khaki;
+  color: #000;
+}
+
+.box a:hover {
+  background-color: #ccc;
+}
+
+.containft {
+  width: 100%;
+  height: 450px;
+  background-color: lightgreen;
+  display: flex;
+  padding: 20px 50px;
+}
+
+.abtus img {
+  width: 30px;
+  height: 30px;
+}
+
+.abtus h1 {
+  display: inline;
+}
+
+.abtus p {
+  font-size: 10px;
+  display: block;
+  width: 300px;
+}
+
+.sosmed img {
+  width: 40px;
+  height: 40px;
+  margin: 20px 8px;
+}

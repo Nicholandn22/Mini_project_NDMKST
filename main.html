@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="navigation">
+        <div id="judul">
+          <img
+            src="/drive-download-20240310T064708Z-001/logo Mytic (Blue).png"
+            alt=""
+          />
+          <h1>My.Tic</h1>
+        </div>
+        <div id="kanan">
+          <ul>
+            <a href="#">Home</a>
+            <a href="#">List Konser</a>
+            <a href="#">About Us</a>
+          </ul>
+        </div>
+      </div>
+      <!-- <h1 id="WELCOME">WELCOME</h1> -->
+    </header>
+
+    <main>
+      <div class="container">
+        <div class="box1">
+          <p>Search Event</p>
+          <input type="text" id="my-input" placeholder="Event" />
+        </div>
+        <div class="box2">
+          <p>Place</p>
+          <input type="text" id="my-input" placeholder="Lokasi" />
+        </div>
+        <div class="box3">
+          <p>Time</p>
+          <input type="date" id="my-date" />
+        </div>
+        <!-- <div class="search"> -->
+        <!-- <a href="#"><img src="https://img.freepik.com/free-vector/illustration-magnifying-glass-icon_53876-5613.jpg?t=st=1709966227~exp=1709969827~hmac=32be5846a2e2f7cd0f850d1830697204a72aa168eab348cbd7d0b08d51b910ec&w=740">
+          </a> -->
+        <button class="button" type="reset">
+          <span>
+            <svg
+              viewBox="0 0 24 24"
+              height="24"
+              width="24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9.145 18.29c-5.042 0-9.145-4.102-9.145-9.145s4.103-9.145 9.145-9.145 9.145 4.103 9.145 9.145-4.102 9.145-9.145 9.145zm0-15.167c-3.321 0-6.022 2.702-6.022 6.022s2.702 6.022 6.022 6.022 6.023-2.702 6.023-6.022-2.702-6.022-6.023-6.022zm9.263 12.443c-.817 1.176-1.852 2.188-3.046 2.981l5.452 5.453 3.014-3.013-5.42-5.421z"
+              ></path>
+            </svg>
+          </span>
+        </button>
+        <!-- </div> -->
+      </div>
+      <div class="container-ft">
+        <div class="dropdown-menus">
+          <div class="dropdown">
+            <button class="dropdown-button">Weekdays</button>
+            <div class="dropdown-content">
+              <a href="#">Senin</a>
+              <a href="#">Selasa</a>
+              <a href="#">Rabu</a>
+              <a href="#">Kamis</a>
+              <a href="#">Jumat</a>
+              <a href="#">Sabtu</a>
+              <a href="#">Minggu</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropdown-button">Event Type</button>
+            <div class="dropdown-content">
+              <a href="#">Seminar</a>
+              <a href="#">Workshop</a>
+              <a href="#">Pertemuan</a>
+              <a href="#">Pameran</a>
+              <a href="#">Konser</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="dropdown-button">Any Category</button>
+            <div class="dropdown-content">
+              <a href="#">Pendidikan</a>
+              <a href="#">Teknologi</a>
+              <a href="#">Seni</a>
+              <a href="#">Olahraga</a>
+              <a href="#">Hiburan</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- tulisan opcoming event ama loadmore -->
+      <div class="tulisan">
+        <h1>Upcoming Event</h1>
+        <!-- <a href="#"><h1>Load More >></h1></a> -->
+        <a href="#">
+          <button class="readmore-btn">
+            <span class="book-wrapper">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="rgb(86, 69, 117)"
+                viewBox="0 0 126 75"
+                class="book"
+              >
+                <rect
+                  stroke-width="3"
+                  stroke="#fff"
+                  rx="7.5"
+                  height="70"
+                  width="121"
+                  y="2.5"
+                  x="2.5"
+                ></rect>
+                <line
+                  stroke-width="3"
+                  stroke="#fff"
+                  y2="75"
+                  x2="63.5"
+                  x1="63.5"
+                ></line>
+                <path
+                  stroke-linecap="round"
+                  stroke-width="4"
+                  stroke="#fff"
+                  d="M25 20H50"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-width="4"
+                  stroke="#fff"
+                  d="M101 20H76"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-width="4"
+                  stroke="#fff"
+                  d="M16 30L50 30"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-width="4"
+                  stroke="#fff"
+                  d="M110 30L76 30"
+                ></path>
+              </svg>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 65 75"
+                class="book-page"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-width="4"
+                  stroke="#fff"
+                  d="M40 20H15"
+                ></path>
+                <path
+                  stroke-linecap="round"
+                  stroke-width="4"
+                  stroke="#fff"
+                  d="M49 30L15 30"
+                ></path>
+                <path
+                  stroke-width="3"
+                  stroke="#fff"
+                  d="M2.5 2.5H55C59.1421 2.5 62.5 5.85786 62.5 10V65C62.5 69.1421 59.1421 72.5 55 72.5H2.5V2.5Z"
+                ></path>
+              </svg>
+            </span>
+            <span class="text"> Read more </span>
+          </button>
+        </a>
+      </div>
+      <div class="container2">
+        <div class="box">
+          <img
+            src="https://i.pinimg.com/564x/db/82/0c/db820cc669e3e7ec18c739cc403a7aba.jpg"
+            alt="Image 1"
+          />
+          <h3>Title 1</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h4>Jakarta 27-28 Aprild 2024</h4>
+          <h5>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus, sed minus obcaecati ipsa debitis quis corporis quia
+            officia expedita placeat atque, excepturi quisquam vel ratione
+            temporibus accusantium ad cumque molestias.0
+          </h5>
+          <h2>Rp. 250.000,00</h2>
+          <a href="#">Detail</a>
+        </div>
+        <div class="box">
+          <img
+            src="https://i.pinimg.com/564x/db/82/0c/db820cc669e3e7ec18c739cc403a7aba.jpg"
+            alt="Image 2"
+          />
+          <h3>Title 2</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h4>Jakarta 27-28 Aprild 2024</h4>
+          <h5>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus, sed minus obcaecati ipsa debitis quis corporis quia
+            officia expedita placeat atque, excepturi quisquam vel ratione
+            temporibus accusantium ad cumque molestias.0
+          </h5>
+          <h2>Rp. 250.000,00</h2>
+          <a href="#">Detail</a>
+        </div>
+
+        <div class="box">
+          <img
+            src="https://i.pinimg.com/564x/db/82/0c/db820cc669e3e7ec18c739cc403a7aba.jpg"
+            alt="Image 3"
+          />
+          <h3>Title 3</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h4>Jakarta 27-28 Aprild 2024</h4>
+          <h5>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus, sed minus obcaecati ipsa debitis quis corporis quia
+            officia expedita placeat atque, excepturi quisquam vel ratione
+            temporibus accusantium ad cumque molestias.0
+          </h5>
+          <h2>Rp. 250.000,00</h2>
+          <a href="#">Detail</a>
+        </div>
+      </div>
+
+      <div class="container2">
+        <div class="box">
+          <img
+            src="https://i.pinimg.com/564x/db/82/0c/db820cc669e3e7ec18c739cc403a7aba.jpg"
+            alt="Image 1"
+          />
+          <h3>Title 1</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h4>Jakarta 27-28 Aprild 2024</h4>
+          <h5>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus, sed minus obcaecati ipsa debitis quis corporis quia
+            officia expedita placeat atque, excepturi quisquam vel ratione
+            temporibus accusantium ad cumque molestias.0
+          </h5>
+          <h2>Rp. 250.000,00</h2>
+          <a href="#">Detail</a>
+        </div>
+        <div class="box">
+          <img
+            src="https://i.pinimg.com/564x/db/82/0c/db820cc669e3e7ec18c739cc403a7aba.jpg"
+            alt="Image 2"
+          />
+          <h3>Title 2</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h4>Jakarta 27-28 Aprild 2024</h4>
+          <h5>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus, sed minus obcaecati ipsa debitis quis corporis quia
+            officia expedita placeat atque, excepturi quisquam vel ratione
+            temporibus accusantium ad cumque molestias.0
+          </h5>
+          <h2>Rp. 250.000,00</h2>
+          <a href="#">Detail</a>
+        </div>
+
+        <div class="box">
+          <img
+            src="https://i.pinimg.com/564x/db/82/0c/db820cc669e3e7ec18c739cc403a7aba.jpg"
+            alt="Image 3"
+          />
+          <h3>Title 3</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h4>Jakarta 27-28 Aprild 2024</h4>
+          <h5>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus, sed minus obcaecati ipsa debitis quis corporis quia
+            officia expedita placeat atque, excepturi quisquam vel ratione
+            temporibus accusantium ad cumque molestias.0
+          </h5>
+          <h2>Rp. 250.000,00</h2>
+          <a href="#">Detail</a>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="containft">
+        <div class="abtus">
+          <img
+            src="https://i.pinimg.com/564x/db/82/0c/db820cc669e3e7ec18c739cc403a7aba.jpg"
+            alt=""
+          />
+          <h1>EvenStick</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit
+            dignissimos cumque minima velit ipsa necessitatibus perferendis
+            ratione esse provident iure dicta accusantium repellendus
+            reprehenderit accusamus aliquid, facilis non quia atque? Dignissimos
+            dolorem ab sapiente ipsum tempore facilis, voluptas ducimus dolor?
+          </p>
+          <div class="sosmed">
+            <img
+              src="https://i.pinimg.com/564x/db/82/0c/db820cc669e3e7ec18c739cc403a7aba.jpg"
+              alt=""
+            />
+            <img
+              src="https://i.pinimg.com/564x/db/82/0c/db820cc669e3e7ec18c739cc403a7aba.jpg"
+              alt=""
+            />
+            <img
+              src="https://i.pinimg.com/564x/db/82/0c/db820cc669e3e7ec18c739cc403a7aba.jpg"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
