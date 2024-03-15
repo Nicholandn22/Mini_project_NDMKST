@@ -195,6 +195,105 @@ header {
   box-shadow: 0px 0px var(--main-color);
 }
 
-.box1 {
+.line1 {
   display: flex;
+  text-align: center;
+  margin: 10px auto;
+  width: max-content;
 }
+
+.box {
+  padding: 10px 20px 20px;
+  width: 200px;
+  height: max-content;
+  border: 1px solid;
+  margin: 20px 30px;
+}
+
+.box h3 {
+  display: inline;
+}
+
+/* tombol */
+.line1 button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  border: 0;
+  background-color: #242565;
+  letter-spacing: 1.5px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  /* box-shadow: rgb(201, 46, 70) 0px 10px 0px 0px; */
+  color: hsl(0, 0%, 100%);
+  cursor: pointer;
+  display: inline;
+}
+
+.line1 button:hover {
+  box-shadow: rgb(201, 46, 70) 0px 7px 0px 0px;
+}
+
+.line1 button:active {
+  background-color: rgb(255, 56, 86);
+  /*50, 168, 80*/
+  box-shadow: rgb(201, 46, 70) 0px 0px 0px 0px;
+  transform: translateY(5px);
+  transition: 200ms;
+}
+
+/* tombol */
+
+.harga {
+  text-align: center;
+  margin-top: 80px;
+}
+.harga h1 {
+  color: aqua;
+  text-align: end;
+  padding-right: 230px;
+}
+
+/* btn harga */
+.harga .btn {
+  border: none;
+  width: 75%;
+  height: 5em;
+  border-radius: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  background: #1c1a1c;
+  cursor: pointer;
+  transition: all 450ms ease-in-out;
+  margin: 10px auto;
+}
+
+.sparkle {
+  fill: #aaaaaa;
+  transition: all 800ms ease;
+}
+
+.text {
+  font-weight: 600;
+  color: #aaaaaa;
+  font-size: medium;
+}
+
+.harga .btn:hover {
+  background: linear-gradient(0deg, #a47cf3, #683fea);
+  box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
+    inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
+    0px 0px 0px 4px rgba(255, 255, 255, 0.2), 0px 0px 180px 0px #9917ff;
+  transform: translateY(-2px);
+}
+
+.harga .btn:hover .text {
+  color: white;
+}
+
+.harga .btn:hover .sparkle {
+  fill: white;
+  transform: scale(1.2);
+}
+/* btn harga */
