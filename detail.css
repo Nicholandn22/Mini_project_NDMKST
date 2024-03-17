@@ -1,7 +1,7 @@
 body {
   margin: 0;
   overflow-x: hidden;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Poppins;
 }
 
 header {
@@ -97,7 +97,8 @@ header {
 .gambar img {
   margin: 0px 25%;
   width: 900px;
-  height: 500px;
+  border-radius: 10px;
+  /* height: 500px; */
 }
 
 .contain {
@@ -112,6 +113,11 @@ header {
   margin-left: 10%;
 }
 
+.contain .kiri h2{
+  font-size: 20px;
+  font-weight: 100;
+}
+
 .contain span {
   font-style: italic;
   color: gray;
@@ -121,8 +127,10 @@ header {
   width: 320px;
   height: fit-content;
   /* background-color: aqua; */
-  margin: 10px 100px;
+  margin: 10px 0px;
+  margin-left: 250px;
   border: 1px solid;
+  border-radius: 10px;
   text-align: center;
   /* margin-left: 30%; */
   display: flex;
@@ -130,7 +138,7 @@ header {
 }
 
 .kanan button {
-  padding: 1.3em 8em;
+  padding: 1em 8em;
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 2.5px;
@@ -138,12 +146,12 @@ header {
   color: #fff;
   background-color: #242565;
   border: none;
-  border-radius: 45px;
+  border-radius: 10px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  margin: 5px auto;
+  margin: 10px;
 }
 
 .kanan button:hover {
@@ -170,7 +178,7 @@ header {
   width: 100%;
   height: 100px;
   display: inline;
-  margin-left: 1000px;
+  margin-left: 1180px;
 }
 
 .sosmed h1 {
@@ -178,6 +186,9 @@ header {
 }
 
 .sosmed img {
+  border: 1.2px solid;
+  border-radius: 5px;
+  border-color: #242565;
   display: inline;
   width: 30px;
   margin-left: 20px;
@@ -235,7 +246,7 @@ header {
 }
 
 .layout img {
-  width: 1317px;
+  width: 1000px;
   height: fit-content;
   display: block;
   float: left;
@@ -244,12 +255,16 @@ header {
 .term {
   display: block;
   /* background-color: lightblue; */
-  margin: 1280px 10% 200px;
+  margin: 950px 10% 200px;
   text-align: start;
 }
 .term h1,
 p {
   display: block;
+}
+
+#boldernih{
+  font-weight: bold;
 }
 
 /* upcoming event and load more */
@@ -264,7 +279,7 @@ p {
 
 .sort {
   width: fit-content;
-  background-color: aqua;
+  
   margin: 50px 80% 0;
 }
 .sort .button {
@@ -344,10 +359,14 @@ p {
 
 .box {
   padding: 10px 20px 20px;
-  /* width: 150px; */
-  /* height: 300px; */
+  width: 300px;
+  height: 300px;
   border: 1px solid;
   margin: 20px 30px;
+}
+
+.box h1 {
+  font-size: 30px;
 }
 
 .box h3 {
@@ -381,6 +400,9 @@ p {
   transition: 200ms;
 }
 
+#line3 {
+  margin: 10px 240px 400px;
+}
 
 /* tombol */
 
@@ -406,7 +428,7 @@ p {
   justify-content: center;
   align-items: center;
   gap: 12px;
-  background: #1c1a1c;
+  background: #3b2e5a;
   cursor: pointer;
   transition: all 450ms ease-in-out;
   margin: 10px auto;
@@ -417,11 +439,11 @@ p {
   transition: all 800ms ease;
 }
 
-.text {
+/* .text {
   font-weight: 600;
   color: #aaaaaa;
   font-size: medium;
-}
+} */
 
 .harga .btn:hover {
   background: linear-gradient(0deg, #a47cf3, #683fea);
@@ -510,55 +532,157 @@ p {
   color: rgb(255, 255, 255);
 }
 
-.box {
-  width: 300px;
-  height: 300px;
+.box2 {
+  width: 370px;
+  height: auto;
   border: 1px solid #ccc;
+  box-shadow: 0px 0px 15px rgb(182, 182, 182);
+  border-radius: 10px;
   padding: 20px;
   margin: 20px 20px;
   text-align: center;
 }
 
-.box img {
+.box2 img {
   width: 100%;
   height: 300px;
   object-fit: cover;
 }
-.box h3 {
+.box2 h3 {
   padding-top: 20px;
-  font-size: 20px;
-  text-align: center;
+  font-size: 30px;
+  text-align: left;
 }
 
-.box h4 {
+.box2 h4 {
   margin-top: 0px;
   font-size: 14px;
   text-align: left;
 }
-.box h5 {
+.box2 h5 {
   font-size: 10px;
   text-align: left;
 }
-.box p {
+.box2 p {
   margin-top: 5px;
   font-size: 12px;
   text-align: left;
 }
 
-.box a {
+.box2 a {
   display: inline-block;
   width: 200px;
-  height: 50px;
+  height: 30px;
   text-align: center;
-  line-height: 50px;
-  font-size: 18px;
-  border: 1px solid #ccc;
+  line-height: 30px;
+  font-size: 15px;
   text-decoration: none;
-  background-color: khaki;
-  color: #000;
+  border-radius: 7px;
+  background-color: #3b2e5a;
+  color: whitesmoke;
 }
 
-.box a:hover {
+.box2 a:hover {
   background-color: #ccc;
 }
 /* main */
+.containft {
+  width: 100%;
+  height: 450px;
+  background-color: #242565;
+  padding: 20px 50px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.abtus{
+  margin-top: 20px;
+}
+
+.abtus img {
+  width: 30px;
+  height: 30px;
+}
+
+.abtus h1 {
+  display: inline;
+  color: white;
+}
+
+.abtus p {
+  width: 30%;
+  margin: 10px auto;
+  color: white;
+  font-size: 25 px;
+}
+
+/* button sosmed */
+.parent {
+  margin-top: 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: white; */
+}
+
+.child {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+  border-radius: 50%;
+  margin: 0 5px;
+  background-color: white;
+}
+
+.child:hover {
+  background-color: #242565;
+  background-position: -100px 100px, -100px 100px;
+  transform: rotate3d(0.5, 1, 0, 30deg);
+  transform: perspective(180px) rotateX(60deg) translateY(2px);
+  box-shadow: 0px 10px 10px rgb(1, 49, 182);
+}
+
+footer button {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  background-color: white;
+}
+
+.button:hover {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate3d(0px, 0px, 15px) perspective(180px) rotateX(-35deg)
+    translateY(2px);
+  border-radius: 50%;
+}
+/* button sosmed */
+
+hr {
+  width: 80%;
+  /* color: red; */
+}
+
+footer a,
+#copyright {
+  margin: 0;
+  color: white;
+}
+
+#plgbwh {
+  /* position: absolute; */
+  margin-top: 10%;
+  text-align: center;
+  padding: 10px;
+  /* background-color: #ccc; */
+  bottom: 1;
+}
