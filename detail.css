@@ -25,6 +25,7 @@ header {
   width: 50px;
   text-align: left;
   padding-left: 20px;
+  display: inline;
 }
 
 #judul img {
@@ -41,7 +42,7 @@ header {
 .navigation #kanan ul {
   list-style: none;
   padding-top: 30px;
-  margin: 0 800px;
+  margin: 0 750px;
   width: max-content;
 }
 
@@ -60,6 +61,20 @@ header {
 /* /* Header */
 
 /* main */
+.breadcrumb {
+  display: block;
+  margin-left: 10%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  h3 {
+    display: inline;
+    padding: 0 10px 0;
+  }
+}
+
+.gambar {
+  display: inline;
+}
 .gambar button {
   display: inline;
   width: 100px;
@@ -74,7 +89,9 @@ header {
   border: none;
   background: white;
   color: #242565;
-  margin: 10px 0px 0px 18%;
+  margin-left: 10%;
+  margin-top: 20px;
+  /* margin: 15px 0px 0px 18%; */
 }
 
 .gambar button > svg {
@@ -99,6 +116,7 @@ header {
   width: 900px;
   border-radius: 10px;
   /* height: 500px; */
+  display: inline;
 }
 
 .contain {
@@ -113,7 +131,7 @@ header {
   margin-left: 10%;
 }
 
-.contain .kiri h2{
+.contain .kiri h2 {
   font-size: 20px;
   font-weight: 100;
 }
@@ -218,7 +236,7 @@ header {
   font-style: italic;
 }
 .event-inf .information .duration {
-  margin: 10px auto;
+  /* margin: 10px auto; */
   text-align: justify;
 }
 .event-inf .information .audience {
@@ -263,7 +281,7 @@ p {
   display: block;
 }
 
-#boldernih{
+#boldernih {
   font-weight: bold;
 }
 
@@ -279,7 +297,6 @@ p {
 
 .sort {
   width: fit-content;
-  
   margin: 50px 80% 0;
 }
 .sort .button {
@@ -595,7 +612,7 @@ p {
   text-align: center;
 }
 
-.abtus{
+.abtus {
   margin-top: 20px;
 }
 
@@ -680,7 +697,7 @@ footer a,
 
 #plgbwh {
   /* position: absolute; */
-  margin-top: 10%;
+  margin-top: 9%;
   text-align: center;
   padding: 10px;
   /* background-color: #ccc; */

@@ -1,0 +1,344 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Poppins;
+}
+
+header {
+  height: fit-content;
+  width: 100%;
+  /* background-image: url(/drive-download-20240310T064708Z-001/Banner_Prambanan_Jazz.webp); */
+  /* opacity: 50%; */
+  /* filter: sepia(0.7); */
+}
+.navigation {
+  width: 80%;
+  height: 100px;
+  margin: auto;
+  padding-top: 10px;
+  /* text-align: end; */
+  background-color: #242565;
+  border-radius: 0px 0px 20px 20px;
+  display: flex;
+}
+#judul {
+  width: 50px;
+  text-align: left;
+  padding-left: 20px;
+  display: inline;
+}
+
+#judul img {
+  width: 50px;
+  display: inline;
+}
+
+#judul h1 {
+  width: 50px;
+  display: inline;
+  color: white;
+}
+
+.navigation #kanan ul {
+  list-style: none;
+  padding-top: 30px;
+  margin: 0 750px;
+  width: max-content;
+}
+
+.navigation #kanan ul a {
+  text-decoration: none;
+  color: white;
+  padding-top: 0px;
+  font-size: 30px;
+  display: inline;
+  margin-right: 15px;
+}
+
+.navigation #kanan ul a:hover {
+  color: rgb(255, 0, 0);
+}
+/* /* Header */
+
+/* main */
+.breadcrumb {
+  display: block;
+  margin-left: 10%;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  h3 {
+    display: inline;
+    padding: 0 10px 0;
+  }
+}
+
+.gambar {
+  display: inline;
+}
+.gambar button {
+  display: inline;
+  width: 100px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  background-color: #eeeeee4b;
+  border-radius: 3px;
+  letter-spacing: 3px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+  background: white;
+  color: #242565;
+  margin-left: 10%;
+  margin-top: 20px;
+  /* margin: 15px 0px 0px 18%; */
+}
+
+.gambar button > svg {
+  margin-right: 5px;
+  margin-left: 5px;
+  font-size: 20px;
+  transition: all 0.4s ease-in;
+}
+
+.gambar button:hover > svg {
+  font-size: 1.2em;
+  transform: translateX(-5px);
+}
+
+.gambar button:hover {
+  box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #242565;
+  /* transform:translateY(-2px); */
+}
+
+.gambar h1 {
+  display: inline;
+  margin-left: 10px;
+}
+.datadiri {
+  width: max-content;
+  height: max-content;
+  background-color: aqua;
+  margin-left: 15%;
+}
+
+.linetiket {
+  display: flex;
+}
+
+/* form */
+.note {
+  width: 500px;
+  height: fit-content;
+  background-color: aqua;
+  margin-left: 15%;
+  h2 {
+    font-size: 15px;
+    color: chocolate;
+  }
+}
+
+.formField {
+  margin: 20px;
+  position: relative;
+}
+
+.formField input {
+  padding: 10px 15px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  background-color: #f1f1f1;
+  color: #333;
+  font-size: 16px;
+  font-weight: 550;
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 0 0 5px transparent;
+}
+
+.formField input:hover,
+.formField input:focus {
+  box-shadow: 0 0 0 2px #333;
+}
+
+.formField span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 8px 15px;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  text-shadow: -1px -1px 0 #f1f1f1, 1px -1px 0 #f1f1f1, -1px 1px 0 #f1f1f1,
+    1px 1px 0 #f1f1f1;
+  transition: 0.3s ease-in-out;
+  pointer-events: none;
+}
+
+.formField input:focus + span,
+.formField input:valid + span {
+  transform: translateY(-32px) translateX(-5px) scale(0.95);
+  transition: 0.3s ease-in-out;
+}
+
+/* form */
+
+/* evendetail kanan */
+.eventdetail {
+  width: 550px;
+  height: max-content;
+  background-color: aqua;
+  float: right;
+  margin-right: 10%;
+  .line1detail {
+    display: block;
+    img {
+      width: 200px;
+      height: 100px;
+      float: left;
+    }
+    h3 {
+      font-size: 15px;
+    }
+    h3 img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  hr {
+    border-style: dashed;
+  }
+}
+
+.eventdetail .ordersum {
+  h3 {
+    display: inline;
+    /* margin-bottom: 100px; */
+    /* margin-right: 20%; */
+  }
+
+  h3 span {
+    display: block;
+  }
+  strong {
+    float: right;
+  }
+}
+
+.paymenbutton button {
+  padding: 17px 40px;
+  border-radius: 15px;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+  box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-size: 15px;
+  transition: all 0.5s ease;
+  float: right;
+  margin-top: 50px;
+}
+
+.paymenbutton button:hover {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 7px 29px 0px;
+}
+
+.paymenbutton button:active {
+  letter-spacing: 3px;
+  background-color: hsl(261deg 80% 48%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: rgb(93 24 220) 0px 0px 0px 0px;
+  transform: translateY(10px);
+  transition: 100ms;
+}
+
+/* evendetail kanan */
+
+/* payment method */
+.payment {
+  width: max-content;
+  height: max-content;
+  margin-left: 15%;
+  margin-top: 50px;
+  background-color: aqua;
+}
+
+.vrac img {
+  width: 100px;
+  height: 50px;
+  margin-left: 60%;
+}
+
+.vrac {
+  display: flex;
+  flex-direction: column;
+}
+
+.radio-label {
+  display: flex;
+  width: 500px;
+  align-items: center;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  background-color: rgb(17, 17, 17);
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  transition: background-color 0.2s, border-color 0.2s;
+  color: #fff;
+}
+
+.radio-label:hover {
+  background-color: #000000;
+}
+
+.radio-input {
+  position: absolute;
+  opacity: 0;
+}
+
+.radio-input:checked + .radio-label {
+  background-color: #b80000;
+  border-color: #ff1111;
+}
+
+.radio-input:focus + .radio-label {
+  outline: 2px solid #ff1111;
+}
+
+.radio-inner-circle {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2px solid rgb(255, 255, 255);
+  border-radius: 50%;
+  margin-right: 0.5em;
+  transition: border-color 0.2s;
+  position: relative;
+}
+
+.radio-label:hover .radio-inner-circle {
+  border-color: rgb(233, 233, 233);
+}
+
+.radio-input:checked + .radio-label .radio-inner-circle {
+  border-color: #ff1111;
+}
+
+.radio-input:checked + .radio-label .radio-inner-circle::after {
+  content: "";
+  display: block;
+  width: 0.5em;
+  height: 0.5em;
+  background-color: #ff1111;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* payment method */
