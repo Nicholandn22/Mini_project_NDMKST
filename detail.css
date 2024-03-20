@@ -72,12 +72,12 @@ header {
   }
 }
 
-.breadcrumb a{
+.breadcrumb a {
   text-decoration: none;
   color: #222;
 }
 
-.breadcrumb a:hover{
+.breadcrumb a:hover {
   text-decoration: underline #242565;
   color: #242565;
 }
@@ -100,7 +100,7 @@ header {
   color: #242565;
   margin-left: 3.6%;
   /* margin-top: 20px; */
-  /* margin: 15px 0px 0px 18%; */
+  margin: 0px 0px 0px 3%;
 }
 
 .gambar button > svg {
@@ -121,12 +121,13 @@ header {
 }
 
 .gambar img {
-  /* margin: 0px 5%; */
+  margin: 0px 10%;
   width: 80%;
-  height: 400px;
+  height: 600px;
   border-radius: 10px;
   display: inline;
   object-fit: cover;
+  clip-path: inset(30px 0px 75px 0px); /* Crop 10px from top and bottom */
 }
 
 .contain {
@@ -268,7 +269,7 @@ header {
   text-align: start;
 }
 
-.desc h1{
+.desc h1 {
   font-size: 20px;
 }
 
@@ -280,7 +281,7 @@ header {
   clear: both;
 }
 
-.layout h1{
+.layout h1 {
   font-size: 20px;
 }
 
@@ -298,7 +299,7 @@ header {
   text-align: start;
 }
 
-.term h1{
+.term h1 {
   font-size: 20px;
 }
 .term h1,
