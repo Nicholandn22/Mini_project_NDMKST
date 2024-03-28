@@ -44,8 +44,9 @@ header {
 .navigation #kanan ul {
   list-style: none;
   padding-top: 30px;
-  margin: 0 880px;
+  margin: 0 800px;
   width: max-content;
+  font-weight: bold;
 }
 
 .navigation #kanan ul a {
@@ -246,7 +247,13 @@ main .container .search img {
 /* Dropdown Menus */
 .dropdown-menus {
   display: flex;
-  justify-content: space-between;
+  width: fit-content;
+  margin: 40px;
+
+}
+
+.dropdown-menus :nth-child(2){
+  margin-left: 15px;
 }
 
 /* Dropdown */
@@ -263,6 +270,7 @@ main .container .search img {
   padding: 10px 15px;
   border: none;
   cursor: pointer;
+  font-weight: bold;
 }
 
 /* Dropdown Content */
@@ -527,7 +535,7 @@ footer a,
 
 #plgbwh {
   /* position: absolute; */
-  margin-top: 10%;
+  margin-top: 9%;
   text-align: center;
   padding: 10px;
   /* background-color: #ccc; */
