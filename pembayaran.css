@@ -24,7 +24,7 @@ header {
 #judul {
   width: 50px;
   text-align: left;
-  padding-left: 20px;
+  padding: 20px 50px;
   display: inline;
 }
 
@@ -42,7 +42,7 @@ header {
 .navigation #kanan ul {
   list-style: none;
   padding-top: 30px;
-  margin: 0 750px;
+  margin: 0 800px;
   width: max-content;
 }
 
@@ -50,13 +50,13 @@ header {
   text-decoration: none;
   color: white;
   padding-top: 0px;
-  font-size: 30px;
+  font-size: 20px;
   display: inline;
   margin-right: 15px;
 }
 
 .navigation #kanan ul a:hover {
-  color: rgb(255, 0, 0);
+  color: rgb(131, 131, 131);
 }
 /* /* Header */
 

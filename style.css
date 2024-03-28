@@ -31,6 +31,8 @@ header {
 #judul img {
   width: 50px;
   display: inline;
+  margin-top: 20px;
+  margin-left: 30px;
 }
 
 #judul h1 {
@@ -42,7 +44,7 @@ header {
 .navigation #kanan ul {
   list-style: none;
   padding-top: 30px;
-  margin: 0 750px;
+  margin: 0 880px;
   width: max-content;
 }
 
@@ -50,13 +52,14 @@ header {
   text-decoration: none;
   color: #242565;
   padding-top: 0px;
-  font-size: 30px;
+  font-size: 20px;
   display: inline;
   margin-right: 15px;
 }
 
 .navigation #kanan ul a:hover {
-  color: rgb(255, 0, 0);
+  color: rgb(131, 131, 131);
+  /* INI MW D BNERIN */
 }
 /* #WELCOME {
   margin-top: 300px;
