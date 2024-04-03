@@ -400,13 +400,18 @@ main .container .search img {
   background-color: #ccc;
 }
 
+/* footer */
 .containft {
   width: 100%;
   height: 450px;
   background-color: #242565;
   padding: 20px 50px;
-  text-align: center;
   margin-top: 100px;
+  text-align: center;
+}
+
+.abtus {
+  margin-top: 20px;
 }
 
 .abtus img {
@@ -496,3 +501,5 @@ footer a,
   /* background-color: #ccc; */
   bottom: 1;
 }
+
+/* footer */
