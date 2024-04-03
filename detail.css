@@ -115,6 +115,7 @@ header {
   transform: translateX(-5px);
 }
 
+
 .gambar button:hover {
   box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #242565;
   /* transform:translateY(-2px); */
@@ -436,8 +437,16 @@ p {
   display: inline;
 }
 
+.line1 .box:nth-child(2) button{
+  background-color: grey;
+}
+
 .line1 button:hover {
   box-shadow: rgb(201, 46, 70) 0px 7px 0px 0px;
+}
+
+.line1 .box:nth-child(2) button:hover{
+  box-shadow: none;
 }
 
 .line1 button:active {
@@ -446,6 +455,13 @@ p {
   box-shadow: rgb(201, 46, 70) 0px 0px 0px 0px;
   transform: translateY(5px);
   transition: 200ms;
+}
+.line1 .box:nth-child(2) button:active {
+  background-color:none;
+  /*50, 168, 80*/
+  box-shadow: none;
+  transform: translateY(0px);
+  transition: 0ms;
 }
 
 #line3 {
