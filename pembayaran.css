@@ -284,6 +284,21 @@ header {
   transition: 100ms;
 }
 
+.pesan {
+  width: fit-content;
+  height: 30px;
+  background-color: #683fea;
+  color: #fff;
+  margin: 200px auto;
+  padding: 10px 20px;
+  border-radius: 20px;
+  opacity: 0.5;
+}
+
+.pesan h1 {
+  margin: 0px;
+}
+
 .payment {
   width: 710px;
   height: max-content;
