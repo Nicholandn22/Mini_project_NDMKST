@@ -83,6 +83,9 @@ header {
 }
 .gambar {
   display: inline;
+  a {
+    text-decoration: none;
+  }
 }
 .gambar button {
   display: inline;
