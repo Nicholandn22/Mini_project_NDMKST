@@ -74,10 +74,12 @@ header {
 
 .breadcrumb a {
   text-decoration: none;
+  color: #222;
 }
 
 .breadcrumb a:hover {
-  text-decoration: underline;
+  text-decoration: underline #242565;
+  color: #242565;
 }
 .gambar {
   display: inline;
