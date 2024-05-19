@@ -1,3 +1,35 @@
+<?php 
+session_start();
+    if(isset($_SESSION['username'])){
+      header("location: main.html");
+    }
+
+include 'koneksi.php';
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $username = $_POST['username'];
+    $email = $_POST['email_user'];
+    $password = $_POST['password_users'];
+
+    $query = "SELECT * FROM user WHERE email_user = '$email' AND password_user = '$password'";
+    $result = mysqli_query($conn, $query);
+
+    if(mysqli_num_rows($result) == 1){
+      $row = mysqli_fetch_assoc($result);
+      session_start();
+      $_SESSION['id_user'] = $row['id_user'];
+      $_SESSION['username'] = $username;
+
+      header("Location: main.html");
+      exit();
+    }else{
+      $error = "Username atau password salah";
+    }
+}
+$error = '';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
