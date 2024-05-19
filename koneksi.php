@@ -1,3 +1,3 @@
 <?php 
-$conn = mysqli_connect("localhost","root","","miniproject_progweb") or die ("Koneksi gagal");
+    $conn = mysqli_connect("localhost","root","","miniproject_progweb") or die ("Koneksi gagal");
 ?>
