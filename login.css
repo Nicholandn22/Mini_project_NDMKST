@@ -1,0 +1,153 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Poppins;
+  background-color: aqua;
+}
+
+header {
+  height: fit-content;
+  width: 100%;
+  /* background-image: url(/drive-download-20240310T064708Z-001/Banner_Prambanan_Jazz.webp); */
+  /* opacity: 50%; */
+  /* filter: sepia(0.7); */
+}
+.navigation {
+  width: 80%;
+  height: 100px;
+  margin: auto;
+  padding-top: 10px;
+  /* text-align: end; */
+  background-color: #242565;
+  border-radius: 0px 0px 20px 20px;
+  display: flex;
+}
+#judul {
+  width: 50px;
+  text-align: left;
+  padding: 20px 50px;
+  display: inline;
+}
+
+#judul img,
+ul img {
+  width: 50px;
+  display: inline;
+}
+.kanan ul a img{
+  color: #fff;
+}
+
+#judul h1 {
+  width: 50px;
+  display: inline;
+  color: white;
+}
+
+.navigation #kanan ul {
+  list-style: none;
+  padding-top: 30px;
+  margin: 0 630px;
+  width: max-content;
+  display: flex;
+  justify-content: center;
+}
+
+.navigation #kanan ul a {
+  text-decoration: none;
+  color: white;
+  padding-top: 0px;
+  font-size: 20px;
+  display: inline;
+  margin-right: 25px;
+}
+
+.navigation #kanan ul a:hover {
+  color: rgb(131, 131, 131);
+}
+/* /* Header */
+
+/* main */
+.containerBox {
+  margin: 100px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  height: fit-content;
+  background-color: #fff;
+}
+
+.containerBox form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.containerBox form h2,h5{
+  text-align: center;
+}
+.containerBox form h4{
+  text-align:left;
+  /* margin-left: 20px; */
+  margin: 15px 54px;
+}
+
+.containerBox form .opsi2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.containerBox form .opsi2 h5 {
+  margin: 0px 15px;
+  text-align: center;
+}
+.containerBox form input {
+  /* margin: 0px 0 0 30px; */
+  width: 80%;
+  padding: 18px 15px;
+  box-sizing: border-box;
+  margin: 0 auto  ;
+}
+
+/* Tombol Button Log in */
+.containerBox button {
+  /* Variables */
+  --button_radius: 0.75em;
+  --button_color: #242565;
+  --button_outline_color: #fff;
+  font-size: 17px;
+  margin-top: 20px;
+  font-weight: bold;
+  width: 80%;
+  margin: 20px auto 0  ;
+  border: none;
+  border-radius: var(--button_radius);
+  background: var(--button_outline_color);
+}
+
+.button_top {
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid var(--button_outline_color);
+  border-radius: var(--button_radius);
+  padding: 0.75em 1.5em;
+  background: var(--button_color);
+  color: var(--button_outline_color);
+  transform: translateY(-0.2em);
+  transition: transform 0.1s ease;
+}
+
+.containerBox button:hover .button_top {
+  /* Pull the button upwards when hovered */
+  transform: translateY(-0.33em);
+}
+
+.containerBox button:active .button_top {
+  /* Push the button downwards when pressed */
+  transform: translateY(0);
+}
+/* Tombol Button Log in */
+
+/* main */

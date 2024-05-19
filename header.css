@@ -1,0 +1,74 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+    font-family: Poppins;
+    background-color: aqua;
+  }
+  
+  header {
+    height: fit-content;
+    width: 100%;
+    /* background-image: url(/drive-download-20240310T064708Z-001/Banner_Prambanan_Jazz.webp); */
+    /* opacity: 50%; */
+    /* filter: sepia(0.7); */
+  }
+  .navigation {
+    width: 80%;
+    height: 100px;
+    margin: auto;
+    padding-top: 10px;
+    /* text-align: end; */
+    background-color: #242565;
+    border-radius: 0px 0px 20px 20px;
+    display: flex;
+  }
+  #judul {
+    width: 50px;
+    text-align: left;
+    padding: 20px 50px;
+    display: inline;
+  }
+  
+  #judul img,
+  ul img {
+    width: 50px;
+    display: inline;
+  }
+  .kanan ul a img{
+    color: #fff;
+  }
+  
+  #judul h1 {
+    width: 50px;
+    display: inline;
+    color: white;
+  }
+  
+  .navigation #kanan ul {
+    list-style: none;
+    padding-top: 30px;
+    margin: 0 630px;
+    width: max-content;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .navigation #kanan ul a {
+    text-decoration: none;
+    color: white;
+    padding-top: 0px;
+    font-size: 20px;
+    display: inline;
+    margin-right: 25px;
+  }
+  
+  .navigation #kanan ul a:hover {
+    color: rgb(131, 131, 131);
+  }
+  /* /* Header */
+  
+  /* main */
+  
+/* ISI KODEE CSSS DISINIII */
+
+  /* main */
