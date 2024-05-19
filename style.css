@@ -7,10 +7,9 @@ body {
 header {
   height: 750px;
   width: 100%;
-  background-image: url(/drive-download-20240310T064708Z-001/Banner_Prambanan_Jazz.webp);
+  background-image: url(Konser/PrambananJazz/Banner_Prambanan_Jazz.webp);
   background-size: 100%;
   /* opacity: 50%; */
-  filter: sepia(0.7);
 }
 .navigation {
   width: 80%;
