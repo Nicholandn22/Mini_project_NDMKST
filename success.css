@@ -1,0 +1,265 @@
+body {
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Poppins;
+  background-color: white;
+}
+  
+header {
+  height: fit-content;
+  width: 100%;
+}
+.navigation {
+  width: 80%;
+  height: 100px;
+  margin: auto;
+  padding-top: 10px;
+  background-color: #242565;
+  border-radius: 0px 0px 20px 20px;
+  display: flex;
+}
+#judul {
+  width: 50px;
+  text-align: left;
+  padding: 20px 50px;
+  display: inline;
+}
+  
+#judul img,
+ul img {
+  width: 50px;
+  display: inline;
+}
+.kanan ul a img{
+  color: #fff;
+}
+
+#judul h1 {
+  width: 50px;
+  display: inline;
+  color: white;
+}
+
+.navigation #kanan ul {
+  list-style: none;
+  padding-top: 30px;
+  margin: 0 630px;
+  width: max-content;
+  display: flex;
+  justify-content: center;
+}
+
+.navigation #kanan ul a {
+  text-decoration: none;
+  color: white;
+  padding-top: 0px;
+  font-size: 20px;
+  display: inline;
+  margin-right: 25px;
+}
+  
+.navigation #kanan ul a:hover {
+  color: rgb(131, 131, 131);
+}
+
+#kembali button {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  border: 0.2px solid #242565;
+  border-radius: 5px;
+  letter-spacing: 3px;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  background: white;
+  color: #242565;
+  margin-left: 10%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#kembali button:hover {
+  border: none;
+  box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #242565;
+}
+
+#completed{
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+  margin: 0;
+}
+#completed h1{
+  text-align: center;
+  width: 550px;
+  padding: 10px;
+  border: 0.2px solid #242565;
+}
+
+#img-gambar {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+#img-gambar img {
+  width: 300px;
+}
+
+.info-bwh {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.btn-bawah a#resend-button{
+  color: #242565;
+  width: max-content;
+  text-decoration: none;
+}
+
+.btn-bawah a#home-button{
+  color: #fff;
+  width: max-content;
+  text-decoration: none;
+}
+
+#information {
+  text-align: center;
+}
+
+.information {
+  margin: 0
+}
+
+button#resend-button {
+  display: block;
+  width: 120px;
+  height: 40px;
+  margin: 5px auto;
+  background-color: #ffffff;
+  border: 0.2px solid #242565;
+  border-radius: 5px;
+  color: #242565;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+button#home-button {
+  display: block;
+  width: 120px;
+  height: 40px;
+  margin: 5px auto;
+  background-color: #242565;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+/* footer */
+.containft {
+  width: 100%;
+  height: 450px;
+  background-color: #242565;
+  padding: 20px 50px;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.abtus {
+  margin-top: 20px;
+}
+
+.abtus img {
+  width: 30px;
+  height: 30px;
+}
+
+.abtus h1 {
+  display: inline;
+  color: white;
+}
+
+.abtus p {
+  width: 30%;
+  margin: 10px auto;
+  color: white;
+  font-size: 25 px;
+}
+
+/* button sosmed */
+.parent {
+  margin-top: 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: white; */
+}
+
+.child {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+  border-radius: 50%;
+  margin: 0 5px;
+  background-color: white;
+}
+
+.child:hover {
+  background-color: #242565;
+  background-position: -100px 100px, -100px 100px;
+  transform: rotate3d(0.5, 1, 0, 30deg);
+  transform: perspective(180px) rotateX(60deg) translateY(2px);
+  box-shadow: 0px 10px 10px rgb(1, 49, 182);
+}
+
+footer button {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  background-color: white;
+}
+
+.button:hover {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translate3d(0px, 0px, 15px) perspective(180px) rotateX(-35deg)
+    translateY(2px);
+  border-radius: 50%;
+}
+/* button sosmed */
+
+hr {
+  width: 80%;
+  /* color: red; */
+}
+
+footer a,
+#copyright {
+  margin: 0;
+  color: white;
+}
+
+#plgbwh {
+  /* position: absolute; */
+  margin-top: 9%;
+  text-align: center;
+  padding: 10px;
+  /* background-color: #ccc; */
+  bottom: 1;
+}
+
+/* footer */

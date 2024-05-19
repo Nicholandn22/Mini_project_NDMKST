@@ -31,3 +31,7 @@
     
 </body>
 </html>
+
+<script>
+      feather.replace();
+  </script> 
