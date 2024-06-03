@@ -44,7 +44,7 @@
           </div>
           <p>
             My.Tic adalah platform digital pemesanan tiket baik konser,
-            festival, ataupun fanmeet dalam negri maupun luar negri. Dengan
+            festival, ataupun fanmeet dalam negeri maupun luar negeri. Dengan
             kemudahan akses dan pembayaran memberikan pengalaman membeli tiket
             yang menyenangkan.
           </p>
