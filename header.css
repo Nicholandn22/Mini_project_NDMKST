@@ -1,70 +1,73 @@
 body {
-    margin: 0;
-    overflow-x: hidden;
-    font-family: Poppins;
-    background-color: aqua;
-  }
-  
-  header {
-    height: fit-content;
-    width: 100%;
-    /* background-image: url(/drive-download-20240310T064708Z-001/Banner_Prambanan_Jazz.webp); */
-    /* opacity: 50%; */
-    /* filter: sepia(0.7); */
-  }
-  .navigation {
-    width: 80%;
-    height: 100px;
-    margin: auto;
-    padding-top: 10px;
-    /* text-align: end; */
-    background-color: #242565;
-    border-radius: 0px 0px 20px 20px;
-    display: flex;
-  }
-  #judul {
-    width: 50px;
-    text-align: left;
-    padding: 20px 50px;
-    display: inline;
-  }
-  
-  #judul img,
-  ul img {
-    width: 50px;
-    display: inline;
-  }
-  .kanan ul a img{
-    color: #fff;
-  }
-  
-  #judul h1 {
-    width: 50px;
-    display: inline;
-    color: white;
-  }
-  
-  .navigation #kanan ul {
-    list-style: none;
-    padding-top: 30px;
-    margin: 0 630px;
-    width: max-content;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .navigation #kanan ul a {
-    text-decoration: none;
-    color: white;
-    padding-top: 0px;
-    font-size: 20px;
-    display: inline;
-    margin-right: 25px;
-  }
-  
-  .navigation #kanan ul a:hover {
-    color: rgb(131, 131, 131);
-  }
+  margin: 0;
+  overflow-x: hidden;
+  font-family: Poppins;
+  background-color: aqua;
+}
+
+header {
+  height: fit-content;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000; 
+}
+.navigation {
+  width: 80%;
+  height: 100px;
+  margin: auto;
+  padding-top: 10px;
+  background-color: #242565;
+  border-radius: 0px 0px 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 5px 20px #0b0b17;
+}
+#judul {
+  display: flex;
+  align-items: center;
+}
+
+#judul img {
+  width: 50px;
+  margin-left: 100px;
+}
+
+#judul h1 {
+  font-style: italic;
+  color: white;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.navigation #kanan ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  margin-right: 100px;
+}
+
+.navigation #kanan ul a {
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.navigation #kanan ul a:hover {
+  color: rgb(131, 131, 131);
+}
+
+.kanan ul a img{
+  color: rgb(36, 38, 101);
+}
   /* /* Header */
   
   /* main */
@@ -72,3 +75,173 @@ body {
 /* ISI KODEE CSSS DISINIII */
 
   /* main */
+
+  /* footer */
+  
+  .containft {
+    width: 100%;
+    height: 100%;
+    background-color: #242565;
+    margin-top: 100px;
+    text-align: center;
+  }
+  
+  .abtus {
+    margin-top: 20px;
+  }
+  
+  .abtus img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .abtus h1 {
+    display: inline;
+    font-size: 24px;
+    font-style: italic;
+    color: white;
+  }
+  
+  #jdul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; 
+    margin-bottom: 20px;
+  }
+  
+  #jdul img {
+    margin-right: 10px; 
+  }
+  
+  .abtus p {
+    width: 30%;
+    margin: 0 auto;
+    color: white;
+    font-size: 12px;
+    font-weight: lighter;
+  }
+  
+  .parent {
+    margin-top: 30px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .parent .button {
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    position: absolute;
+  }
+  
+  .parent .button a{
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .child {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease-in-out;
+    border-radius: 50%;
+    margin: 0 5px;
+  }
+  
+  .child:hover {
+    background-color: #242565;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .child-1, btn-1{
+    background-color: #1DA1F2; 
+  }
+  
+  .child-2, btn-2 {
+    background-color: #E1306C; 
+  }
+  
+  .child-3, btn-3 {
+    background-color: #6e5494; 
+  }
+  
+  .child-4, btn-4 {
+    background-color: #3b5998;
+  }
+  
+  footer button {
+    border: none;
+    background-color: transparent;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  .button:hover {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+  }
+  /* button sosmed */
+  
+  hr {
+    width: 80%;
+    /* color: red; */
+  }
+  
+  footer #copyright {
+    margin: 0;
+    color: white;
+    font-size: 14px;
+    font-style: normal;
+  }
+  
+  footer a{
+    margin: 0;
+    color: #FFF48F;
+    text-decoration: none;
+    font-style: italic;
+  }
+  
+  footer a:hover{
+    color: #3b5998;
+    text-decoration: underline;
+  }
+  
+  hr {
+    width:100%;
+    size: 20px;
+    border-color: #4C4D8B;
+  }
+  
+  #plgbwh {
+    margin-top: 35px;
+    text-align: center;
+    padding: 10px;
+    bottom: 1;
+  }
+  
+  /* footer */

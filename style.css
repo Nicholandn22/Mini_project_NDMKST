@@ -3,118 +3,150 @@ body {
   margin: 0;
   overflow-x: hidden;
   font-family: Poppins;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 header {
-  height: 750px;
+  /* height: 650px; */
   width: 100%;
-  background-image: url(Konser/PrambananJazz/Banner_Prambanan_Jazz.webp);
-  background-size: 100%;
+  /* background-image: url(Konser/PrambananJazz/Banner_Prambanan_Jazz.webp);
+  background-size: 100%; */
   /* opacity: 50%; */
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000; 
 }
+
+section{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 700px;
+  background-image: linear-gradient(to bottom, transparent 80%, rgba(255, 255, 255, 1) 100%), url(Konser/PrambananJazz/Banner_Prambanan_Jazz.webp);
+  background-size: cover; 
+  opacity: 0.7; 
+  z-index: -1;
+}
+
 .navigation {
   width: 80%;
   height: 100px;
   margin: auto;
   padding-top: 10px;
-  /* text-align: end; */
-  background-color: #fff;
+  background-color: white;
   border-radius: 0px 0px 20px 20px;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 -2px 20px #0b0b17;
 }
 #judul {
-  width: 50px;
-  text-align: left;
-  padding-left: 20px;
+  display: flex;
+  align-items: center;
 }
 
 #judul img {
   width: 50px;
-  display: inline;
-  margin-top: 20px;
-  margin-left: 30px;
+  margin-left: 100px;
 }
 
 #judul h1 {
-  width: 50px;
-  display: inline;
+  font-style: italic;
   color: #242565;
+  margin-left: 20px;
+  font-weight: bold;
+  font-size: 24px;
 }
 
 .navigation #kanan ul {
   list-style: none;
-  padding-top: 30px;
-  margin: 0 800px;
-  width: max-content;
-  font-weight: bold;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  margin-right: 100px;
 }
 
 .navigation #kanan ul a {
   text-decoration: none;
   color: #242565;
-  padding-top: 0px;
-  font-size: 20px;
-  display: inline;
-  margin-right: 15px;
+  font-size: 16px;
+  margin-right: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .navigation #kanan ul a:hover {
   color: rgb(131, 131, 131);
-  /* INI MW D BNERIN */
 }
-/* #WELCOME {
-  margin-top: 300px;
-  text-align: center;
-  color: #242565;
-  font-size: 60px;
-} */
-/* /* Header */
+
+.kanan ul a img{
+  color: rgb(36, 38, 101);
+}
+
+/* Header */
+
+/* Main */
 
 main .container {
   width: 80%;
-  height: max-content;
   background-color: #242565;
   margin: 10px auto;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 20px;
+  padding: 20px;
+  margin-top: 570px;
 }
 
-main .container .box1,
-.box2,
-.box3 p {
+main .container .search {
+  flex: 1;
+  text-align: left;
   color: white;
+  padding: 0 10px;
 }
 
-main .container .box1 {
-  flex: 1; /* Makes each child element take up 1/4 of the space */
-  text-align: center; /* Optional styling for boxes */
+.search p {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
-main .container .box2 {
-  flex: 2; /* Makes each child element take up 1/4 of the space */
-  text-align: center; /* Optional styling for boxes */
+.search input {
+  width: 80%;
+  height: 30px;
+  border: none;
+  text-align: left;
+  background-color: transparent;
+  color: white;
+  outline: none;
+  font-size: 14px;
+  border-bottom: 1px solid #5B5C8C;
 }
-main .container .box3 {
-  flex: 1; /* Makes each child element take up 1/4 of the space */
-  text-align: center; /* Optional styling for boxes */
+
+.search input::placeholder {
+  color: #5B5C8C;
+  font-family: Poppins;
 }
-/* tombol search */
-.btn-search:link,
-.btn-search:visited {
+
+.btn-search {
   text-transform: uppercase;
   text-decoration: none;
   color: #242565;
   background-color: #fff;
-  padding: 10px;
+  padding: 10px 30px;
   border: 1px solid;
-  border-radius: 1000px;
+  border-radius: 20px;
   display: inline-block;
   transition: all 0.2s;
   position: relative;
-  width: 100px;
-  height: 20px;
-  margin-left: 20px;
-  margin-top: 18px;
-  margin-right: 20px;
   text-align: center;
+  font-size: 14px;
 }
 
 .btn-search:hover {
@@ -131,7 +163,7 @@ main .container .box3 {
   display: inline-block;
   height: 100%;
   width: 100%;
-  border-radius: 100px;
+  border-radius: 20px;
   top: 0;
   left: 0;
   position: absolute;
@@ -140,117 +172,67 @@ main .container .box3 {
 }
 
 .btn-search:hover::after {
-  background-color: rgb(0, 238, 255);
+  background-color: #FFF48F;
   transform: scaleX(1.4) scaleY(1.5);
   opacity: 0;
 }
-/* tombol search */
-#my-input {
-  width: 300px;
-  height: 15px;
-  border: 1px solid #ccc;
-  text-align: center;
-}
-
-#my-date {
-  width: 300px;
-  height: 15px;
-  text-align: center;
-  border: 1px solid #ccc;
-}
-main .container .search img {
-  height: 100%;
-}
-
-#my-input {
-  border: none;
-  background-color: transparent;
-  padding: 0;
-  margin: 0;
-  font-size: 16px;
-  line-height: 1.5;
-  border-bottom: 1px solid #ccc;
-  width: 70%;
-  text-decoration: none;
-  outline: none;
-  transition: border-color 0.2s ease-in-out;
-  color: white;
-}
-
-#my-input::-webkit-input-placeholder {
-  color: white;
-}
-
-#my-input:-moz-placeholder {
-  color: white;
-}
-
-#my-input::-moz-placeholder-color {
-  color: white;
-}
-
-#my-input:-ms-input-placeholder {
-  color: white;
-}
 
 .container-ft {
-  width: 500px;
-  margin: 50px 200px;
+  width: 100%;
+  margin: 70px 0 20px 0;
   text-align: left;
 }
-/* Dropdown Menus */
+
 .dropdown-menus {
   display: flex;
-  width: fit-content;
-  margin: 40px;
+  gap: 15px;
+  margin-left: 15%;
 }
 
-.dropdown-menus :nth-child(2) {
-  margin-left: 15px;
-}
-
-/* Dropdown */
 .dropdown {
   position: relative;
   display: inline-block;
 }
 
-/* Dropdown Button */
 .dropdown-button {
   background-color: #f2f4ff;
   color: #1d275f;
-  font-size: 16px;
-  padding: 10px 15px;
+  font-size: 12px;
+  padding: 7px 15px;
   border: none;
   cursor: pointer;
   font-weight: bold;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 150px;
+  font-family: Poppins;
 }
 
-/* Dropdown Content */
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: fit-content;
+  min-width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 2;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-/* Tautan Dropdown */
 .dropdown-content a {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  width: fit-content;
+  font-size: 12px;
 }
 
-/* Tautan Dropdown Saat Diarahkan */
 .dropdown-content a:hover {
   background-color: #f1f1f1;
 }
 
-/* Tampilkan Dropdown Menu Saat Diarahkan */
 .dropdown:hover .dropdown-content {
   display: block;
 }
@@ -261,32 +243,36 @@ main .container .search img {
   width: 100%;
 }
 
-.tulisan h1 {
-  text-align: left;
-  margin-left: 250px;
-  display: inline;
+.tulisan{
+  display: flex;
+  justify-content: center;
+  gap: 45%;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 50px;
 }
 
-/* .tulisan a {
-  margin-left: 28%;
+.tulisan h1 {
+  text-align: left;
+  font-weight: bolder;
   display: inline;
-} */
+}
 
 .readmore-btn {
   width: fit-contentd;
   height: 55px;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: right;
+  justify-content: right;
   cursor: pointer;
   background-color: #242565;
   border: none;
   border-radius: 10px;
   padding: 0px 15px;
-  gap: 0px;
+  gap: 2px;
   transition: all 0.4s;
-  margin-left: 73%;
 }
+
 .book-wrapper {
   display: flex;
   align-items: center;
@@ -330,6 +316,16 @@ main .container .search img {
   color: rgb(255, 255, 255);
 }
 
+
+.container2 {
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
 .box {
   width: 370px;
   height: auto;
@@ -357,29 +353,48 @@ main .container .search img {
 }
 
 .box h3 {
-  margin-top: 10px;
-  font-size: 40px;
+  color: #242565;
+  margin: 0;
+  font-size: 30px;
   text-align: left;
+  display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.box h3 {
-  margin-top: 10px;
-  font-size: 30px;
-}
 .box h4 {
-  margin-top: 0px;
+  margin: 0;
+  margin-bottom: 10px;
   font-size: 14px;
   text-align: left;
+  word-spacing: 5px;
 }
 .box h5 {
-  font-size: 10px;
+  margin: 0;
+  font-size: 11px;
   text-align: justify;
+  color: #818181;
+  font-weight: lighter;
+  display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .box p {
+  margin: 0;
   margin-top: 5px;
   font-size: 12px;
   text-align: left;
   font-style: italic;
+  color: #818181;
+  display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .box a {
@@ -399,12 +414,20 @@ main .container .search img {
   background-color: #ccc;
 }
 
+#detail_error{
+  background-color: #ccc;
+}
+
+#img_error{
+  opacity: 50%;
+  filter: grayscale();
+}
+
 /* footer */
 .containft {
   width: 100%;
-  height: 450px;
+  height: 100%;
   background-color: #242565;
-  padding: 20px 50px;
   margin-top: 100px;
   text-align: center;
 }
@@ -414,23 +437,38 @@ main .container .search img {
 }
 
 .abtus img {
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
 }
 
 .abtus h1 {
   display: inline;
+  font-size: 24px;
+  font-style: italic;
   color: white;
+}
+
+#jdul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%; 
+  padding-top: 30px;
+  margin-bottom: 20px;
+}
+
+#jdul img {
+  margin-right: 10px; 
 }
 
 .abtus p {
   width: 30%;
-  margin: 10px auto;
+  margin: 0 auto;
   color: white;
-  font-size: 25 px;
+  font-size: 12px;
+  font-weight: lighter;
 }
 
-/* button sosmed */
 .parent {
   margin-top: 30px;
   width: 100%;
@@ -438,35 +476,72 @@ main .container .search img {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: white; */
 }
 
-.child {
-  width: 50px;
-  height: 50px;
+.parent .button {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.parent .button a{
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.child {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   transform-style: preserve-3d;
   transition: all 0.5s ease-in-out;
   border-radius: 50%;
   margin: 0 5px;
-  background-color: white;
 }
 
 .child:hover {
   background-color: #242565;
-  background-position: -100px 100px, -100px 100px;
-  transform: rotate3d(0.5, 1, 0, 30deg);
-  transform: perspective(180px) rotateX(60deg) translateY(2px);
-  box-shadow: 0px 10px 10px rgb(1, 49, 182);
+  width: 50px;
+  height: 50px;
+}
+
+.child-1, btn-1{
+  background-color: #1DA1F2; 
+}
+
+.child-2, btn-2 {
+  background-color: #E1306C; 
+}
+
+.child-3, btn-3 {
+  background-color: #6e5494; 
+}
+
+.child-4, btn-4 {
+  background-color: #3b5998;
 }
 
 footer button {
   border: none;
   background-color: transparent;
   font-size: 20px;
-  background-color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 .button:hover {
@@ -475,8 +550,6 @@ footer button {
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translate3d(0px, 0px, 15px) perspective(180px) rotateX(-35deg)
-    translateY(2px);
   border-radius: 50%;
 }
 /* button sosmed */
@@ -486,18 +559,35 @@ hr {
   /* color: red; */
 }
 
-footer a,
-#copyright {
+footer #copyright {
   margin: 0;
   color: white;
+  font-size: 14px;
+  font-style: normal;
+}
+
+footer a{
+  margin: 0;
+  color: #FFF48F;
+  text-decoration: none;
+  font-style: italic;
+}
+
+footer a:hover{
+  color: #3b5998;
+  text-decoration: underline;
+}
+
+hr {
+  width:100%;
+  size: 20px;
+  border-color: #4C4D8B;
 }
 
 #plgbwh {
-  /* position: absolute; */
-  margin-top: 9%;
+  margin-top: 35px;
   text-align: center;
   padding: 10px;
-  /* background-color: #ccc; */
   bottom: 1;
 }
 

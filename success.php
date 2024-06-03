@@ -19,7 +19,7 @@
           </div>
           <div id="kanan">
             <ul>
-              <a href="main.html">Utama</a>
+              <a href="main.php">Utama</a>
               <a href="#">List Konser</a>
               <a href="main.html">Tentang Kami</a>
               <a href="#"><i data-feather="user"></i> Login</a>
