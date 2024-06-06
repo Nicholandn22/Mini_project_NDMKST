@@ -2,9 +2,9 @@
 include 'koneksi.php';
 
 session_start();
-// if(isset($_SESSION['username'])){
-//   header("location: main.html");
-// }
+if(isset($_SESSION['username'])){
+  header("location: main.php");
+}
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
   $email = $_POST['email_user'];
@@ -19,7 +19,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $_SESSION['id_user'] = $row['id_user'];
     $_SESSION['username'] = $row['username'];
 
-    header("Location: main.html");
+    header("Location: main.php");
     exit();
   }else{
     $error = "Username atau password salah";
@@ -53,7 +53,7 @@ $error = '';
             <ul>
               <a href="main.php">Utama</a>
               <a href="#">List Konser</a>
-              <a href="main.html">Tentang Kami</a>
+              <a href="main.php">Tentang Kami</a>
               <a href="#"><i data-feather="user"></i>Login</a>
             </ul>
           </div>

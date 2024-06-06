@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+  $isLoggedIn = !empty($username);
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -21,9 +26,11 @@
         <div id="kanan">
           <ul>
               <a href="main.php">Utama</a>
-              <a href="#">List Konser</a>
+              <a href="listkonser.php">List Konser</a>
               <a href="#">Tentang Kami</a>
+              <li id="user-menu">
               <a href="login.php"><i data-feather="user"></i> Login</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -32,16 +39,19 @@
     <section id="bgchange"></section>
   </div>
   <script>
-    const backgroundImages = [
-  'url("Konser/IVE/Poster.1.webp")',
+  const backgroundImages = [
+  'url("Konser/IVE/header.jpg")',
   'url("Konser/BersuaFestival/Poster.2.png")',
-  'url("Konser/ChaEunWoo/Poster.1.jpeg")',
-  'url("Konser/IU/Poster.1.jpg")',
-  'url("Konser/BlessThisConcert/Poster.jpg")',
-  'url("Konser/NiallHoran/Poster.1.jpg")',
-  'url("Konser/SoundOfDowntown/Poster.jpg")',
-  'url("Konser/TheEternity/Poster.jpg")',
-];
+  'url("Konser/ChaEunWoo/Poster.2.jpg")',
+  'url("Konser/IU/Poster.2.png")',
+  'url("Konser/BlessThisConcert/Poster.2.png")',
+  'url("Konser/NiallHoran/header.webp")',
+  'url("Konser/SoundOfDowntown/Poster.png")',
+  'url("Konser/TheEternity/Poster.2.png")',
+  'url("Konser/TheBoyz/header.jpg")',
+  'url("Konser/YOONITE/Poster.1.jpg")',
+  'url("Konser/PrambananJazz/Banner_Prambanan_Jazz.webp")',
+  ];
 
   let currentIndex = 0;
       const section = document.querySelector('#bgchange');
@@ -52,6 +62,26 @@
     }
 
 setInterval(changeBackground, 7000);
+
+const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    const username = <?php echo json_encode($username); ?>;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const userMenu = document.getElementById('user-menu');
+
+      if (isLoggedIn) {
+        userMenu.innerHTML = `
+          <div class="dropdown">
+            <button class="dropdown-button"><i data-feather="user"></i> ${username} <i data-feather="chevron-down"></i></button>
+            <div class="dropdown-content">
+              <a href="logout.php">Log Out</a>
+              <a href="cart.php">Keranjang Saya</a>
+            </div>
+          </div>
+        `;
+        feather.replace();
+      }
+    });
   </script>
 
     <main>
@@ -75,7 +105,7 @@ setInterval(changeBackground, 7000);
 
       <div class="container-ft">
         <div class="dropdown-menus">
-          <div class="dropdown">
+          <!-- <div class="dropdown">
             <button class="dropdown-button">Hari <i data-feather="chevron-down"></i></button>
             <div class="dropdown-content">
               <a href="#">Senin</a>
@@ -86,7 +116,7 @@ setInterval(changeBackground, 7000);
               <a href="#">Sabtu</a>
               <a href="#">Minggu</a>
             </div>
-          </div>
+          </div> -->
           <div class="dropdown">
             <button class="dropdown-button">Kategori <i data-feather="chevron-down"></i></button>
             <div class="dropdown-content">
@@ -183,122 +213,106 @@ setInterval(changeBackground, 7000);
         </a>
       </div>
       <div class="container2">
-        <div class="box">
-          <img
-            src="Konser\PrambananJazz\Banner_Prambanan_Jazz.3.jpg"
-            alt="Image 1"
-          />
-          <div class="dalam">
-            <h3>PRAMBANAN JAZZ</h3>
-            <p>Maliq & D'Essentials, Kahitna, Tulus, JKT48, Kunto  ...</p>
-            <h4>Yogyakarta &bull; 5-7 Juli 2024</h4>
-            <h5>
-              Prambanan Jazz merupakan festival musik internasional tahunan yang
-              diadakan di pelataran Candi Prambanan, Yogyakarta, mengusung konsep
-              gabungan dua mahakarya besar yaitu Candi Prambanan dan mahakarya
-              musik internasional, serta musik nasional. Festival musik diusung
-              sebagai salah satu media diplomasi...
-            </h5>
-            <h2>Rp. 250.000,00</h2>
-            <a href="/detail.html">Detail</a>
-          </div>
+      <?php
+        include 'koneksi.php';
+
+        // Periksa koneksi
+        if ($conn->connect_error) {
+            die("Koneksi gagal: " . $conn->connect_error);
+        }
+
+        $search_konser = isset($_GET['konser']) ? $_GET['konser'] : '';
+        $search_lokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : '';
+        $search_tanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : '';
+
+        $sqlkonser = "SELECT 
+                        konser.id_konser, 
+                        konser.judul_konser, 
+                        konser.kategori_konser, 
+                        konser.Deskripsi_konser, 
+                        konser.kota, 
+                        konser.tempat, 
+                        konser.tanggal_awal, 
+                        konser.tanggal_akhir, 
+                        konser.jam_mulai, 
+                        konser.jam_akhir, 
+                        konser.batas_umur, 
+                        konser.gambar_tumb, 
+                        konser.gambar_header, 
+                        konser.gambar_layout, 
+                        konser.gambar_tnc,
+                        (SELECT MIN(harga) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS min_harga,
+                        (SELECT SUM(tiket.stok) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS stok
+                    FROM 
+                        konser
+                    WHERE 
+                        (judul_konser LIKE '%$search_konser%' OR '$search_konser' = '') AND
+                        (kota LIKE '%$search_lokasi%' OR '$search_lokasi' = '') AND
+                        (tanggal_awal = '$search_tanggal' OR '$search_tanggal' = '')";
+        $result = $conn->query($sqlkonser);
+
+        if ($result->num_rows > 0) {
+            while($row = $result->fetch_assoc()) {
+                echo "<div class='box'>";
+                $start_date = date_create($row['tanggal_awal']);
+                $formatted_start_date = date_format($start_date, 'j F Y');
+                $id=$row['id_konser'];
+
+                if (strtotime($row['tanggal_awal']) > time() && $row['stok'] > 0) {
+                    echo "<img src='" . $row['gambar_tumb'] . "' alt='Image'>";
+                } else {
+                    echo "<img src='" . $row['gambar_tumb'] . "' id='img_error' alt='Image'>";
+                }
+                echo "<div class='dalam'>";
+                echo "<h3>" . $row["judul_konser"] . "</h3>";
+                $sqlartis = "SELECT 
+                                artis.nama_artis
+                            FROM 
+                                artis
+                            INNER JOIN 
+                                featuring ON artis.id_artis = featuring.id_artis
+                            INNER JOIN
+                                konser ON featuring.id_konser = konser.id_konser
+                            WHERE konser.id_konser = ". $row['id_konser'];
+                $resultartis = $conn->query($sqlartis);
+                if ($resultartis->num_rows > 0) {
+                    $artistNames = array();
+                    while($rowArtis = $resultartis->fetch_assoc()) {
+                        $artistNames[] = $rowArtis['nama_artis']; 
+                    }
+                    echo "<p>" . implode(", ", $artistNames) . "</p>";
+                } else {
+                    echo "<p> - </p>";
+                }
+
+                if (!empty($row['tanggal_akhir'])) {
+                    $end_date = date_create($row['tanggal_akhir']);
+                    $formatted_end_date = date_format($end_date, 'j F Y');
+                    echo "<h4>" . $row['kota'] . " &bull; ". $formatted_start_date . " - " . $formatted_end_date . "</h4>";
+                } else {
+                    echo "<h4>" . $row['kota'] . " &bull; ". $formatted_start_date . "</h4>";
+                }
+                echo "<h5>" . $row["Deskripsi_konser"] . "</h5>";
+                echo "<h2>Rp. " . number_format($row['min_harga'], 2, ',', '.') . "</h2>";
+                if (strtotime($row['tanggal_awal']) < time() && strtotime($row['tanggal_akhir']) < time() ) {
+                    echo "<a href='#' style='pointer-events: none;' id='detail_error'>Event sudah berlalu</a>";
+                } else if($row['stok'] == 0){
+                    echo "<a href='#' style='pointer-events: none;' id='detail_error'>Stok Habis</a>";
+                }else {
+                    echo "<a href='detail.php?id=$id'>Detail</a>";
+                }
+                echo "</div></div>";
+            }
+        } else {
+            echo "Tidak ada data konser yang ditemukan.";
+        }        
+
+        // Tutup koneksi
+        $conn->close();
+        ?>
         </div>
-        <div class="box">
-          <img
-            src="Konser/ChaEunWoo/Poster.2.jpg"
-            alt="Image 2"
-          />
-          <div class="dalam">
-            <h3>Just One Minute</h3>
-            <p>Cha Eun Woo</p>
-            <h4>Jakarta &bull; 20 April 2024</h4>
-            <h5>
-              Our next event is CHA EUN-WOO 2024 Just One 10 Minute [Mystery
-              Elevator] in Jakarta on 20 April 2024, 7pm at Tennis Indoor Senayan.
-              Fans are invited to embark on a unique journey by riding the
-              “Mystery Elevator” to an unexplored space, where they can fully
-              indulge in and appreciate the multifaceted charms of CHA EUN W...
-            </h5>
-            <h2>Rp. 1.000.000,00</h2>
-            <a href="/detail.html">Detail</a>
-          </div>
         </div>
 
-        <div class="box">
-          <img
-            src="Konser/IVE/Poster.2.jpeg"
-            alt="Image 3"
-          />
-          <div class="dalam">
-            <h3>IVE The First</h3>
-            <p>IVE</p>
-            <h4>Jakarta &bull; 24 Agustus 2024</h4>
-            <h5>
-              Show What I Have World Tour is the first worldwide concert tour and second tour overall by South Korean girl group Ive, in support of their extended play I've Mine. The tour began on October 7, 2023, in Seoul, South Korea and is currently set to conclude on August 24, 2024, in Jakarta, Indonesia. The tour consists of 32 concerts, includi...
-            </h5>
-            <h2>Rp. 1.200.000,00</h2>
-            <a href="/detail.html">Detail</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="container2">
-        <div class="box">
-          <img
-            src="Konser/BersuaFestival/Poster.3.png"
-            alt="Image 4"
-          />
-          <div class="dalam">
-            <h3>Bersua Festival</h3>
-            <p>Yura Yunita, Lomba Sihir, Coldiac, Ngatmobilung</p>
-            <h4>Yogyakarta &bull; 27-28 April 2024</h4>
-            <h5>
-              Di tengah keindahan Yogyakarta yang kaya akan budaya. BERSUA hadir
-              sebagai panggung kebersamaan di mana musik menyatukan orang-orang
-              dari berbagai latar belakang. Suatu acara di mana keluarga, sahabat,
-              dan komunitas bisa bersatu dalam keindahan musik, merayakan
-              keberagaman, dan menciptakan kenangan yang ...
-            </h5>
-            <h2>Rp. 250.000,00</h2>
-            <a href="/detail.html">Detail</a>
-          </div>
-        </div>
-        <div class="box">
-          <img
-            src="Konser/NiallHoran/Poster.1.jpg"
-            alt="Image 5"
-          />
-          <div class="dalam">
-            <h3>Niall Horan: The S.. </h3>
-            <p>Niall Horan</p>
-            <h4>Jakarta &bull; 11 Mei 2024</h4>
-            <h5>
-              The chart-topping global superstar Niall Horan has announced the following tour called “THE SHOW LIVE ON TOUR" – his biggest tour yet and first headline run since 2018’s Flicker World Tour. Niall Horan will be adding new dates in Asia and will be performing in Jakarta on Saturday, 11 May 2024 at Beach City International Stadi...
-            </h5>
-            <h2>Rp. 1.200.000,00</h2>
-            <a href="/detail.html">Detail</a>
-          </div>
-        </div>
-
-        <div class="box">
-          <img
-            src="Konser/TheEternity/Poster.jpg"
-            alt="Image 6"
-          />
-          <div class="dalam">
-            <h3>The Eternity</h3>
-            <p>Chanyeol</p>
-            <h4>Jakarta &bull; 9 Maret 2024</h4>
-            <h5>
-              On September 29th, 2023, the official Twitter account of Kpop group EXO (@weareoneEXO) announced CHANYEOL's fancon tour titled 'The Eternity' in Asia, starting from Taoyuan then Bangkok and Hong Kong.
-              Then finally on December 19th, 2023, the @weareoneEXO account announced CHANYEOL's next fancon tour destinations in the following cities which is
-
-            </h5>
-            <h2>Rp. 1.400.000,00</h2>
-            <a href="/detail.html">Detail</a>
-          </div>
-        </div>
-      </div>
     </main>
 
     <footer>

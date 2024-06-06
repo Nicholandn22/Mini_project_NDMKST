@@ -32,7 +32,7 @@
     <section id="bgchange"></section>
   </div>
   <script>
-    const backgroundImages = [
+  const backgroundImages = [
   'url("Konser/IVE/header.jpg")',
   'url("Konser/BersuaFestival/Poster.2.png")',
   'url("Konser/ChaEunWoo/Poster.2.jpg")',
@@ -222,6 +222,7 @@ setInterval(changeBackground, 7000);
                 echo "<div class='box'>";
                 $start_date = date_create($row['tanggal_awal']);
                 $formatted_start_date = date_format($start_date, 'j F Y');
+                $id=$row['id_konser'];
 
                 if (strtotime($row['tanggal_awal']) > time() && $row['stok'] > 0) {
                     echo "<img src='" . $row['gambar_tumb'] . "' alt='Image'>";
@@ -264,7 +265,7 @@ setInterval(changeBackground, 7000);
                 } else if($row['stok'] == 0){
                     echo "<a href='#' style='pointer-events: none;' id='detail_error'>Stok Habis</a>";
                 }else {
-                    echo "<a href='detail.html'>Detail</a>";
+                    echo "<a href='detail.php?id=$id'>Detail</a>";
                 }
                 echo "</div></div>";
             }
