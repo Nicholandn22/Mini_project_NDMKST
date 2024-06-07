@@ -326,7 +326,7 @@ if($_GET){
 
           <div class="harga">
             <h1>Total Harga (IDR) <span>Rp. 750.000</span></h1>
-            <a href="/pembayaran.html">
+            <a href="pembayaran.php">
               <button class="btn">
                 <svg
                   height="24"

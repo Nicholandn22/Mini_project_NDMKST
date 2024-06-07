@@ -24,11 +24,34 @@
               <a href="main.html">Utama</a>
               <a href="#">List Konser</a>
               <a href="main.html">Tentang Kami</a>
-              <a href="#"><i data-feather="user"></i> Login</a>
+              <li id="user-menu">
+              <a href="login.php"><i data-feather="user"></i> Login</a>
+            </li>
             </ul>
           </div>
         </div>
     </header>
+    <script>
+    const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    const username = <?php echo json_encode($username); ?>;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const userMenu = document.getElementById('user-menu');
+
+      if (isLoggedIn) {
+        userMenu.innerHTML = `
+          <div class="dropdown">
+            <button class="dropdown-button"><i data-feather="user"></i> ${username} <i data-feather="chevron-down"></i></button>
+            <div class="dropdown-content">
+              <a href="logout.php">Log Out</a>
+              <a href="cart.php">Keranjang Saya</a>
+            </div>
+          </div>
+        `;
+        feather.replace();
+      }
+    });
+  </script>
     <main>
       <p>ini isiyaa</p>
     </main>
