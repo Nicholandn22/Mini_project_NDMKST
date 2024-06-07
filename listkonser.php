@@ -66,37 +66,33 @@
 
     <form id="form" action="listkonser.php" method="GET">
     <div class="container">
-      <div class="search">
-        <p>Cari Konser</p>
-        <input type="text" id="my-konser" name="konser" placeholder="Nama Konser" />
-      </div>
-      <div class="search">
-        <p>Lokasi</p>
-        <input type="text" id="my-location" name="lokasi" placeholder="Lokasi" />
-      </div>
-      <div class="search">
-        <p>Waktu</p>
-        <input type="date" id="my-date" name="tanggal" placeholder="Tanggal" />
-      </div>
-      <!-- tombol search -->
-      <button type="submit" class="btn-search"> Search</button>  
-      <!-- tombol search -->
-  </div>
-  </form>
-
-      <div class="container-ft">
-        <div class="dropdown-menus">
-          <div class="dropdown">
-          <select name="kategori" id="kategori-dropdown" onchange="filterResults()">
-            <option value="">Filter Kategori</option>
-            <option value="Konser">Konser</option>
-            <option value="Festival">Festival</option>
-            <option value="Fan Meet">Fan Meet</option>
-        </select>
-
-          </div>
+        <div class="search">
+            <p>Cari Konser</p>
+            <input type="text" id="my-konser" name="konser" placeholder="Nama Konser" />
         </div>
-      </div>
+        <div class="search">
+            <p>Lokasi</p>
+            <input type="text" id="my-location" name="lokasi" placeholder="Lokasi" />
+        </div>
+        <div class="search">
+            <p>Waktu</p>
+            <input type="date" id="my-date" name="tanggal" placeholder="Tanggal" />
+        </div>
+        <!-- tombol search -->
+        <button type="submit" class="btn-search">Search</button>
+        <!-- tombol search -->
+    </div>
+</form>
+
+<div class="kategori-dropdown">
+    <p>Pilih Kategori:</p>
+    <ul>
+      <li><a href="listkonser.php">Semua Kategori</a></li>
+        <li><a href="listkonser.php?kategori=Konser">Konser</a></li>
+        <li><a href="listkonser.php?kategori=Festival">Festival</a></li>
+        <li><a href="listkonser.php?kategori=Fan Meet">Fan Meet</a></li>
+    </ul>
+</div>
       <div class="container-rekomen">
       <div class="container2">
       <?php
@@ -106,10 +102,10 @@
         if ($conn->connect_error) {
             die("Koneksi gagal: " . $conn->connect_error);
         }
+        $search_konser = isset($_GET['konser']) ? $_GET['konser'] : '';
+        $search_lokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : '';
+        $search_tanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : '';
         $kategori = isset($_GET['kategori']) ? $_GET['kategori'] : '';
-                $search_konser = isset($_GET['search_konser']) ? $_GET['search_konser'] : '';
-                $search_lokasi = isset($_GET['search_lokasi']) ? $_GET['search_lokasi'] : '';
-                $search_tanggal = isset($_GET['search_tanggal']) ? $_GET['search_tanggal'] : '';
 
                 $sqlkonser = "SELECT DISTINCT
                                     konser.id_konser, 
@@ -285,6 +281,8 @@ if ($kategori == 'Fan Meet') {
           searchParams.set('kategori', kategori);
           window.location.search = searchParams.toString();
       }
+
+      
 
 
     }
