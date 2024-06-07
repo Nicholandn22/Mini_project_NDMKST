@@ -452,6 +452,48 @@ main .container .search {
   filter: grayscale();
 }
 
+/* kategori konser */
+.kategori-dropdown {
+  /* position: relative; */
+  display: inline;
+  margin-right: 20px;
+}
+
+.kategori-dropdown p {
+  font-weight: bold;
+  margin-bottom: 5px;
+  margin-left: 10%;
+  color: #1d275f;
+}
+
+.kategori-dropdown ul {
+  list-style-type: none;
+  padding: 0;
+  /* margin: 5% 20%; */
+  display: none;
+  position: absolute;
+  top: 97%;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  z-index: 1;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.kategori-dropdown ul li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.kategori-dropdown ul li:hover {
+  background-color: #f1f1f1;
+}
+
+.kategori-dropdown:hover ul {
+  display: block;
+  margin-left: 9%;
+}
+/* kategori konser */
+
 /* footer */
 .containft {
   width: 100%;

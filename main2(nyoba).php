@@ -58,48 +58,35 @@ setInterval(changeBackground, 7000);
   </script>
 
     <main>
-      <div class="container">
+    <form id="form" action="listkonser.php" method="GET">
+    <div class="container">
         <div class="search">
-          <p>Cari Konser</p>
-          <input type="text" id="my-konser" placeholder="Nama Konser" />
+            <p>Cari Konser</p>
+            <input type="text" id="my-konser" name="konser" placeholder="Nama Konser" />
         </div>
         <div class="search">
-          <p>Lokasi</p>
-          <input type="text" id="my-location" placeholder="Lokasi" />
+            <p>Lokasi</p>
+            <input type="text" id="my-location" name="lokasi" placeholder="Lokasi" />
         </div>
         <div class="search">
-          <p>Waktu</p>
-          <input type="date" id="my-date" placeholder="Tanggal" />
+            <p>Waktu</p>
+            <input type="date" id="my-date" name="tanggal" placeholder="Tanggal" />
         </div>
         <!-- tombol search -->
-        <a href="#" class="btn-search"> Search</a>  
+        <button type="submit" class="btn-search">Search</button>
         <!-- tombol search -->
-      </div>
+    </div>
+</form>
 
-      <div class="container-ft">
-        <div class="dropdown-menus">
-          <div class="dropdown">
-            <button class="dropdown-button">Hari <i data-feather="chevron-down"></i></button>
-            <div class="dropdown-content">
-              <a href="#">Senin</a>
-              <a href="#">Selasa</a>
-              <a href="#">Rabu</a>
-              <a href="#">Kamis</a>
-              <a href="#">Jumat</a>
-              <a href="#">Sabtu</a>
-              <a href="#">Minggu</a>
-            </div>
-          </div>
-          <div class="dropdown">
-            <button class="dropdown-button">Kategori <i data-feather="chevron-down"></i></button>
-            <div class="dropdown-content">
-              <a href="#">Konser</a>
-              <a href="#">Festival</a>
-              <a href="#">Fanmeet</a>
-            </div>
-          </div>
-        </div>
-      </div>
+<div class="kategori-dropdown">
+    <p>Pilih Kategori:</p>
+    <ul>
+      <li><a href="listkonser.php">Semua Kategori</a></li>
+        <li><a href="listkonser.php?kategori=Konser">Konser</a></li>
+        <li><a href="listkonser.php?kategori=Festival">Festival</a></li>
+        <li><a href="listkonser.php?kategori=Fan Meet">Fan Meet</a></li>
+    </ul>
+</div>
 
       <!-- tulisan opcoming event ama loadmore -->
       <div class="tulisan">
@@ -194,27 +181,53 @@ setInterval(changeBackground, 7000);
         if ($conn->connect_error) {
             die("Koneksi gagal: " . $conn->connect_error);
         }
+        $kategori = isset($_GET['kategori']) ? $_GET['kategori'] : '';
+                $search_konser = isset($_GET['search_konser']) ? $_GET['search_konser'] : '';
+                $search_lokasi = isset($_GET['search_lokasi']) ? $_GET['search_lokasi'] : '';
+                $search_tanggal = isset($_GET['search_tanggal']) ? $_GET['search_tanggal'] : '';
 
-        $sqlkonser = "SELECT 
-                        konser.id_konser, 
-                        konser.judul_konser, 
-                        konser.kategori_konser, 
-                        konser.Deskripsi_konser, 
-                        konser.kota, 
-                        konser.tempat, 
-                        konser.tanggal_awal, 
-                        konser.tanggal_akhir, 
-                        konser.jam_mulai, 
-                        konser.jam_akhir, 
-                        konser.batas_umur, 
-                        konser.gambar_tumb, 
-                        konser.gambar_header, 
-                        konser.gambar_layout, 
-                        konser.gambar_tnc,
-                        (SELECT MIN(harga) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS min_harga,
-                        (SELECT SUM(tiket.stok) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS stok
-                    FROM 
-                        konser";
+        $sqlkonser = "SELECT DISTINCT
+                                    konser.id_konser, 
+                                    konser.judul_konser, 
+                                    konser.kategori_konser, 
+                                    konser.Deskripsi_konser, 
+                                    konser.kota, 
+                                    konser.tempat, 
+                                    konser.tanggal_awal, 
+                                    konser.tanggal_akhir, 
+                                    konser.jam_mulai, 
+                                    konser.jam_akhir, 
+                                    konser.batas_umur, 
+                                    konser.gambar_tumb, 
+                                    konser.gambar_header, 
+                                    konser.gambar_layout, 
+                                    konser.gambar_tnc,
+                                    (SELECT MIN(harga) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS min_harga,
+                                    (SELECT SUM(tiket.stok) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS stok
+                                FROM 
+                                    konser
+                                INNER JOIN featuring ON konser.id_konser = featuring.id_konser
+                                INNER JOIN artis ON featuring.id_artis = artis.id_artis 
+                                WHERE 
+                                    ((judul_konser LIKE '%$search_konser%' OR '$search_konser' = '') OR (nama_artis LIKE '%$search_konser%' OR '$search_konser' = '') OR (kategori_konser LIKE '%$search_konser%' OR '$search_konser' = '')) AND
+                                    (kota LIKE '%$search_lokasi%' OR '$search_lokasi' = '') AND
+                                    (tanggal_awal = '$search_tanggal' OR '$search_tanggal' = '')";
+
+                if ($kategori == 'Fan Meet') {
+                  $sqlkonser .= " AND kategori_konser = 'Fan Meet'";
+                } else if ($kategori == 'Konser') {
+                  $sqlkonser .= " AND kategori_konser = 'Konser'";
+                } else if ($kategori == 'Festival') {
+                  $sqlkonser .= " AND kategori_konser = 'Festival'";
+                } else if ($kategori != '') {
+                  $sqlkonser .= " AND kategori_konser = '$kategori'";
+                }
+
+              // Perbaiki logika untuk menangani opsi "Semua Kategori"
+              // Jika kategori tidak terdefinisi atau kosong, jangan tambahkan filter kategori
+              
+
+                $sqlkonser .= " ORDER BY konser.tanggal_awal DESC";
         $result = $conn->query($sqlkonser);
 
         if ($result->num_rows > 0) {
@@ -334,6 +347,20 @@ setInterval(changeBackground, 7000);
 
     <script>
       feather.replace();
+
+      function filterResults() {
+          var kategori = document.getElementById('kategori-dropdown').value;
+          var searchParams = new URLSearchParams(window.location.search);
+          searchParams.set('kategori', kategori);
+          window.location.search = searchParams.toString();
+      }
+
+      function filterResults() {
+          var kategori = document.getElementById('kategori-dropdown').value;
+          var searchParams = new URLSearchParams(window.location.search);
+          searchParams.set('kategori', kategori);
+          window.location.search = searchParams.toString();
+      } 
   </script> 
   </body>
 </html>
