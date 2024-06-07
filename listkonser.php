@@ -87,12 +87,13 @@
       <div class="container-ft">
         <div class="dropdown-menus">
           <div class="dropdown">
-            <select name="kategori" id="kategori-dropdown" onchange="filterResults()">
-                <option value="">Semua Kategori</option>
-                <option value="Konser">Konser</option>
-                <option value="Festival">Festival</option>
-                <option value="Fanmeet">Fanmeet</option>
-            </select>
+          <select name="kategori" id="kategori-dropdown" onchange="filterResults()">
+            <option value="">Filter Kategori</option>
+            <option value="Konser">Konser</option>
+            <option value="Festival">Festival</option>
+            <option value="Fan Meet">Fan Meet</option>
+        </select>
+
           </div>
         </div>
       </div>
@@ -105,39 +106,56 @@
         if ($conn->connect_error) {
             die("Koneksi gagal: " . $conn->connect_error);
         }
+        $kategori = isset($_GET['kategori']) ? $_GET['kategori'] : '';
+                $search_konser = isset($_GET['search_konser']) ? $_GET['search_konser'] : '';
+                $search_lokasi = isset($_GET['search_lokasi']) ? $_GET['search_lokasi'] : '';
+                $search_tanggal = isset($_GET['search_tanggal']) ? $_GET['search_tanggal'] : '';
 
-        $search_konser = isset($_GET['konser']) ? $_GET['konser'] : '';
-        $search_lokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : '';
-        $search_tanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : '';
+                $sqlkonser = "SELECT DISTINCT
+                                    konser.id_konser, 
+                                    konser.judul_konser, 
+                                    konser.kategori_konser, 
+                                    konser.Deskripsi_konser, 
+                                    konser.kota, 
+                                    konser.tempat, 
+                                    konser.tanggal_awal, 
+                                    konser.tanggal_akhir, 
+                                    konser.jam_mulai, 
+                                    konser.jam_akhir, 
+                                    konser.batas_umur, 
+                                    konser.gambar_tumb, 
+                                    konser.gambar_header, 
+                                    konser.gambar_layout, 
+                                    konser.gambar_tnc,
+                                    (SELECT MIN(harga) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS min_harga,
+                                    (SELECT SUM(tiket.stok) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS stok
+                                FROM 
+                                    konser
+                                INNER JOIN featuring ON konser.id_konser = featuring.id_konser
+                                INNER JOIN artis ON featuring.id_artis = artis.id_artis 
+                                WHERE 
+                                    ((judul_konser LIKE '%$search_konser%' OR '$search_konser' = '') OR (nama_artis LIKE '%$search_konser%' OR '$search_konser' = '') OR (kategori_konser LIKE '%$search_konser%' OR '$search_konser' = '')) AND
+                                    (kota LIKE '%$search_lokasi%' OR '$search_lokasi' = '') AND
+                                    (tanggal_awal = '$search_tanggal' OR '$search_tanggal' = '')";
 
-        $sqlkonser = "SELECT DISTINCT
-                        konser.id_konser, 
-                        konser.judul_konser, 
-                        konser.kategori_konser, 
-                        konser.Deskripsi_konser, 
-                        konser.kota, 
-                        konser.tempat, 
-                        konser.tanggal_awal, 
-                        konser.tanggal_akhir, 
-                        konser.jam_mulai, 
-                        konser.jam_akhir, 
-                        konser.batas_umur, 
-                        konser.gambar_tumb, 
-                        konser.gambar_header, 
-                        konser.gambar_layout, 
-                        konser.gambar_tnc,
-                        (SELECT MIN(harga) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS min_harga,
-                        (SELECT SUM(tiket.stok) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS stok
-                    FROM 
-                        konser
-                    INNER JOIN featuring ON konser.id_konser = featuring.id_konser
-                    INNER JOIN artis ON featuring.id_artis = artis.id_artis 
-                    WHERE 
-                        ((judul_konser LIKE '%$search_konser%' OR '$search_konser' = '') OR (nama_artis Like '%$search_konser%' OR '$search_konser' = '') OR (kategori_konser LIKE '%$search_konser%' OR '$search_konser' = '')) AND
-                        (kota LIKE '%$search_lokasi%' OR '$search_lokasi' = '') AND
-                        (tanggal_awal = '$search_tanggal' OR '$search_tanggal' = '')
-                    ORDER BY konser.tanggal_awal DESC";
-        $result = $conn->query($sqlkonser);
+                // Tambahkan kondisi berdasarkan kategori yang dipilih
+                // Tambahkan kondisi berdasarkan kategori yang dipilih
+if ($kategori == 'Fan Meet') {
+  $sqlkonser .= " AND kategori_konser = 'Fan Meet'";
+} else if ($kategori == 'Konser') {
+  $sqlkonser .= " AND kategori_konser = 'Konser'";
+} else if ($kategori == 'Festival') {
+  $sqlkonser .= " AND kategori_konser = 'Festival'";
+} else if ($kategori != '') {
+  $sqlkonser .= " AND kategori_konser = '$kategori'";
+}
+
+              // Perbaiki logika untuk menangani opsi "Semua Kategori"
+              // Jika kategori tidak terdefinisi atau kosong, jangan tambahkan filter kategori
+              
+
+                $sqlkonser .= " ORDER BY konser.tanggal_awal DESC";
+                $result = $conn->query($sqlkonser); 
 
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
@@ -259,6 +277,16 @@
         var filterBy = document.getElementById('kategori-dropdown').value;
         var url = 'listkonser.php?kategori=' + encodeURIComponent(filterBy);
         window.location.href = url;
+
+
+        function filterResults() {
+          var kategori = document.getElementById('kategori-dropdown').value;
+          var searchParams = new URLSearchParams(window.location.search);
+          searchParams.set('kategori', kategori);
+          window.location.search = searchParams.toString();
+      }
+
+
     }
   </script> 
 </body>

@@ -13,19 +13,24 @@ header {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 1000; 
+  z-index: 1000;
 }
 
-section{
+section {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 700px;
-  background-image: linear-gradient(to bottom, transparent 80%, rgba(255, 255, 255, 1) 100%), url(Konser/PrambananJazz/Banner_Prambanan_Jazz.webp);
-  background-size: cover; 
-  opacity: 0.7; 
+  background-image: linear-gradient(
+      to bottom,
+      transparent 80%,
+      rgba(255, 255, 255, 1) 100%
+    ),
+    url(Konser/PrambananJazz/Banner_Prambanan_Jazz.webp);
+  background-size: cover;
+  opacity: 0.7;
   z-index: -1;
 }
 
@@ -81,12 +86,11 @@ section{
   color: rgb(131, 131, 131);
 }
 
-.kanan ul a img{
+.kanan ul a img {
   color: rgb(36, 38, 101);
 }
 
-
-.navigation #kanan .dropdown-content{
+.navigation #kanan .dropdown-content {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -152,11 +156,11 @@ main .container .search {
   color: white;
   outline: none;
   font-size: 14px;
-  border-bottom: 1px solid #5B5C8C;
+  border-bottom: 1px solid #5b5c8c;
 }
 
 .search input::placeholder {
-  color: #5B5C8C;
+  color: #5b5c8c;
   font-family: Poppins;
 }
 
@@ -198,7 +202,7 @@ main .container .search {
 }
 
 .btn-search:hover::after {
-  background-color: #FFF48F;
+  background-color: #fff48f;
   transform: scaleX(1.4) scaleY(1.5);
   opacity: 0;
 }
@@ -269,7 +273,7 @@ main .container .search {
   width: 100%;
 }
 
-.tulisan{
+.tulisan {
   display: flex;
   justify-content: center;
   gap: 45%;
@@ -342,9 +346,8 @@ main .container .search {
   color: rgb(255, 255, 255);
 }
 
-
 .container2 {
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -384,8 +387,8 @@ main .container .search {
   font-size: 30px;
   text-align: left;
   display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -404,8 +407,8 @@ main .container .search {
   color: #818181;
   font-weight: lighter;
   display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -417,8 +420,8 @@ main .container .search {
   font-style: italic;
   color: #818181;
   display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -440,11 +443,11 @@ main .container .search {
   background-color: #ccc;
 }
 
-#detail_error{
+#detail_error {
   background-color: #ccc;
 }
 
-#img_error{
+#img_error {
   opacity: 50%;
   filter: grayscale();
 }
@@ -478,13 +481,13 @@ main .container .search {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%; 
+  width: 100%;
   padding-top: 30px;
   margin-bottom: 20px;
 }
 
 #jdul img {
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
 .abtus p {
@@ -517,7 +520,7 @@ main .container .search {
   position: absolute;
 }
 
-.parent .button a{
+.parent .button a {
   color: white;
   display: flex;
   justify-content: center;
@@ -545,19 +548,23 @@ main .container .search {
   height: 50px;
 }
 
-.child-1, btn-1{
-  background-color: #1DA1F2; 
+.child-1,
+btn-1 {
+  background-color: #1da1f2;
 }
 
-.child-2, btn-2 {
-  background-color: #E1306C; 
+.child-2,
+btn-2 {
+  background-color: #e1306c;
 }
 
-.child-3, btn-3 {
-  background-color: #6e5494; 
+.child-3,
+btn-3 {
+  background-color: #6e5494;
 }
 
-.child-4, btn-4 {
+.child-4,
+btn-4 {
   background-color: #3b5998;
 }
 
@@ -592,22 +599,22 @@ footer #copyright {
   font-style: normal;
 }
 
-footer a{
+footer a {
   margin: 0;
-  color: #FFF48F;
+  color: #fff48f;
   text-decoration: none;
   font-style: italic;
 }
 
-footer a:hover{
+footer a:hover {
   color: #3b5998;
   text-decoration: underline;
 }
 
 hr {
-  width:100%;
+  width: 100%;
   size: 20px;
-  border-color: #4C4D8B;
+  border-color: #4c4d8b;
 }
 
 #plgbwh {
