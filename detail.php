@@ -66,7 +66,7 @@ if($_GET){
 
       <!-- breadcrumb -->
         <div class="breadcrumb">
-          <a href="/main.html">Utama</a>
+          <a href="main.php">Utama</a>
           <h3> < </h3>
           <a href="#">Detail Konser</a>
         </div>
@@ -108,7 +108,7 @@ if($_GET){
 
         <div class="kanan">
           <h2>Harga Mulai</h2>
-          <h1>Rp. 250.000</h1>
+          <h1><?php echo "Rp. " . number_format($row['min_harga'], 2, ',', '.')?></h1>
           <a href="#boxtiket"><button> Beli Tiket</button></a>
           </div>
         </div>
