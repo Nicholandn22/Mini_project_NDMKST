@@ -160,20 +160,29 @@
                 <img src="path/to/day2-image.jpg" alt="Day 2 Festival">
                 <div class="ticket-details">
                     <p class="ticket-day">Day 2 (Festival)</p>
-                    <p class="ticket-date">Saturday, 18 March 2024</p>
+                    <p class="ticket-date">Saturday, 18 March 2024</p>  
+                    <div class="ticket-details2">
                     <p class="ticket-quantity">x2</p>
-                    <p class="ticket-price">Rp. 724.000</p>
+                    <p class="ticket-price">Rp. 724.000</p></div>
                 </div>
+                
             </div>
+            <hr>
+
+
             <div class="ticket">
                 <img src="path/to/day3-image.jpg" alt="Day 3 Super Festival">
                 <div class="ticket-details">
                     <p class="ticket-day">Day 3 (Super Festival)</p>
                     <p class="ticket-date">Sunday, 19 March 2024</p>
+                    <div class="ticket-details2">
                     <p class="ticket-quantity">x1</p>
                     <p class="ticket-price">Rp. 456.000</p>
+                    </div>
                 </div>
             </div>
+            <hr>
+            
             <div class="total">
                 <p>Total Pesanan: <span>Rp. 1.180.000</span></p>
                 <button>Edit</button>

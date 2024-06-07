@@ -227,6 +227,60 @@ body {
     }
     
   
+    .ticket-container{
+      width: 85%;
+      background-color: lightgreen;
+      margin: 10px auto;
+      .header{
+      display: flex;
+      margin: 10px 2% 10px 2%;
+      
+      h1{
+        margin-right: 55%;
+      }
+      }
+      .total{
+        display: flex;
+        align-items: center;
+        p{
+          margin: 10px 57% 10px 20px;
+          span{
+            margin-left: 10px;
+            font-size: 40px;
+          }
+        }
+        button{
+          width: 200px;
+          height: 50px;
+          
+        }
+      }
+    }
+
+    .ticket-container hr{
+      width: 98%;
+    }
+
+    .ticket{
+      img{
+        padding: 10px;
+        margin-right: 20px;
+      }
+
+      width: 98%;
+      margin: 10px auto;
+      background-color: lightcoral;
+      display: flex;
+      .ticket-details2{
+       
+        display: flex;
+        .ticket-quantity{
+          margin: 10px 90% 10px 10px;
+        }
+      }
+    }
+
+    
     /* main */
   
     /* footer */
