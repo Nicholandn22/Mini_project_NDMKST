@@ -85,23 +85,25 @@ const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
   </script>
 
     <main>
-      <div class="container">
-        <div class="search">
-          <p>Cari Konser</p>
-          <input type="text" id="my-konser" placeholder="Nama Konser" />
-        </div>
-        <div class="search">
-          <p>Lokasi</p>
-          <input type="text" id="my-location" placeholder="Lokasi" />
-        </div>
-        <div class="search">
-          <p>Waktu</p>
-          <input type="date" id="my-date" placeholder="Tanggal" />
-        </div>
-        <!-- tombol search -->
-        <a href="#" class="btn-search"> Search</a>  
-        <!-- tombol search -->
+      <form id="form" action="listkonser.php" method="GET">
+        <div class="container">
+          <div class="search">
+            <p>Cari Konser</p>
+            <input type="text" id="my-konser" name="konser" placeholder="Nama Konser" />
+          </div>
+          <div class="search">
+            <p>Lokasi</p>
+            <input type="text" id="my-location" name="lokasi" placeholder="Lokasi" />
+          </div>
+          <div class="search">
+            <p>Waktu</p>
+            <input type="date" id="my-date" name="tanggal" placeholder="Tanggal" />
+          </div>
+          <!-- tombol search -->
+          <button type="submit" class="btn-search"> Search</button>  
+          <!-- tombol search -->
       </div>
+    </form>
 
       <div class="container-ft">
         <div class="dropdown-menus">
@@ -132,7 +134,7 @@ const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
       <div class="tulisan">
         <h1>Event Terbaru</h1>
         <!-- <a href="#"><h1>Load More >></h1></a> -->
-        <a href="detail.html">
+        <a href="listkonser.php">
           <button class="readmore-btn">
             <span class="book-wrapper">
               <svg
@@ -248,10 +250,12 @@ const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
                     WHERE 
                         (judul_konser LIKE '%$search_konser%' OR '$search_konser' = '') AND
                         (kota LIKE '%$search_lokasi%' OR '$search_lokasi' = '') AND
-                        (tanggal_awal = '$search_tanggal' OR '$search_tanggal' = '')";
+                        (tanggal_awal = '$search_tanggal' OR '$search_tanggal' = '')
+                    ORDER BY konser.tanggal_awal DESC";
         $result = $conn->query($sqlkonser);
 
         if ($result->num_rows > 0) {
+          $count = 0;
             while($row = $result->fetch_assoc()) {
                 echo "<div class='box'>";
                 $start_date = date_create($row['tanggal_awal']);
@@ -302,6 +306,10 @@ const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
                     echo "<a href='detail.php?id=$id'>Detail</a>";
                 }
                 echo "</div></div>";
+                $count += 1;
+                if($count == 6){
+                  break;
+                }
             }
         } else {
             echo "Tidak ada data konser yang ditemukan.";

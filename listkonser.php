@@ -24,13 +24,41 @@
               <a href="main.php">Utama</a>
               <a href="listkonser.php">List Konser</a>
               <a href="main.php">Tentang Kami</a>
-              <a href="#"><i data-feather="user"></i> Login</a>
+              <li id="user-menu">
+              <a href="login.php"><i data-feather="user"></i> Login</a>
+            </li>
             </ul>
           </div>
         </div>
     </header>
+    <script>
+    const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    const username = <?php echo json_encode($username); ?>;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const userMenu = document.getElementById('user-menu');
+
+      if (isLoggedIn) {
+        userMenu.innerHTML = `
+          <div class="dropdown">
+            <button class="dropdown-button"><i data-feather="user"></i> ${username} <i data-feather="chevron-down"></i></button>
+            <div class="dropdown-content">
+              <a href="logout.php">Log Out</a>
+              <a href="cart.php">Keranjang Saya</a>
+            </div>
+          </div>
+        `;
+        feather.replace();
+      }
+    });
+  </script>
     <main>
-    <main>
+    <div class="breadcrumb">
+          <a href="main.php">Utama</a>
+          <h3> < </h3>
+          <a href="#">List Konser</a>
+        </div>
+
     <form id="form" action="listkonser.php" method="GET">
     <div class="container">
       <div class="search">
@@ -53,18 +81,6 @@
 
       <div class="container-ft">
         <div class="dropdown-menus">
-          <div class="dropdown">
-            <select name="hari" id="hari-dropdown" onchange="filterResults()">
-            <option value="">Semua Hari</option>
-            <option value="Monday">Senin</option>
-            <option value="Tuesday">Selasa</option>
-            <option value="Wednesday">Rabu</option>
-            <option value="Thursday">Kamis</option>
-            <option value="Friday">Jumat</option>
-            <option value="Saturday">Sabtu</option>
-            <option value="Sunday">Minggu</option>
-          </select>
-          </div>
           <div class="dropdown">
             <select name="kategori" id="kategori-dropdown" onchange="filterResults()">
                 <option value="">Semua Kategori</option>
@@ -89,7 +105,7 @@
         $search_lokasi = isset($_GET['lokasi']) ? $_GET['lokasi'] : '';
         $search_tanggal = isset($_GET['tanggal']) ? $_GET['tanggal'] : '';
 
-        $sqlkonser = "SELECT 
+        $sqlkonser = "SELECT DISTINCT
                         konser.id_konser, 
                         konser.judul_konser, 
                         konser.kategori_konser, 
@@ -109,10 +125,13 @@
                         (SELECT SUM(tiket.stok) FROM tiket WHERE tiket.id_konser = konser.id_konser) AS stok
                     FROM 
                         konser
+                    INNER JOIN featuring ON konser.id_konser = featuring.id_konser
+                    INNER JOIN artis ON featuring.id_artis = artis.id_artis 
                     WHERE 
-                        (judul_konser LIKE '%$search_konser%' OR '$search_konser' = '') AND
+                        ((judul_konser LIKE '%$search_konser%' OR '$search_konser' = '') OR (nama_artis Like '%$search_konser%' OR '$search_konser' = '')) AND
                         (kota LIKE '%$search_lokasi%' OR '$search_lokasi' = '') AND
-                        (tanggal_awal = '$search_tanggal' OR '$search_tanggal' = '')";
+                        (tanggal_awal = '$search_tanggal' OR '$search_tanggal' = '')
+                    ORDER BY konser.tanggal_awal DESC";
         $result = $conn->query($sqlkonser);
 
         if ($result->num_rows > 0) {
@@ -120,6 +139,7 @@
                 echo "<div class='box'>";
                 $start_date = date_create($row['tanggal_awal']);
                 $formatted_start_date = date_format($start_date, 'j F Y');
+                $id=$row['id_konser'];
 
                 if (strtotime($row['tanggal_awal']) > time() && $row['stok'] > 0) {
                     echo "<img src='" . $row['gambar_tumb'] . "' alt='Image'>";
@@ -162,7 +182,7 @@
                 } else if($row['stok'] == 0){
                     echo "<a href='#' style='pointer-events: none;' id='detail_error'>Stok Habis</a>";
                 }else {
-                    echo "<a href='detail.html'>Detail</a>";
+                  echo "<a href='detail.php?id=$id'>Detail</a>";
                 }
                 echo "</div></div>";
             }
