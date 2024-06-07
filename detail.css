@@ -551,6 +551,11 @@ p {
   display: inline;
 } */
 
+#line1{
+  margin: 15px;
+  border: #394989;
+}
+
 .readmore-btn {
   width: fit-contentd;
   height: 55px;
