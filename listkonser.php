@@ -1,3 +1,8 @@
+<?php
+  session_start();
+  $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+  $isLoggedIn = !empty($username);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -128,7 +133,7 @@
                     INNER JOIN featuring ON konser.id_konser = featuring.id_konser
                     INNER JOIN artis ON featuring.id_artis = artis.id_artis 
                     WHERE 
-                        ((judul_konser LIKE '%$search_konser%' OR '$search_konser' = '') OR (nama_artis Like '%$search_konser%' OR '$search_konser' = '')) AND
+                        ((judul_konser LIKE '%$search_konser%' OR '$search_konser' = '') OR (nama_artis Like '%$search_konser%' OR '$search_konser' = '') OR (kategori_konser LIKE '%$search_konser%' OR '$search_konser' = '')) AND
                         (kota LIKE '%$search_lokasi%' OR '$search_lokasi' = '') AND
                         (tanggal_awal = '$search_tanggal' OR '$search_tanggal' = '')
                     ORDER BY konser.tanggal_awal DESC";
@@ -251,8 +256,8 @@
       feather.replace();
 
       function filterResults() {
-        var filterBy = document.getElementById('filter-dropdown').value;
-        var url = 'listkonser.php?filter=' + encodeURIComponent(filterBy);
+        var filterBy = document.getElementById('kategori-dropdown').value;
+        var url = 'listkonser.php?kategori=' + encodeURIComponent(filterBy);
         window.location.href = url;
     }
   </script> 
