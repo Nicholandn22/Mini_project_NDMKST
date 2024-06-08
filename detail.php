@@ -37,6 +37,24 @@ if($_GET){
   $idUser = $_SESSION['id_user'] ? $_SESSION['id_user'] : '';
   $isLoggedIn = !empty($username);
 
+
+  $id_konser = isset($_GET['id']) ? $_GET['id'] : '';
+$gambar_konser = isset($_GET['gambar']) ? $_GET['gambar'] : '';
+$judul_konser = isset($_GET['judul']) ? $_GET['judul'] : '';
+$deskripsi_konser = isset($_GET['deskripsi']) ? $_GET['deskripsi'] : '';
+$tanggal_konser = isset($_GET['tanggal']) ? $_GET['tanggal'] : '';
+$waktu_konser = isset($_GET['waktu']) ? $_GET['waktu'] : '';
+
+// Simpan data ke dalam session untuk digunakan nanti
+$_SESSION['id_konser'] = $id_konser;
+$_SESSION['gambar_konser'] = $gambar_konser;
+$_SESSION['judul_konser'] = $judul_konser;
+$_SESSION['deskripsi_konser'] = $deskripsi_konser;
+$_SESSION['tanggal_konser'] = $tanggal_konser;
+$_SESSION['waktu_konser'] = $waktu_konser;
+
+
+
 ?>
 
 <!DOCTYPE html>
