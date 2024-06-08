@@ -31,6 +31,12 @@ if($_GET){
         }
     }
 }
+
+  session_start();
+  $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+  $idUser = $_SESSION['id_user'] ? $_SESSION['id_user'] : '';
+  $isLoggedIn = !empty($username);
+
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +68,27 @@ if($_GET){
         </div>
     </div>
 </header>
+<script>
+        const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+        const username = <?php echo json_encode($username); ?>;
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const userMenu = document.getElementById('user-menu');
+
+        if (isLoggedIn) {
+            userMenu.innerHTML = `
+            <div class="dropdown">
+                <button class="dropdown-button"><i data-feather="user"></i> ${username} <i data-feather="chevron-down"></i></button>
+                <div class="dropdown-content">
+                <a href="logout.php">Log Out</a>
+                <a href="cart.php">Keranjang Saya</a>
+                </div>
+            </div>
+            `;
+            feather.replace();
+        }
+        });
+    </script>
 <main>
 
     <!-- breadcrumb -->
