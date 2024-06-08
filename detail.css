@@ -9,7 +9,7 @@ header {
   position: sticky;
   top: 0;
   left: 0;
-  z-index: 1000; 
+  z-index: 1000;
 }
 .navigation {
   width: 80%;
@@ -63,7 +63,7 @@ header {
   color: rgb(131, 131, 131);
 }
 
-.kanan ul a img{
+.kanan ul a img {
   color: rgb(36, 38, 101);
 }
 /* /* Header */
@@ -125,7 +125,6 @@ header {
   font-size: 1.2em;
   transform: translateX(-5px);
 }
-
 
 .gambar button:hover {
   box-shadow: 9px 9px 33px #d1d1d1, -9px -9px 33px #242565;
@@ -412,9 +411,8 @@ p {
 .line1 {
   display: flex;
   text-align: center;
-  margin: 10px auto 340px;
-  width: 80%;
-  height: 50px;
+  margin: 10px auto 20px;
+  /* height: 50px; */
 }
 
 .box {
@@ -448,7 +446,7 @@ p {
   display: inline;
 }
 
-.line1 .box:nth-child(2) button{
+.line1 .box:nth-child(2) button {
   background-color: grey;
 }
 
@@ -456,7 +454,7 @@ p {
   box-shadow: rgb(201, 46, 70) 0px 7px 0px 0px;
 }
 
-.line1 .box:nth-child(2) button:hover{
+.line1 .box:nth-child(2) button:hover {
   box-shadow: none;
 }
 
@@ -468,7 +466,7 @@ p {
   transition: 200ms;
 }
 .line1 .box:nth-child(2) button:active {
-  background-color:none;
+  background-color: none;
   /*50, 168, 80*/
   box-shadow: none;
   transform: translateY(0px);
@@ -522,7 +520,7 @@ p {
 } */
 
 .harga .btn:hover {
-  background:  #683fea;
+  background: #683fea;
   /* box-shadow: inset 0px 1px 0px 0px rgba(255, 255, 255, 0.4),
     inset 0px -4px 0px 0px rgba(0, 0, 0, 0.2),
     0px 0px 0px 4px rgba(255, 255, 255, 0.2), 0px 0px 180px 0px #9917ff; */
@@ -551,7 +549,7 @@ p {
   display: inline;
 } */
 
-#line1{
+#line1 {
   margin: 15px;
   border: #394989;
 }
@@ -666,6 +664,59 @@ p {
 .box2 a:hover {
   background-color: #ccc;
 }
+
+.line1 {
+  width: 90%;
+}
+.ticket-box {
+  background-color: aqua;
+  display: inline-block;
+  margin: 10px 5px;
+}
+
+.ticket-quantity input {
+  width: 20px;
+  text-align: center;
+}
+
+/* tmbl submit */
+#btn-submit  {
+  margin: 0px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  width: 300px;
+  height: 70px;
+  background-image: linear-gradient(to top, #d8d9db 0%, #fff 80%, #fdfdfd 100%);
+  border-radius: 30px;
+  border: 1px solid #8f9092;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: #606060;
+  text-shadow: 0 1px #fff;
+}
+
+#btn-submit:hover {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 3px 3px #cecfd1;
+}
+
+#btn-submit:active {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+#btn-submit:focus {
+  box-shadow: 0 4px 3px 1px #fcfcfc, 0 6px 8px #d6d7d9, 0 -4px 4px #cecfd1,
+    0 -6px 4px #fefefe, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+/* tmbl submit */
+
 /* main */
 
 /* footer */
@@ -697,12 +748,12 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%; 
+  width: 100%;
   margin-bottom: 20px;
 }
 
 #jdul img {
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
 .abtus p {
@@ -735,7 +786,7 @@ p {
   position: absolute;
 }
 
-.parent .button a{
+.parent .button a {
   color: white;
   display: flex;
   justify-content: center;
@@ -763,19 +814,23 @@ p {
   height: 50px;
 }
 
-.child-1, btn-1{
-  background-color: #1DA1F2; 
+.child-1,
+btn-1 {
+  background-color: #1da1f2;
 }
 
-.child-2, btn-2 {
-  background-color: #E1306C; 
+.child-2,
+btn-2 {
+  background-color: #e1306c;
 }
 
-.child-3, btn-3 {
-  background-color: #6e5494; 
+.child-3,
+btn-3 {
+  background-color: #6e5494;
 }
 
-.child-4, btn-4 {
+.child-4,
+btn-4 {
   background-color: #3b5998;
 }
 
@@ -810,22 +865,22 @@ footer #copyright {
   font-style: normal;
 }
 
-footer a{
+footer a {
   margin: 0;
-  color: #FFF48F;
+  color: #fff48f;
   text-decoration: none;
   font-style: italic;
 }
 
-footer a:hover{
+footer a:hover {
   color: #3b5998;
   text-decoration: underline;
 }
 
 hr {
-  width:100%;
+  width: 100%;
   size: 20px;
-  border-color: #4C4D8B;
+  border-color: #4c4d8b;
 }
 
 #plgbwh {
