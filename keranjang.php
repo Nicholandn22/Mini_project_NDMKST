@@ -152,7 +152,7 @@
       </div>
       </div>
         <div class="ticket-container">
-            <div class="header">
+            <div class="boxa">
                 <h1>#SATUDEKADEBERSAMA PRAMBANAN JAZZ</h1>
                 <p class="editable-until">Editable until: 11:24:32 WIB 12-03-2024</p>
             </div>
