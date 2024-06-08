@@ -289,6 +289,12 @@ header {
   transition: 100ms;
 }
 
+.data-form{
+  display: flex;
+  background-color: aqua;
+  flex-direction: column
+}
+
 .pesan {
   width: fit-content;
   height: 30px;

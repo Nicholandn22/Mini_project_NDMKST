@@ -1,3 +1,31 @@
+<?php
+session_start();
+
+// Check if the form was submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id_konser = $_POST['id_konser'];
+    $quantities = $_POST['quantity'];
+    $jenis_tiket = $_POST['jenis_tiket'];
+
+    // Calculate the total number of tickets and group by ticket type
+    $tickets_by_type = [];
+    foreach ($quantities as $id_tiket => $quantity) {
+        if ($quantity > 0) {
+            if (!isset($tickets_by_type[$jenis_tiket[$id_tiket]])) {
+                $tickets_by_type[$jenis_tiket[$id_tiket]] = [];
+            }
+            for ($i = 0; $i < $quantity; $i++) {
+                $tickets_by_type[$jenis_tiket[$id_tiket]][] = $id_tiket;
+            }
+        }
+    }
+    
+    // Save the concert and ticket details in the session
+    $_SESSION['id_konser'] = $id_konser;
+    $_SESSION['tickets_by_type'] = $tickets_by_type;}
+    
+      ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -68,10 +96,8 @@
       <div class="eventdetail">
         <h1>Detail Kegiatan</h1>
         <div class="line1detail">
-          <img
-            src="Konser/PrambananJazz/Banner_Prambanan_Jazz.webp"
-            alt=""
-          />
+          <!-- menampilkan gambar konser sekarang -->
+
           <h3 id="judulanu">#SatuDekadeBersama Prambanan Jazz</h3>
           <h3>
             <img src="Logo/detail_lokasi.png" alt="" />Pelataran Candi Prambananan
@@ -104,97 +130,61 @@
             <a href="success.php"><button>Lanjutkan Pembayaran</button></a>
         </div>
 
-        <div class="pesan">
-          <h1>PEMESANAN BERHASIL</h1>
-        </div>
+        
       </div>
 
-      <div class="datadiri">
-        <div class="tiket">
-          <h1>Tiket 1</h1>
-          <hr />
-          <div class="linetiket">
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Nama Depan</span>
-            </form>
+      <!-- MASUKKAN FORM DATA DIRI BAWAH INI --><form action='proses_pembayaran.php' method='POST'>
+    <input type='hidden' name='id_konser' value='<?php echo $id_konser; ?>'>
+    <?php
+    $counter = 0;
+    foreach ($tickets_by_type as $type => $tickets) {
+        echo "<div class='ticket-group'>
+                <h2>Jenis Tiket: {$type}</h2>";
+        foreach ($tickets as $ticket) {
+            echo "
+                <div class='ticket-form'>
+                  
+                    <h3>Detail Tiket " . ($counter + 1) . "</h3>
+                    <div class='data-form'>
 
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Nama Belakang</span>
-            </form>
-          </div>
-          <div class="linetiket">
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Email</span>
-            </form>
+                    <div>
+                    <label for='first_name_{$counter}'>Nama Depan:</label>
+                    <input type='text' id='first_name_{$counter}' name='first_name_{$counter}' required>
+                    </div>
 
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Nomor Telephone</span>
-            </form>
-          </div>
-        </div>
-      </div>
+                    <div>
+                    <label for='last_name_{$counter}'>Nama Belakang:</label>
+                    <input type='text' id='last_name_{$counter}' name='last_name_{$counter}' required>
+                    </div>
 
-      <div class="datadiri">
-        <div class="tiket">
-          <h1>Tiket 2</h1>
-          <hr />
-          <div class="linetiket">
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Nama Depan</span>
-            </form>
+                    <div>
+                    <label for='email_{$counter}'>Email:</label>
+                    <input type='email' id='email_{$counter}' name='email_{$counter}' required>
+                    </div>
 
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Nama Belakang</span>
-            </form>
-          </div>
-          <div class="linetiket">
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Email</span>
-            </form>
+                    <div>
+                    <label for='phone_{$counter}'>Nomor Telepon:</label>
+                    <input type='text' id='phone_{$counter}' name='phone_{$counter}' required>
+                    </div>
+                    </div>
+                
+                </div>
+            ";
+            $counter++;
+        }
+        echo "</div>";
+    }
+    
+    echo "
+            <button type='submit'>Lanjutkan Pembayaran</button>
+        </form>"
+        ?>
+</form>
 
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Nomor Telephone</span>
-            </form>
-          </div>
-        </div>
-      </div>
 
-      <div class="datadiri">
-        <div class="tiket">
-          <h1>Tiket 3</h1>
-          <hr />
-          <div class="linetiket">
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Nama Depan</span>
-            </form>
+      
 
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Nama Belakang</span>
-            </form>
-          </div>
-          <div class="linetiket">
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Email</span>
-            </form>
-
-            <form class="formField">
-              <input type="text" required="" />
-              <span>Nomor Telephone</span>
-            </form>
-          </div>
-        </div>
-      </div>
+      
 
       <div class="payment">
         <h1>Metode Pembayaran</h1>
