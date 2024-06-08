@@ -85,13 +85,13 @@
 </form>
 
 <div class="kategori-dropdown">
-    <p>Pilih Kategori:</p>
-    <ul>
-      <li><a href="listkonser.php">Semua Kategori</a></li>
-        <li><a href="listkonser.php?kategori=Konser">Konser</a></li>
-        <li><a href="listkonser.php?kategori=Festival">Festival</a></li>
-        <li><a href="listkonser.php?kategori=Fan Meet">Fan Meet</a></li>
-    </ul>
+  <button class="dropdown-button">Pilih Kategori: <i data-feather="chevron-down"></i></button>
+    <div class="dropdown-content">
+      <a href="listkonser.php">Semua Kategori</a></li>
+      <a href="listkonser.php?kategori=Konser">Konser</a></li>
+      <a href="listkonser.php?kategori=Festival">Festival</a></li>
+      <a href="listkonser.php?kategori=Fan Meet">Fan Meet</a></li>
+    </div>
 </div>
       <div class="container-rekomen">
       <div class="container2">
