@@ -96,33 +96,7 @@ body {
   .navigation #kanan .dropdown:hover .dropdown-content {
     display: block;
   }
-  .navigation #kanan .dropdown-content{
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 150px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 2;
-    border-radius: 10px;
-    overflow: hidden;
-  }
   
-  .navigation #kanan .dropdown-content a {
-    color: #242565;
-    padding: 12px;
-    text-decoration: none;
-    display: block;
-    font-size: 12px;
-    margin: 0;
-  }
-  
-  .navigation #kanan .dropdown-content a:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .navigation #kanan .dropdown:hover .dropdown-content {
-    display: block;
-  }
 
     .dropdown {
     position: relative;
@@ -159,31 +133,45 @@ body {
     }
     
     .boxa {
-        text-align: center;
-        margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 5%;
+      align-items:center;
+      height: 30px;
+      margin: 20px 12px;
     }
     
     .boxa h1 {
-        font-size: 18px;
-        margin: 0;
+        font-size: 28px;
+        flex-grow: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-right: 25px;
+        /* text-align: left; */
+        font-weight: bolder;
+        display: inline;
     }
     
     .editable-until {
         color: #e74c3c;
         font-size: 12px;
+        white-space: nowrap ;
     }
     
     .ticket {
         display: flex;
         align-items: center;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
     
     .ticket img {
-        width: 60px;
-        height: 60px;
-        border-radius: 4px;
-        margin-right: 10px;
+      width: 100px;
+      height: 100px;
+      margin-right: 10px;
+      border-radius: 10px;
+      display: inline;
+      object-fit: cover;
     }
     
     .ticket-details {
@@ -228,7 +216,7 @@ body {
     
   
     .ticket-container{
-      width: 85%;
+      width: 75%;
       background-color: lightgreen;
       margin: 10px auto;
       .header{
@@ -262,11 +250,6 @@ body {
     }
 
     .ticket{
-      img{
-        padding: 10px;
-        margin-right: 20px;
-      }
-
       width: 98%;
       margin: 10px auto;
       background-color: lightcoral;

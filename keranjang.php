@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Keranjang Saya</title>
     <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
    <link rel="stylesheet" href="keranjang.css" />  <!-- nnt - dignati file css kaleann -->
     <script src="https://unpkg.com/feather-icons"></script>
@@ -86,62 +86,7 @@
       $result = $conn->query($sqlkonser);
 
       if ($result->num_rows > 0) {
-        $count = 0;
-          while($row = $result->fetch_assoc()) {
-              echo "<div class='box'>";
-              $start_date = date_create($row['tanggal_awal']);
-              $formatted_start_date = date_format($start_date, 'j F Y');
-              $id=$row['id_konser'];
-
-              if (strtotime($row['tanggal_awal']) > time() && $row['stok'] > 0) {
-                  echo "<img src='" . $row['gambar_tumb'] . "' alt='Image'>";
-              } else {
-                  echo "<img src='" . $row['gambar_tumb'] . "' id='img_error' alt='Image'>";
-              }
-              echo "<div class='dalam'>";
-              echo "<h3>" . $row["judul_konser"] . "</h3>";
-              $sqlartis = "SELECT 
-                              artis.nama_artis
-                          FROM 
-                              artis
-                          INNER JOIN 
-                              featuring ON artis.id_artis = featuring.id_artis
-                          INNER JOIN
-                              konser ON featuring.id_konser = konser.id_konser
-                          WHERE konser.id_konser = ". $row['id_konser'];
-              $resultartis = $conn->query($sqlartis);
-              if ($resultartis->num_rows > 0) {
-                  $artistNames = array();
-                  while($rowArtis = $resultartis->fetch_assoc()) {
-                      $artistNames[] = $rowArtis['nama_artis']; 
-                  }
-                  echo "<p>" . implode(", ", $artistNames) . "</p>";
-              } else {
-                  echo "<p> - </p>";
-              }
-
-              if (!empty($row['tanggal_akhir'])) {
-                  $end_date = date_create($row['tanggal_akhir']);
-                  $formatted_end_date = date_format($end_date, 'j F Y');
-                  echo "<h4>" . $row['kota'] . " &bull; ". $formatted_start_date . " - " . $formatted_end_date . "</h4>";
-              } else {
-                  echo "<h4>" . $row['kota'] . " &bull; ". $formatted_start_date . "</h4>";
-              }
-              echo "<h5>" . $row["Deskripsi_konser"] . "</h5>";
-              echo "<h2>Rp. " . number_format($row['harga'], 2, ',', '.') . "</h2>";
-              if (strtotime($row['tanggal_awal']) < time() && strtotime($row['tanggal_akhir']) < time() ) {
-                  echo "<a href='#' style='pointer-events: none;' id='detail_error'>Event sudah berlalu</a>";
-              } else if($row['stok'] == 0){
-                  echo "<a href='#' style='pointer-events: none;' id='detail_error'>Stok Habis</a>";
-              }else {
-                  echo "<a href='detail.php?id=$id'>Detail</a>";
-              }
-              echo "</div></div>";
-              $count += 1;
-              if($count == 6){
-                break;
-              }
-          }
+        echo ",=<h1> </h1>";
       } else {
           echo "Tidak ada data konser yang ditemukan.";
       }        
@@ -153,11 +98,11 @@
       </div>
         <div class="ticket-container">
             <div class="boxa">
-                <h1>#SATUDEKADEBERSAMA PRAMBANAN JAZZ</h1>
+                <h1>#SATUDEKADEBERSAMA PRAMBANAN JAZZ asdhasidhoasf ashfoahfias dfashdiasd kan gabuisaa ottoke??</h1>
                 <p class="editable-until">Editable until: 11:24:32 WIB 12-03-2024</p>
             </div>
             <div class="ticket">
-                <img src="path/to/day2-image.jpg" alt="Day 2 Festival">
+                <img src="Konser/PrambananJazz/Banner_Prambanan_Jazz.webp" alt="Day 2 Festival">
                 <div class="ticket-details">
                     <p class="ticket-day">Day 2 (Festival)</p>
                     <p class="ticket-date">Saturday, 18 March 2024</p>  
