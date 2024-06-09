@@ -1,6 +1,7 @@
 <?php
   session_start();
   $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+  $idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : '';
   $isLoggedIn = !empty($username);
 ?>
 <!DOCTYPE html>
@@ -238,7 +239,7 @@ const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
                                 WHERE 
                                     ((judul_konser LIKE '%$search_konser%' OR '$search_konser' = '') OR (nama_artis LIKE '%$search_konser%' OR '$search_konser' = '') OR (kategori_konser LIKE '%$search_konser%' OR '$search_konser' = '')) AND
                                     (kota LIKE '%$search_lokasi%' OR '$search_lokasi' = '') AND
-                                    (tanggal_awal = '$search_tanggal' OR '$search_tanggal' = '')";
+                                    ('$search_tanggal' BETWEEN tanggal_awal AND tanggal_akhir OR '$search_tanggal' = '')";
 
                 if ($kategori == 'Fan Meet') {
                   $sqlkonser .= " AND kategori_konser = 'Fan Meet'";
