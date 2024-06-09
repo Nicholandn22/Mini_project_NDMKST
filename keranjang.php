@@ -100,7 +100,8 @@
                 INNER JOIN konser ON tiket.id_konser = konser.id_konser
                 INNER JOIN featuring ON konser.id_konser = featuring.id_konser
                 INNER JOIN artis ON featuring.id_artis = artis.id_artis 
-                WHERE pesanan.id_user = $idUser AND (konser.judul_konser LIKE '%$search_konser%' OR konser.kategori_konser LIKE '%$search_konser%' OR artis.nama_artis LIKE '%$search_konser%')";
+                WHERE pesanan.id_user = $idUser AND (konser.judul_konser LIKE '%$search_konser%' OR konser.kategori_konser LIKE '%$search_konser%' OR artis.nama_artis LIKE '%$search_konser%')
+                ORDER BY pesanan.id_pesanan DESC";
   
   if ($kategori == 'Fan Meet') {
     $sqlpesenan .= " AND kategori_konser = 'Fan Meet'";
@@ -126,20 +127,21 @@ if ($result->num_rows > 0) {
               <div class='boxa'>
                   <h1>{$row['judul_konser']}</h1>";
         if ($is_editable) {
-            echo "<p class='editable-until'>Editable until: " . date('H:i \W\I\B d-m-Y', $editable_until) . "</p>";
+            echo "<p class='editable-until'>Dapat diubah sampai: " . date('H:i \W\I\B d-m-Y', $editable_until) . "</p>";
         } else {
-            echo "<p class='editable-until'>Cannot be Edited</p>";
+            echo "<p class='editable-until'>Tidak dapat diubah</p>";
         }
         echo "</div>";
-
+        $idpesan =  $row['id_pesanan'];
         $sqltiket = "SELECT DISTINCT konser.gambar_tumb, tiket.jenis_tiket, tiket.tanggal_tiket, tiket.harga, (SELECT COUNT(pesanan.id_pesanan)) AS 'jumlah'
                     FROM pesanan
                     INNER JOIN pemesan_tiket ON pesanan.id_pesanan = pemesan_tiket.id_pesanan
                     INNER JOIN tiket ON pemesan_tiket.id_tiket = tiket.id_tiket
                     INNER JOIN konser ON tiket.id_konser = konser.id_konser
-                    WHERE pemesan_tiket.id_pesanan = {$row['id_pesanan']}";
+                    WHERE pemesan_tiket.id_pesanan = {$row['id_pesanan']}
+                    GROUP BY tiket.jenis_tiket";
         $restik = $conn->query($sqltiket);
-
+        
         if ($restik->num_rows > 0) {
             while ($rowtik = $restik->fetch_assoc()) {
                 $start_date = date_create($rowtik['tanggal_tiket']);
@@ -162,9 +164,9 @@ if ($result->num_rows > 0) {
         echo "<div class='total'>
                   <p>Total Pesanan: <span id='harr'>Rp. ". number_format($row['total_harga'], 2, ',', '.') ."</span></p>";
         if ($is_editable) {
-            echo "<button>Edit</button>";
+            echo "<a href='edit_pesanan.php?id=$idpesan'>Edit</a>";
         } else {
-            echo "<button style='pointer-events: none; opacity: 0.5'>Edit</button>";
+            echo "<a href='edit_pesanan.php?id=$idpesan' style='pointer-events: none; opacity: 0.5' >Edit</a>";
         }
         echo "</div>";
         echo "</div>";
