@@ -47,11 +47,12 @@ $waktu_konser = isset($_GET['waktu']) ? $_GET['waktu'] : '';
 
 // Simpan data ke dalam session untuk digunakan nanti
 $_SESSION['id_konser'] = $row['id_konser'];
-$_SESSION['gambar_konser'] = $row['gambar_tumb'];
+$_SESSION['gambar_konser'] = $row['gambar_header'];
 $_SESSION['judul_konser'] = $row['judul_konser'];
 $_SESSION['Deskripsi_konser'] = $row['Deskripsi_konser'];
 $_SESSION['tanggal_konser'] = $row['tanggal_awal'];
 $_SESSION['jam_mulai'] = $row['jam_mulai'];
+$_SESSION['tempat'] = $row["tempat"].', '.$row["kota"];
 
 
 ?>

@@ -325,7 +325,8 @@ header {
   letter-spacing: 1.5px;
   font-size: 15px;
   transition: all 0.5s ease;
-  float: right;
+  /* float: right; */
+  margin-left: 10%;
   margin-top: 50px;
 }
 
@@ -350,11 +351,126 @@ header {
   pointer-events:none;
 }
 
-.data-form {
+.eventdetail {
+  margin-bottom: 30px;
+}
+
+.eventdetail h1 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.line1detail {
   display: flex;
-  background-color: aqua;
+  align-items: center;
+  gap: 20px;
+}
+
+.line1detail img {
+  width: 150px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.line1detail h3 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Order summary */
+.ordersum {
+  margin-bottom: 20px;
+}
+
+.ordersum h3 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.ordersum strong h3 {
+  font-weight: bold;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #ddd;
+}
+
+/* Ticket form styles */
+.ticket-group {
+  margin-bottom: 20px;
+  margin-left: 10%;
+}
+
+.ticket-group h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.ticket-form {
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.ticket-form h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.data-form {
+  width: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.data-form > div {
+  flex: 1 1 calc(50% - 10px);
+  display: flex;
   flex-direction: column;
 }
+
+.data-form label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.data-form input[type="text"],
+.data-form input[type="email"],
+.data-form input[type="number"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+/* Payment method section */
+.metode-pembayaran {
+  margin-bottom: 30px;
+}
+
+.metode-pembayaran h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.metode-pembayaran label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.metode-pembayaran input[type="radio"] {
+  accent-color: #007bff;
+}
+
 
 .pesan {
   width: fit-content;
@@ -372,7 +488,7 @@ header {
 }
 
 .payment {
-  width: 710px;
+  width: 40%;
   height: max-content;
   margin-left: 10%;
   margin-top: 50px;
@@ -381,6 +497,13 @@ header {
 
 .payment h1 {
   font-size: 32px;
+}
+
+#pembayaran{
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+  border: 1px solid #ccc;
 }
 
 .vrac img {
@@ -401,7 +524,7 @@ header {
 
 .radio-label {
   /* display: flex; */
-  width: 690px;
+  width: 100%;
   align-items: center;
   padding: 0.5em;
   margin-bottom: 0.5em;
