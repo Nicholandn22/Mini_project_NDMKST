@@ -3,6 +3,9 @@
   $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
   $idUser = $_SESSION['id_user'] ? $_SESSION['id_user'] : '';
   $isLoggedIn = !empty($username);
+
+  if (!isset($_SESSION['cart_timers'])) {
+  $_SESSION['cart_timers'] = [];}
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +69,16 @@
         </form>
       </div>
 
+      <div class="kategori-dropdown">
+        <button class="dropdown-button">Pilih Kategori: <i data-feather="chevron-down"></i></button>
+          <div class="dropdown-content">
+            <a href="keranjang.php">Semua Kategori</a></li>
+            <a href="keranjang.php?kategori=Konser">Konser</a></li>
+            <a href="keranjang.php?kategori=Festival">Festival</a></li>
+            <a href="keranjang.php?kategori=Fan Meet">Fan Meet</a></li>
+          </div>
+      </div>
+
       <div class="container-rekomen">
       <div class="container2">
       <?php
@@ -75,64 +88,97 @@
     if ($conn->connect_error) {
         die("Koneksi gagal: " . $conn->connect_error);
     }
-      $search_konser = isset($_GET['cari']) ? $_GET['cari'] : '';
+    $editable_duration = 15 * 60;
 
-      $sqlkonser = "SELECT*
-                    FROM `pesanan`
+    $search_konser = isset($_GET['cari']) ? $conn->real_escape_string($_GET['cari']) : '';
+    $kategori = isset($_GET['kategori']) ? $_GET['kategori'] : '';
+
+  $sqlpesenan = "SELECT DISTINCT pesanan.id_pesanan, konser.judul_konser, pesanan.total_harga, pesanan.tanggal_pesan
+                FROM pesanan
+                INNER JOIN pemesan_tiket ON pesanan.id_pesanan = pemesan_tiket.id_pesanan
+                INNER JOIN tiket ON pemesan_tiket.id_tiket = tiket.id_tiket
+                INNER JOIN konser ON tiket.id_konser = konser.id_konser
+                INNER JOIN featuring ON konser.id_konser = featuring.id_konser
+                INNER JOIN artis ON featuring.id_artis = artis.id_artis 
+                WHERE pesanan.id_user = $idUser AND (konser.judul_konser LIKE '%$search_konser%' OR konser.kategori_konser LIKE '%$search_konser%' OR artis.nama_artis LIKE '%$search_konser%')";
+  
+  if ($kategori == 'Fan Meet') {
+    $sqlpesenan .= " AND kategori_konser = 'Fan Meet'";
+  } else if ($kategori == 'Konser') {
+    $sqlpesenan .= " AND kategori_konser = 'Konser'";
+  } else if ($kategori == 'Festival') {
+    $sqlpesenan .= " AND kategori_konser = 'Festival'";
+  } else if ($kategori != '') {
+    $sqlpesenan .= " AND kategori_konser = '$kategori'";
+  }
+  
+  $result = $conn->query($sqlpesenan);
+
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        $id_pesanan = $row['id_pesanan'];
+
+        $tanggal_pesan = strtotime($row['tanggal_pesan']);
+        $editable_until = $tanggal_pesan + (24 * 60 * 60);
+        $is_editable = time() < $editable_until;
+
+        echo "<div class='ticket-container'>
+              <div class='boxa'>
+                  <h1>{$row['judul_konser']}</h1>";
+        if ($is_editable) {
+            echo "<p class='editable-until'>Editable until: " . date('H:i \W\I\B d-m-Y', $editable_until) . "</p>";
+        } else {
+            echo "<p class='editable-until'>Cannot be Edited</p>";
+        }
+        echo "</div>";
+
+        $sqltiket = "SELECT DISTINCT konser.gambar_tumb, tiket.jenis_tiket, tiket.tanggal_tiket, tiket.harga, (SELECT COUNT(pesanan.id_pesanan)) AS 'jumlah'
+                    FROM pesanan
                     INNER JOIN pemesan_tiket ON pesanan.id_pesanan = pemesan_tiket.id_pesanan
                     INNER JOIN tiket ON pemesan_tiket.id_tiket = tiket.id_tiket
                     INNER JOIN konser ON tiket.id_konser = konser.id_konser
-                    WHERE id_user = 1";
-      $result = $conn->query($sqlkonser);
+                    WHERE pemesan_tiket.id_pesanan = {$row['id_pesanan']}";
+        $restik = $conn->query($sqltiket);
 
-      if ($result->num_rows > 0) {
-        echo ",=<h1> </h1>";
-      } else {
-          echo "Tidak ada data konser yang ditemukan.";
-      }        
-
-      // Tutup koneksi
-      $conn->close();
-      ?>
-      </div>
-      </div>
-        <div class="ticket-container">
-            <div class="boxa">
-                <h1>#SATUDEKADEBERSAMA PRAMBANAN JAZZ asdhasidhoasf ashfoahfias dfashdiasd kan gabuisaa ottoke??</h1>
-                <p class="editable-until">Editable until: 11:24:32 WIB 12-03-2024</p>
-            </div>
-            <div class="ticket">
-                <img src="Konser/PrambananJazz/Banner_Prambanan_Jazz.webp" alt="Day 2 Festival">
-                <div class="ticket-details">
-                    <p class="ticket-day">Day 2 (Festival)</p>
-                    <p class="ticket-date">Saturday, 18 March 2024</p>  
-                    <div class="ticket-details2">
-                    <p class="ticket-quantity">x2</p>
-                    <p class="ticket-price">Rp. 724.000</p></div>
-                </div>
-                
-            </div>
-            <hr>
-
-
-            <div class="ticket">
-                <img src="path/to/day3-image.jpg" alt="Day 3 Super Festival">
-                <div class="ticket-details">
-                    <p class="ticket-day">Day 3 (Super Festival)</p>
-                    <p class="ticket-date">Sunday, 19 March 2024</p>
-                    <div class="ticket-details2">
-                    <p class="ticket-quantity">x1</p>
-                    <p class="ticket-price">Rp. 456.000</p>
+        if ($restik->num_rows > 0) {
+            while ($rowtik = $restik->fetch_assoc()) {
+                $start_date = date_create($rowtik['tanggal_tiket']);
+                $formatted_start_date = date_format($start_date, 'l, j F Y');
+                echo "
+                <div class='ticket'>
+                    <img src='{$rowtik['gambar_tumb']}' alt='{$rowtik['jenis_tiket']}'>
+                    <div class='ticket-details'>
+                        <p class='ticket-day'>{$rowtik['jenis_tiket']}</p>
+                        <p class='ticket-date'>{$formatted_start_date}</p>
+                        <div class='ticket-details2'>
+                            <p class='ticket-quantity'>x{$rowtik['jumlah']}</p>
+                            <p class='ticket-price'>Rp. " . number_format(($rowtik['harga'] * $rowtik['jumlah']), 2, ',', '.'). "</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <hr>
-            
-            <div class="total">
-                <p>Total Pesanan: <span>Rp. 1.180.000</span></p>
-                <button>Edit</button>
-            </div>
-        </div>
+                <hr />";
+            }
+        }
+        echo "<div class='total'>
+                  <p>Total Pesanan: <span id='harr'>Rp. ". number_format($row['total_harga'], 2, ',', '.') ."</span></p>";
+        if ($is_editable) {
+            echo "<button>Edit</button>";
+        } else {
+            echo "<button style='pointer-events: none; opacity: 0.5'>Edit</button>";
+        }
+        echo "</div>";
+        echo "</div>";
+    }
+} else {
+    echo "Tidak ada data konser yang ditemukan.";
+}
+
+// Tutup koneksi
+$conn->close();
+?>
+
+      </div>
+      </div>
     </main>
     <footer>
       <div class="containft">

@@ -262,7 +262,7 @@ const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
             while($row = $result->fetch_assoc()) {
                 echo "<div class='box'>";
                 $start_date = date_create($row['tanggal_awal']);
-                $formatted_start_date = date_format($start_date, 'j F Y');
+                $formatted_start_date = date_format($start_date, 'j M Y');
                 $id=$row['id_konser'];
 
                 if (strtotime($row['tanggal_awal']) > time() && $row['stok'] > 0) {
