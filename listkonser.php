@@ -4,6 +4,7 @@
   $idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : '';
   $isLoggedIn = !empty($username);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +30,6 @@
             <ul>
               <a href="main.php">Utama</a>
               <a href="listkonser.php">List Konser</a>
-              <a href="main.php">Tentang Kami</a>
               <li id="user-menu">
               <a href="login.php"><i data-feather="user"></i> Login</a>
             </li>
