@@ -231,6 +231,11 @@
           <div class="paymenbutton">
         <button id="submit_button" type='submit' disabled>Lanjutkan Pembayaran</button>
         </div>
+
+
+
+
+        
         <script>
   // Function untuk menonaktifkan/mengaktifkan tombol submit berdasarkan validasi input
   function toggleSubmitButton() {
@@ -243,7 +248,6 @@
     let isValid = true;
     let selectedPaymentMethod = false; // Variabel untuk menyimpan status pemilihan metode pembayaran
 
-
     // Lakukan iterasi melalui setiap input field dan periksa validitasnya
     inputFields.forEach(function(field) {
       if (!field.checkValidity()) {
@@ -255,7 +259,7 @@
     });
 
     // Cek validasi tambahan untuk nomor HP
-    let phoneNumbers = document.querySelectorAll('input[type="number"]');
+    let phoneNumbers = document.querySelectorAll('input[type="tel"]');
     phoneNumbers.forEach(function(phoneNumber) {
       let phoneNumberValue = phoneNumber.value.trim();
       if (!phoneNumberValue.match(/^\d{10,14}$/)) { // Memeriksa apakah nomor berisi angka dan panjangnya 10-14 karakter
@@ -269,24 +273,48 @@
       if (paymentMethod.checked) {
         selectedPaymentMethod = true;
       }
-    }); 
+    });
 
-    // Set properti disabled dari tombol submit berdasarkan hasil validasi dan pengisian semua field
-    submitButton.disabled = !isValid || !allFieldsFilled || !selectedPaymentMethod;;
-  }
+    // Set properti disabled dari tombol submit berdasarkan hasil validasi, pengisian semua field, dan pemilihan minimal satu metode pembayaran
+    submitButton.disabled = !isValid || !allFieldsFilled || !selectedPaymentMethod;
 
-  // Panggil fungsi toggleSubmitButton() saat input berubah
+    // Panggil fungsi toggleSubmitButton() saat input berubah
   document.addEventListener('DOMContentLoaded', function() {
     let inputFields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], select');
     inputFields.forEach(function(field) {
       field.addEventListener('input', toggleSubmitButton); // Gunakan event input agar validasi dilakukan saat nilai berubah, bukan saat blur
     });
+
     let paymentMethods = document.querySelectorAll('input[type="radio"][name="metode_pembayaran"]');
     paymentMethods.forEach(function(paymentMethod) {
       paymentMethod.addEventListener('change', toggleSubmitButton); // Gunakan event change untuk memantau perubahan pemilihan metode pembayaran
     });
+
+    // Tambahkan event listener untuk memeriksa email dan nomor HP saat submit
+    let submitButton = document.getElementById('submit_button');
+    submitButton.addEventListener('click', function(event) {
+      let existingEmails = Array.from(document.querySelectorAll('input[type="email"]')).map(email => email.value.trim().toLowerCase());
+      let existingPhoneNumbers = Array.from(document.querySelectorAll('input[type="tel"]')).map(phone => phone.value.trim());
+
+      let newEmail = document.getElementById('email').value.trim().toLowerCase();
+      let newPhoneNumber = document.getElementById('nomor_hp').value.trim();
+
+      if (existingEmails.includes(newEmail) || existingPhoneNumbers.includes(newPhoneNumber)) {
+        alert('Email atau nomor HP sudah ada yang menggunakan. Silakan gunakan yang lain.');
+        submitButton.disabled = true; // Menonaktifkan tombol submit jika ada duplikasi
+        event.preventDefault(); // Mencegah form dari dikirim jika ada duplikasi
+      } else {
+        toggleSubmitButton(); // Panggil kembali fungsi toggleSubmitButton() untuk memastikan tombol submit tetap nonaktif jika masih ada field yang belum valid
+      }
+    });
   });
+  }
+
+  
 </script>
+
+
+
 
 
 
