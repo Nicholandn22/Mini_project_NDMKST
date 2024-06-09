@@ -28,7 +28,6 @@
           <ul>
               <a href="main.php">Utama</a>
               <a href="listkonser.php">List Konser</a>
-              <a href="#">Tentang Kami</a>
               <li id="user-menu">
               <a href="login.php"><i data-feather="user"></i> Login</a>
             </li>
