@@ -10,7 +10,7 @@ $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve session variables
-    // $id_pesanan = $_SESSION['id_pesanan'];
+    // $id_pesanan = $_SESSION['id_pesanan'];  
     $gambar_konser = $_SESSION['gambar_konser'];
     $judul_konser = $_SESSION['judul_konser'];
     $deskripsi_konser = $_SESSION['Deskripsi_konser'];
@@ -188,43 +188,45 @@ $total_price = 0;
       </div>
 
       <!-- MASUKKAN FORM DATA DIRI BAWAH INI -->
-      <form action='proses_pembayaran.php' method='POST'>
-        <input type='hidden' name='id_pesanan' value='<?php echo $id_pesanan; ?>'>
-        <?php
-        $counter = 0;
-        foreach ($tickets_by_type as $type => $tickets) {
-            echo "<div class='ticket-group'>
-                    <h2>Jenis Tiket: {$type}</h2>";
-            foreach ($tickets as $ticket) {
-                echo "
-                    <div class='ticket-form'>
-                        <h3>Detail Tiket " . ($counter + 1) . "</h3>
-                        <div class='data-form'>
-                            <div>
-                                <label for='first_name_{$counter}'>Nama Depan:</label>
-                                <input type='text' id='first_name_{$counter}' name='first_name_{$counter}' required>
-                            </div>
-                            <div>
-                                <label for='last_name_{$counter}'>Nama Belakang:</label>
-                                <input type='text' id='last_name_{$counter}' name='last_name_{$counter}' required>
-                            </div>
-                            <div>
-                                <label for='email_{$counter}'>Email:</label>
-                                <input type='email' id='email_{$counter}' name='email_{$counter}' required>
-                            </div>
-                            <div>
-                                <label for='phone_number_{$counter}'>Nomor HP:</label>
-                                <input type='text' id='phone_number_{$counter}' name='phone_number_{$counter}' required>
-                            </div>
-                            <input type='hidden' name='id_tiket_{$counter}' value='{$ticket}'>
+<form action='proses_pembayaran.php' method='POST'>
+    <input type='hidden' name='id_pesanan' value='<?php echo $id_pesanan; ?>'>
+    <?php
+    $counter = 0;
+    foreach ($tickets_by_type as $type => $tickets) {
+        echo "<div class='ticket-group'>
+                <h2>Jenis Tiket: {$type}</h2>";
+        foreach ($tickets as $ticket) {
+            echo "
+                <div class='ticket-form'>
+                    <h3>Detail Tiket " . ($counter + 1) . "</h3>
+                    <div class='data-form'>
+                        <div>
+                            <label for='first_name_{$counter}'>Nama Depan:</label>
+                            <input type='text' id='first_name_{$counter}' name='first_name[]' required>
                         </div>
+                        <div>
+                            <label for='last_name_{$counter}'>Nama Belakang:</label>
+                            <input type='text' id='last_name_{$counter}' name='last_name[]' required>
+                        </div>
+                        <div>
+                            <label for='email_{$counter}'>Email:</label>
+                            <input type='email' id='email_{$counter}' name='email[]' required>
+                        </div>
+                        <div>
+                            <label for='phone_number_{$counter}'>Nomor HP:</label>
+                            <input type='text' id='phone_number_{$counter}' name='phone_number[]' required>
+                        </div>
+                        <input type='hidden' name='id_tiket[]' value='{$ticket}'>
                     </div>
-                ";
-                $counter++;
-            }
-            echo "</div>";
+                </div>
+            ";
+            $counter++;
         }
-        ?>
+        echo "</div>";
+    }
+    ?>
+
+        
         <button type='submit'>Lanjutkan Pembayaran</button>
 
 

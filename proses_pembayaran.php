@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quantities = isset($_POST['quantity']) ? $_POST['quantity'] : array();
     $jenis_tiket = isset($_POST['jenis_tiket']) ? $_POST['jenis_tiket'] : array();
     $metode_pembayaran = isset($_POST['metode_pembayaran']) ? $_POST['metode_pembayaran'] : '';
+    $id_tikets = $_POST['id_tiket'];
 
     // Masukkan data pesanan ke tabel pesanan
     $tanggal_pesan = date('Y-m-d');
@@ -26,27 +27,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$result_pesanan) {
         die("Error: " . mysqli_error($conn));
     }
-    $id_pesanan = mysqli_insert_id($conn); // Dapatkan ID pesanan yang baru saja dimasukkan
 
-    // Sekarang, masukkan detail tiket ke dalam tabel detail_pesanan
-    $counter = 0;
-    foreach ($quantities as $id_tiket => $quantity) {
-        if ($quantity > 0) {
-            // Ambil data pemesan dari form
-            $nama_depan = isset($_POST['first_name'][$counter]) ? $_POST['first_name'][$counter] : '';
-            $nama_belakang = isset($_POST['last_name'][$counter]) ? $_POST['last_name'][$counter] : '';
-            $email = isset($_POST['email'][$counter]) ? $_POST['email'][$counter] : '';
-            $nomor_telepon = isset($_POST['phone_number'][$counter]) ? $_POST['phone_number'][$counter] : '';
+    // Dapatkan id_pesanan yang baru saja digenerate
+    $id_pesanan = mysqli_insert_id($conn);
 
-            // Query INSERT untuk memasukkan data pemesan ke dalam tabel
-            $query_insert_pemesan = "INSERT INTO pemesan_tiket (namaDepan_pemesan, namaBelakang_pemesan, email_pemesan, nomor_pemesan, id_pesanan, id_tiket) 
-                                VALUES ('$nama_depan', '$nama_belakang', '$email', '$nomor_telepon', $id_pesanan, $id_tiket)";
-            $result_insert_pemesan = mysqli_query($conn, $query_insert_pemesan);
-            if (!$result_insert_pemesan) {
-                die("Error: " . mysqli_error($conn));
-            }
+    // Retrieve form data
+    $first_names = $_POST['first_name'];
+    $last_names = $_POST['last_name'];
+    $emails = $_POST['email'];
+    $phone_numbers = $_POST['phone_number'];
+
+    // Iterate through each ticket and insert into the database
+    for ($i = 0; $i < count($id_tikets); $i++) {
+        $first_name = $first_names[$i];
+        $last_name = $last_names[$i];
+        $email = $emails[$i];
+        $phone_number = $phone_numbers[$i];
+        $id_tiket = $id_tikets[$i];
+
+        // Insert the ticket buyer's details into the pemesan_tiket table
+        $query = "INSERT INTO pemesan_tiket (namaDepan_pemesan, namaBelakang_pemesan, nomor_pemesan, email_pemesan, id_pesanan, id_tiket) 
+                 VALUES ('$first_name', '$last_name', '$phone_number', '$email', '$id_pesanan', '$id_tiket')";
+
+        $result = mysqli_query($conn, $query);
+
+        if (!$result) {
+            echo "Error: " . mysqli_error($conn);
+            exit;
         }
-        $counter++;
     }
 
     // Redirect atau tampilkan halaman sukses pembayaran
