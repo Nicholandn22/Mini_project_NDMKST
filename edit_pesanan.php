@@ -148,9 +148,10 @@ if ($result && mysqli_num_rows($result) > 0) {
     <form action='edit.php' method='POST'>
         <input type='hidden' name='id_pesanan' value='<?php echo $id; ?>'>
         <?php
-        $sqlTicketTypes = "SELECT DISTINCT tiket.jenis_tiket
+        $sqlTicketTypes = "SELECT DISTINCT tiket.jenis_tiket, pesanan.pembayaran
                            FROM pemesan_tiket
                            INNER JOIN tiket ON pemesan_tiket.id_tiket = tiket.id_tiket
+                           INNER JOIN pesanan ON pemesan_tiket.id_pesanan = pesanan.id_pesanan
                            WHERE pemesan_tiket.id_pesanan = {$id}";
         $resultTicketTypes = mysqli_query($conn, $sqlTicketTypes);
 
@@ -158,8 +159,10 @@ if ($result && mysqli_num_rows($result) > 0) {
             $counter = 0;
             while ($ticketTypeRow = mysqli_fetch_assoc($resultTicketTypes)) {
                 $jenisTiket = $ticketTypeRow['jenis_tiket'];
+                $pay = $ticketTypeRow['pembayaran'];
 
-                echo "<h2>Jenis Tiket: {$jenisTiket}</h2>";
+                echo "<div class='ticket-group'>
+                  <h2>Jenis Tiket: {$jenisTiket}</h2>";
 
                 $sqlTickets = "SELECT *
                                FROM pemesan_tiket
@@ -193,22 +196,41 @@ if ($result && mysqli_num_rows($result) > 0) {
                                     <input type='email' id='email_{$counter}' name='email[]' value='{$oldE}' required>
                                 </div>
                                 <div>
-                                    <label for='phone_{$counter}'>Nomor HP:</label>
-                                    <input type='tel' id='phone_{$counter}' name='phone[]' value='{$oldN}' required>
+                                    <label for='phone_number_{$counter}'>Nomor HP:</label>
+                                    <input type='number' id='phone_number_{$counter}' value='{$oldN}' name='phone_number[]' >
                                 </div>
                             </div>
                         </div>";
                         $counter++;
                     }
+                    echo "</div>";
                 }
             }
+           echo "<div class='payment'>
+          <h1>Metode Pembayaran</h1>";
+          if($pay == "BCA"){
+            echo "<img id='pembayaran' src='Pyment_metods/Logo-Bank-BCA-1.png' alt='BCA'>";
+          } else if ($pay == "GoPay"){
+            echo "<img id='pembayaran' src='Pyment_metods/logo-gopay-vector.png' alt='Gppay'>";
+          }else if ($pay == "BNI"){
+            echo "<img id='pembayaran' src='Pyment_metods/BNI_logo.png' alt='BNI'>";
+          }else if ($pay == "OVO"){
+            echo "<img id='pembayaran' src='Pyment_metods/Logo_ovo_purple.svg.png' alt='Ovo'>";
+          }else if ($pay == "Mandiri"){
+            echo "<img id='pembayaran' src='Pyment_metods/Logo Mandiri.png' alt='Mandiri'>";
+          }else if ($pay == "ShopeePay"){
+            echo "<img id='pembayaran' src='Pyment_metods/logo-shopeepay.png' alt='spay'>";
+          }
+        echo "</div>";
         }
         ?>
-        <div class="order-button">
-            <input type='submit' name='save' value='Simpan Perubahan'>
+        <div class="payment">
+        <div class="paymenbutton">
+            <input id="submit_button" type='submit' name='save' value='Simpan Perubahan'>
         </div>
         <div>
             <?php echo "<a class='btn btn-danger' href='batal.php?id=$id'>Batalkan Pesanan</a>" ?>
+        </div>
         </div>
     </form>
 </main>
