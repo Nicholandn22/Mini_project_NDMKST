@@ -1,5 +1,4 @@
 <?php
-
 include "koneksi.php";
 session_start();
 
@@ -11,37 +10,13 @@ if (!$conn) {
 // Periksa apakah form sudah disubmit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Ambil data dari session
-    $gambar_konser = $_SESSION['gambar_konser'];
-    $judul_konser = $_SESSION['judul_konser'];
-    $deskripsi_konser = $_SESSION['Deskripsi_konser'];
-    $tanggal_konser = $_SESSION['tanggal_konser'];
-    $waktu_konser = $_SESSION['jam_mulai'];
     $idUser = $_SESSION['id_user'];
     $total_price = $_SESSION['total_price'];
 
-
     // Ambil data dari form
-    $quantities = $_POST['quantity'];
-    $jenis_tiket = $_POST['jenis_tiket'];
-    $metode_pembayaran = $_POST['metode_pembayaran'];
-
-    // Hitung total harga
-    // $total_price = 0;
-    foreach ($quantities as $id_tiket => $quantity) {
-        if ($quantity > 0) {
-            // Ambil harga tiket dari database
-            $query = "SELECT harga FROM tiket WHERE id_tiket = $id_tiket";
-            $result = mysqli_query($conn, $query);
-            if (!$result) {
-                die("Error: " . mysqli_error($conn));
-            }
-            $row = mysqli_fetch_assoc($result);
-            $harga_tiket = $row['harga'];
-
-            // Hitung total harga tiket untuk jenis tiket ini
-            
-        }
-    }
+    $quantities = isset($_POST['quantity']) ? $_POST['quantity'] : array();
+    $jenis_tiket = isset($_POST['jenis_tiket']) ? $_POST['jenis_tiket'] : array();
+    $metode_pembayaran = isset($_POST['metode_pembayaran']) ? $_POST['metode_pembayaran'] : '';
 
     // Masukkan data pesanan ke tabel pesanan
     $tanggal_pesan = date('Y-m-d');
@@ -54,35 +29,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $id_pesanan = mysqli_insert_id($conn); // Dapatkan ID pesanan yang baru saja dimasukkan
 
     // Sekarang, masukkan detail tiket ke dalam tabel detail_pesanan
-    // Anda bisa menggunakan $id_pesanan dan mengakses data tiket dari $quantities dan $jenis_tiket
+    $counter = 0;
+    foreach ($quantities as $id_tiket => $quantity) {
+        if ($quantity > 0) {
+            // Ambil data pemesan dari form
+            $nama_depan = isset($_POST['first_name'][$counter]) ? $_POST['first_name'][$counter] : '';
+            $nama_belakang = isset($_POST['last_name'][$counter]) ? $_POST['last_name'][$counter] : '';
+            $email = isset($_POST['email'][$counter]) ? $_POST['email'][$counter] : '';
+            $nomor_telepon = isset($_POST['phone_number'][$counter]) ? $_POST['phone_number'][$counter] : '';
 
-    // Redirect atau tampilkan halaman sukses pembayaran
-    header("Location: success.php");
-    exit();
-}
-
-// Setelah mendapatkan data dari form
-// Iterasi melalui data pemesan
-foreach ($tickets_by_type as $type => $tickets) {
-    foreach ($tickets as $ticket) {
-        // Ambil data pemesan dari form
-        $nama_depan = $_POST['first_name_' . $counter];
-        $nama_belakang = $_POST['last_name_' . $counter];
-        $email = $_POST['email_' . $counter];
-        $nomor_telepon = $_POST['phone_number_' . $counter];
-
-        // Query INSERT untuk memasukkan data pemesan ke dalam tabel
-        $query_insert_pemesan = "INSERT INTO pemesan_tiket (namaDepan_pemesan, namaBelakang_pemesan, email_pemesan, nomor_pemesan, id_pesanan, id_tiket) 
-                                VALUES ('$nama_depan', '$nama_belakang', '$email', '$nomor_telepon', $id_pesanan, $ticket)";
-        $result_insert_pemesan = mysqli_query($conn, $query_insert_pemesan);
-        if (!$result_insert_pemesan) {
-            die("Error: " . mysqli_error($conn));
+            // Query INSERT untuk memasukkan data pemesan ke dalam tabel
+            $query_insert_pemesan = "INSERT INTO pemesan_tiket (namaDepan_pemesan, namaBelakang_pemesan, email_pemesan, nomor_pemesan, id_pesanan, id_tiket) 
+                                VALUES ('$nama_depan', '$nama_belakang', '$email', '$nomor_telepon', $id_pesanan, $id_tiket)";
+            $result_insert_pemesan = mysqli_query($conn, $query_insert_pemesan);
+            if (!$result_insert_pemesan) {
+                die("Error: " . mysqli_error($conn));
+            }
         }
-
-        // Tambahkan counter untuk mengakses data pemesan berikutnya
         $counter++;
     }
+
+    // Redirect atau tampilkan halaman sukses pembayaran
+    // header("Location: success.php");
+    // exit();
 }
-
-
 ?>
