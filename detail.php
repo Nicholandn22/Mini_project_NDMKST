@@ -39,19 +39,26 @@ if($_GET){
 
 
   $id_konser = isset($_GET['id']) ? $_GET['id'] : '';
-$gambar_konser = isset($_GET['gambar']) ? $_GET['gambar'] : '';
+$gambar_konser = isset($_GET['gambar']) ? +$_GET['gambar'] : '';
 $judul_konser = isset($_GET['judul']) ? $_GET['judul'] : '';
 $deskripsi_konser = isset($_GET['deskripsi']) ? $_GET['deskripsi'] : '';
 $tanggal_konser = isset($_GET['tanggal']) ? $_GET['tanggal'] : '';
 $waktu_konser = isset($_GET['waktu']) ? $_GET['waktu'] : '';
 
 // Simpan data ke dalam session untuk digunakan nanti
-$_SESSION['id_konser'] = $id_konser;
-$_SESSION['gambar_konser'] = $gambar_konser;
-$_SESSION['judul_konser'] = $judul_konser;
-$_SESSION['deskripsi_konser'] = $deskripsi_konser;
-$_SESSION['tanggal_konser'] = $tanggal_konser;
-$_SESSION['waktu_konser'] = $waktu_konser;
+$_SESSION['id_konser'] = $row['id_konser'];
+$_SESSION['gambar_konser'] = $row['gambar_tumb'];
+$_SESSION['judul_konser'] = $row['judul_konser'];
+$_SESSION['Deskripsi_konser'] = $row['Deskripsi_konser'];
+$_SESSION['tanggal_konser'] = $row['tanggal_awal'];
+$_SESSION['jam_mulai'] = $row['jam_mulai'];
+
+
+// $_SESSION['judul_konser'] = "hehe";
+
+
+
+
 
 
 

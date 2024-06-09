@@ -1,19 +1,27 @@
 <?php
+
+include "koneksi.php";
 session_start();
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+  $idUser = $_SESSION['id_user'] ? $_SESSION['id_user'] : '';
+  $isLoggedIn = !empty($username);
+ 
 
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve session variables
-    $id_pesanan = $_SESSION['id_pesanan'];
+    // $id_pesanan = $_SESSION['id_pesanan'];
     $gambar_konser = $_SESSION['gambar_konser'];
     $judul_konser = $_SESSION['judul_konser'];
-    $deskripsi_konser = $_SESSION['deskripsi_konser'];
+    $deskripsi_konser = $_SESSION['Deskripsi_konser'];
     $tanggal_konser = $_SESSION['tanggal_konser'];
-    $waktu_konser = $_SESSION['waktu_konser'];
+    $waktu_konser = $_SESSION['jam_mulai'];
 
     // Retrieve form data
     $quantities = $_POST['quantity'];
     $jenis_tiket = $_POST['jenis_tiket'];
+
+    
 
     // Calculate the total number of tickets and group by ticket type
     $tickets_by_type = [];
@@ -28,6 +36,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+// Hitung total harga tiket berdasarkan jenis tiket yang dipilih
+$total_price = 0;
+    foreach ($quantities as $id_tiket => $quantity) {
+        if ($quantity > 0) {
+            // Ambil harga tiket dari tabel tiket berdasarkan jenis tiket
+            $query = "SELECT harga FROM tiket WHERE id_tiket = $id_tiket";
+            $result = mysqli_query($conn, $query);
+            $row = mysqli_fetch_assoc($result);
+            $harga_tiket = $row['harga'];
+
+            // Hitung total harga tiket untuk jenis tiket ini
+            $total_price += $harga_tiket * $quantity;
+        }
+    }
+
+    // Masukkan total harga ke dalam session
+    $_SESSION['total_price'] = $total_price;
+
+
+    
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -101,37 +136,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Detail Kegiatan</h1>
         <div class="line1detail">
           <!-- menampilkan gambar konser sekarang -->
-          <img src="gambar_konser/<?php echo $gambar_konser; ?>" alt="">
+          <img src="<?php echo $gambar_konser; ?>" alt="ini gambar konser">
 
           <!-- menampilkan judul konser sekarang -->
-          <h3 id="judulanu"><?php echo $judul_konser; ?></h3>
+          <h3 id="judulanu"><?php echo $judul_konser; ?> abcc</h3>
           <h3>
             <!-- menampilkan deskripsi konser -->
-            <img src="Logo/detail_lokasi.png" alt="" /><?php echo $deskripsi_konser; ?>
+            <img src="Logo/detail_lokasi.png" alt="" /><?php echo $deskripsi_konser ?>
           </h3>
           <h3>
             <!-- menampilkan tanggal konser dimulai -->
-            <img src="Logo/detail_tanggal.png" alt="" /><?php echo $tanggal_konser; ?> ·
+            <img src="Logo/detail_tanggal.png" alt="" /><?php  echo $tanggal_konser  ?> ·
           </h3>
         </div>
         <br>
         <hr />
 
         <h1>Rincian Pembelian</h1>
-        <div class="ordersum">
-          <h3>Tiket</h3>
-          <strong><h3>3 x Tiket Day 3 (Festival)</h3></strong>
-          <hr />
-          <h3>Harga Tiket</h3>
-          <strong><h3>3 x Rp. 250.000</h3></strong>
-          <h3><br>Biaya Penanganan</h3>
-          <strong><h3>-</h3></strong>
-          <h3><span>Biaya Admin</span</h3>
-          <strong><h3>-</h3></strong>
-          <hr />
-          <h3>Total</h3>
-          <strong><h3>Rp. 750.000</h3></strong>
-        </div>
+       <!-- DI DIV YANG INI YANG TIKET TIKETAN -->
+<div class="ordersum">
+    <h3>Tiket</h3>
+    <?php 
+    $totalTypes = count($tickets_by_type);
+    $i = 1;
+    foreach ($tickets_by_type as $type => $tickets) { 
+        echo '<strong><h3>' . count($tickets) . ' x ' . $type . '</h3></strong>';
+        if ($i < $totalTypes) {
+            echo '<strong><h3> | </h3></strong>';
+        }
+        $i++;
+    }
+    ?>
+    <hr />
+    <h3>Harga Tiket</h3>
+    <strong><h3>(<?php echo 'Rp. ' . number_format($total_price, 0, ',', '.'); ?>)</h3></strong>
+    <hr />
+    <h3>Total</h3>
+    <strong><h3>(<?php echo 'Rp. ' . number_format($total_price, 0, ',', '.'); ?>)</h3></strong>
+</div>
+
+
+
+
+
 
         <div class="paymenbutton">
             <a href="success.php"><button>Lanjutkan Pembayaran</button></a>
@@ -153,13 +200,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class='ticket-form'>
                         <h3>Detail Tiket " . ($counter + 1) . "</h3>
                         <div class='data-form'>
-                            <!-- Your form fields for ticket details -->
-                            <!-- For example: -->
                             <div>
                                 <label for='first_name_{$counter}'>Nama Depan:</label>
                                 <input type='text' id='first_name_{$counter}' name='first_name_{$counter}' required>
                             </div>
-                            <!-- Repeat for other form fields -->
+                            <div>
+                                <label for='last_name_{$counter}'>Nama Belakang:</label>
+                                <input type='text' id='last_name_{$counter}' name='last_name_{$counter}' required>
+                            </div>
+                            <div>
+                                <label for='email_{$counter}'>Email:</label>
+                                <input type='email' id='email_{$counter}' name='email_{$counter}' required>
+                            </div>
+                            <div>
+                                <label for='phone_number_{$counter}'>Nomor HP:</label>
+                                <input type='text' id='phone_number_{$counter}' name='phone_number_{$counter}' required>
+                            </div>
                             <input type='hidden' name='id_tiket_{$counter}' value='{$ticket}'>
                         </div>
                     </div>
@@ -170,65 +226,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         ?>
         <button type='submit'>Lanjutkan Pembayaran</button>
-    </form>
 
 
       
 
       
-
+<!-- INI ADALAH PEMBAYARAN YANG BISA MEMBRIKAN VALUE -->
       <div class="payment">
         <h1>Metode Pembayaran</h1>
-        
   <div class="vrac">
     <h2>Virtual Account</h2>
-    <input type="radio" id="radio11" name="radio-group1" class="radio-input">
+    <input type="radio" id="radio11" name="metode_pembayaran" class="radio-input" value="BCA">
     <label for="radio11" class="radio-label">
       <span class="radio-inner-circle"></span>
       BCA
       <img src="Pyment_metods/Logo-Bank-BCA-1.png" alt="">
     </label>
-    
-    <input type="radio" id="radio21" name="radio-group1" class="radio-input">
+    <input type="radio" id="radio21" name="metode_pembayaran" class="radio-input" value="BNI">
     <label for="radio21" class="radio-label">
       <span class="radio-inner-circle"></span>
       BNI
       <img src="Pyment_metods/BNI_logo.png" alt="">
     </label>
     
-    <input type="radio" id="radio31" name="radio-group1" class="radio-input">
+    <input type="radio" id="radio31" name="metode_pembayaran" class="radio-input" value="MANDIRI">
     <label for="radio31" class="radio-label">
       <span class="radio-inner-circle"></span>
       MANDIRI
       <img src="Pyment_metods/Logo Mandiri.png" alt="">
     </label>
   </div>
-
   <br>  
   <div class="vrac">
     <h2>E-Wallet</h2>
-    <input type="radio" id="radio12" name="radio-group2" class="radio-input">
+    <input type="radio" id="radio12" name="metode_pembayaran" class="radio-input" value="OVO">
     <label for="radio12" class="radio-label">
       <span class="radio-inner-circle"></span>
       OVO
       <img src="Pyment_metods/Logo_ovo_purple.svg.png" alt="">
     </label>
     
-    <input type="radio" id="radio22" name="radio-group2" class="radio-input">
+    <input type="radio" id="radio22" name="metode_pembayaran" class="radio-input" value="GOPAY">
     <label for="radio22" class="radio-label">
       <span class="radio-inner-circle"></span>
       GOPAY
       <img src="Pyment_metods/logo-gopay-vector.png" alt="">
     </label>
     
-    <input type="radio" id="radio32" name="radio-group2" class="radio-input">
+    <input type="radio" id="radio32" name="metode_pembayaran" class="radio-input" value="SHOPPEPAY">
     <label for="radio32" class="radio-label">
       <span class="radio-inner-circle"></span>
       SHOPEEPAY
       <img src="Pyment_metods/logo-shopeepay.png" alt="">
     </label>
-
   </div>
+      </div>
+    </form>
+
 
 
     </main>
