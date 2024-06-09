@@ -55,16 +55,7 @@
       // Masukkan total harga ke dalam session
       $_SESSION['total_price'] = $total_price;
 
-
-      
-
-
-
-
-
-
   ?>
-
   <!DOCTYPE html>
   <html lang="en">
     <head>
@@ -100,11 +91,11 @@
       <main>
         <!-- breadcrumb -->
         <div class="breadcrumb">
-          <a href="main.html">Utama</a>
+          <a href="main.php">Utama</a>
           <h3><</h3>
-          <a href="detail.html">Detail Konser</a>
+          <a href="listkonser.php">Detail Konser</a>
           <h3><</h3>
-          <a href="pembayaran.html">Pembayaran</a>
+          <a href="pembayaran.php">Pembayaran</a>
         </div>
         <!-- breadcrumb -->
 

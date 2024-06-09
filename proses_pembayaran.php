@@ -55,7 +55,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Error: " . mysqli_error($conn);
             exit;
         }
+
+        // Update the ticket stock in the tiket table
+     $query_update_stock = "UPDATE tiket SET stok = stok - 1 WHERE id_tiket = '$id_tiket'";
+     $result_update_stock = mysqli_query($conn, $query_update_stock);
+
+     if (!$result_update_stock) {
+         echo "Error: " . mysqli_error($conn);
+         exit;
+     }
     }
+
+     
+ 
+
+
 
     // Redirect atau tampilkan halaman sukses pembayaran
     header("Location: success.php");
