@@ -135,13 +135,17 @@ if ($result && mysqli_num_rows($result) > 0) {
                     echo '<strong><h3>' . $ticketRow['jumlah_tiket'] . ' x ' . $ticketRow['jenis_tiket'] . '</h3></strong>';
                 }
             }
+            $query = "SELECT total_harga FROM pesanan WHERE id_pesanan = $id";
+              $result = mysqli_query($conn, $query);
+              $row = mysqli_fetch_assoc($result);
+              $harga_tiket = $row['total_harga'];
             ?>
             <hr />
             <h3>Harga Tiket</h3>
-            <!-- <strong><h3><?php echo 'Rp. ' . number_format($total_price, 0, ',', '.'); ?></h3></strong> -->
+            <strong><h3><?php echo 'Rp. ' . number_format($harga_tiket, 0, ',', '.'); ?></h3></strong>
             <hr />
             <h3>Total</h3>
-            <!-- <strong><h3><?php echo 'Rp. ' . number_format($total_price, 0, ',', '.'); ?></h3></strong> -->
+            <strong><h3><?php echo 'Rp. ' . number_format($harga_tiket, 0, ',', '.'); ?></h3></strong>
         </div>
     </div>
 
