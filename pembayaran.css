@@ -289,10 +289,15 @@ header {
   transition: 100ms;
 }
 
-.data-form{
+.paymenbutton button:disabled {
+  background-color: #d3d3d3;
+  pointer-events:none;
+}
+
+.data-form {
   display: flex;
   background-color: aqua;
-  flex-direction: column
+  flex-direction: column;
 }
 
 .pesan {
