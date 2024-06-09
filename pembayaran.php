@@ -89,8 +89,8 @@
           </div>
           <div id="kanan">
             <ul>
-              <a href="main.html">Utama</a>
-              <a href="detail.html">List Konser</a>
+              <a href="main.php">Utama</a>
+              <a href="listkonser.php">List Konser</a>
               <a href="main.html">Tentang Kami</a>
             </ul>
           </div>
