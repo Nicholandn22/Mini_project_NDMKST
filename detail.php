@@ -37,6 +37,31 @@ if($_GET){
   $idUser = $_SESSION['id_user'] ? $_SESSION['id_user'] : '';
   $isLoggedIn = !empty($username);
 
+
+  $id_konser = isset($_GET['id']) ? $_GET['id'] : '';
+$gambar_konser = isset($_GET['gambar']) ? +$_GET['gambar'] : '';
+$judul_konser = isset($_GET['judul']) ? $_GET['judul'] : '';
+$deskripsi_konser = isset($_GET['deskripsi']) ? $_GET['deskripsi'] : '';
+$tanggal_konser = isset($_GET['tanggal']) ? $_GET['tanggal'] : '';
+$waktu_konser = isset($_GET['waktu']) ? $_GET['waktu'] : '';
+
+// Simpan data ke dalam session untuk digunakan nanti
+$_SESSION['id_konser'] = $row['id_konser'];
+$_SESSION['gambar_konser'] = $row['gambar_tumb'];
+$_SESSION['judul_konser'] = $row['judul_konser'];
+$_SESSION['Deskripsi_konser'] = $row['Deskripsi_konser'];
+$_SESSION['tanggal_konser'] = $row['tanggal_awal'];
+$_SESSION['jam_mulai'] = $row['jam_mulai'];
+
+
+// $_SESSION['judul_konser'] = "hehe";
+
+
+
+
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -176,60 +201,59 @@ if($_GET){
         <img src="<?php echo $row['gambar_tnc']; ?>" alt="Concert T&C Image" />
     </div>
     
-    <form action="proses_pembelian.php" method="POST">
+    <form action="pembayaran.php" method="POST">
     <input type="hidden" name="id_konser" value="<?php echo $id; ?>">
     <?php
-$sqltiket = "SELECT 
-                tiket.id_tiket, 
-                tiket.jenis_tiket, 
-                tiket.deskripsi_tiket, 
-                tiket.harga, 
-                tiket.stok
-            FROM 
-                tiket
-            WHERE 
-                tiket.id_konser = {$id}"; // Ensure the ID is an integer to prevent SQL injection
-$result = mysqli_query($conn, $sqltiket);
+    $sqltiket = "SELECT 
+                    tiket.id_tiket, 
+                    tiket.jenis_tiket, 
+                    tiket.deskripsi_tiket, 
+                    tiket.harga, 
+                    tiket.stok
+                FROM 
+                    tiket
+                WHERE 
+                    tiket.id_konser = {$id}";
+    $result = mysqli_query($conn, $sqltiket);
 
-if ($result && mysqli_num_rows($result) > 0) {
-    echo '<div class="line1" id="boxtiket">';
-    $count = 0; // Counter to track the number of boxes in a row
-    while ($tiket = mysqli_fetch_assoc($result)) {
-        $id_tiket = $tiket['id_tiket'];
-        $jenis_tiket = $tiket['jenis_tiket'];
-        $deskripsi_tiket = $tiket['deskripsi_tiket'];
-        $harga_tiket = number_format($tiket['harga'], 2, ',', '.');
-        $stok_tiket = $tiket['stok'];
+    if ($result && mysqli_num_rows($result) > 0) {
+        echo '<div class="line1" id="boxtiket">';
+        $count = 0; // Counter to track the number of boxes in a row
+        while ($tiket = mysqli_fetch_assoc($result)) {
+            $id_tiket = $tiket['id_tiket'];
+            $jenis_tiket = $tiket['jenis_tiket'];
+            $deskripsi_tiket = $tiket['deskripsi_tiket'];
+            $harga_tiket = number_format($tiket['harga'], 2, ',', '.');
+            $stok_tiket = $tiket['stok'];
 
-        if ($count % 3 == 0 && $count != 0) {
-            echo '</div><div class="line1" id="boxtiket">'; // Close the current row and start a new row after every 3 boxes
+            if ($count % 3 == 0 && $count != 0) {
+                echo '</div><div class="line1" id="boxtiket">'; // Close the current row and start a new row after every 3 boxes
+            }
+
+            echo "<div class='ticket-box'>
+                    <h3>{$jenis_tiket}</h3>
+                    <p>{$deskripsi_tiket}</p>
+                    <p>Rp. {$harga_tiket}</p>
+                    <p>Stok: {$stok_tiket}</p>
+                    <div class='ticket-quantity'>
+                        <button class='quantity-button' type='button' onclick='decreaseQuantity({$id_tiket})'>-</button>
+                        <input type='text' name='quantity[{$id_tiket}]' id='quantity-{$id_tiket}' value='0' readonly>
+                        <input type='hidden' name='jenis_tiket[{$id_tiket}]' value='{$jenis_tiket}'>
+                        <button class='quantity-button' type='button' onclick='increaseQuantity({$id_tiket}, {$stok_tiket})'>+</button>
+                    </div>
+                  </div>";
+
+            $count++;
         }
-
-        echo "<div class='ticket-box'>
-                <h3>{$jenis_tiket}</h3>
-                <p>{$deskripsi_tiket}</p>
-                <p>Rp. {$harga_tiket}</p>
-                <p>Stok: {$stok_tiket}</p>
-                <div class='ticket-quantity'>
-                    <button class='quantity-button' type='button' onclick='decreaseQuantity({$id_tiket})'>-</button>
-                    <input type='text' name='quantity[{$id_tiket}]' id='quantity-{$id_tiket}' value='0' readonly>
-                    <button class='quantity-button' type='button' onclick='increaseQuantity({$id_tiket}, {$stok_tiket})'>+</button>
-                </div>
-              </div>";
-
-        $count++;
+        echo '</div>'; // Close the last row
+        echo '<button id="btn-submit" type="submit">Submit</button>';
+    } else {
+        echo "Tidak ada tiket tersedia.";
+        if (!$result) {
+            echo "Error: " . mysqli_error($conn); // Output any SQL error for debugging
+        }
     }
-    echo '</div>'; // Close the last row
-    echo '<button id="btn-submit" type="submit">
-    Submit
-</button>';
-} else {
-    echo "Tidak ada tiket tersedia.";
-    if (!$result) {
-        echo "Error: " . mysqli_error($conn); // Output any SQL error for debugging
-    }
-}
-?>
+    ?>
 </form>
 
 <script>
