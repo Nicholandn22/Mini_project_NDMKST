@@ -1,3 +1,29 @@
+<?php 
+  session_start();
+  $username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+  $idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : '';
+  $isLoggedIn = !empty($username);
+
+  include "koneksi.php";
+
+  // Define a default value for email
+  $email = '';
+
+  if ($idUser) {
+    $sql = "SELECT user.id_user, user.email_user FROM user WHERE user.id_user = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, 'i', $idUser);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if ($result && mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $email = $row['email_user'];
+    }
+    mysqli_stmt_close($stmt);
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,24 +36,7 @@
 </head>
 <body>
 <header>
-        <div class="navigation">
-          <div id="judul">
-            <img
-              src="Logo/Logo Mytic (White).png"
-              alt=""
-            />
-          </div>
-          <div id="kanan">
-            <ul>
-              <a href="main.php">Utama</a>
-              <a href="">List Konser</a>
-              <a href="main.html">Tentang Kami</a>
-              <a href="#"><i data-feather="user"></i> Login</a>
-            </ul>
-          </div>
-        </div>
-    </header>
-  <main>
+
     <a href="detail.html" id="kembali"><button>
       <span><i data-feather="chevron-left"></i></span>
     </button></a>
@@ -39,12 +48,12 @@
       <img src="Konser/succes.png" alt="success">
     </div>
     <div class="info-bwh">
-      <div id=information>
+      <div id="information">
         <div class="information">
           <h3>Detail pembelian sudah dikirim ke email</h3>
-          </div>
+        </div>
         <div class="information">
-          <p>user@gmail.com</p>
+          <p><?php echo htmlspecialchars($email); ?></p>
         </div>
         <div class="btn-bawah">
           <p>Apakah anda belum menerima email?</p>
@@ -53,21 +62,18 @@
         </div>
       </div>
     </div>
-  </main>
-  <footer>
-      <div class="containft">
-        <div class="abtus">
-          <img
-            src="Logo/Logo Mytic (White).png"
-            alt=""
-          />
-          <h1>My.Tic</h1>
-          <p>
-            My.Tic adalah platform digital pemesanan tiket baik konser,
-            festival, ataupun fanmeet dalam negri maupun luar negri. Dengan
-            kemudahan akses dan pembayaran memberikan pengalaman membeli tiket
-            yang menyenangkan.
-          </p>
+</main>
+<footer>
+    <div class="containft">
+      <div class="abtus">
+        <img src="Logo/Logo Mytic (White).png" alt="" />
+        <h1>My.Tic</h1>
+        <p>
+          My.Tic adalah platform digital pemesanan tiket baik konser,
+          festival, ataupun fanmeet dalam negri maupun luar negri. Dengan
+          kemudahan akses dan pembayaran memberikan pengalaman membeli tiket
+          yang menyenangkan.
+        </p>
 
           <div class="parent">
             <div class="child child-1">

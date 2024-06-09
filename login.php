@@ -53,7 +53,6 @@ $error = '';
             <ul>
               <a href="main.php">Utama</a>
               <a href="#">List Konser</a>
-              <a href="main.php">Tentang Kami</a>
               <a href="#"><i data-feather="user"></i>Login</a>
             </ul>
           </div>
