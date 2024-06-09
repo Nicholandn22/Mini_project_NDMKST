@@ -2,7 +2,7 @@ body {
     margin: 0;
     overflow-x: hidden;
     font-family: Poppins;
-    background-color: aqua;
+    background-color: white;
   }
   
   header {
@@ -123,11 +123,101 @@ body {
     
     /* main */
     
+    #search {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+  }
+  
+  #form {
+      width: 70%;
+      height: 60px;
+      margin-top: 20px;
+      /* max-width: 800px; */
+  }
+  
+  #my-konser {
+      width: 95%;
+      height: 30px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 15px; /* Rounded corners */
+      font-size: 16px;
+      outline: none;
+      transition: all 0.3s ease;
+      background-color: #F2F4FF;
+  }
+
+  #my-konser::placeholder{
+    font-family: Poppins;
+    color: #4c4d8b;
+  }
+  
+  #my-konser:focus {
+      border-color: #0056b3; /* Darker border color on focus */
+      box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Glowing shadow on focus */
+  }
+
+  .kategori-dropdown {
+    /* display: flex; */
+    gap: 15px;
+    margin-left: 15%;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-button {
+    background-color: #f2f4ff;
+    color: #1d275f;
+    font-size: 12px;
+    padding: 7px 15px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 150px;
+    font-family: Poppins;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .kategori-dropdown:hover .dropdown-content {
+    display: block;
+  }
     .ticket-container {
         background-color: #fff;
         border: 1px solid #ddd;
         border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 5px rgba(32, 32, 32, 0.1);
         padding: 20px;
         width: 350px;
     }
@@ -180,31 +270,34 @@ body {
     
     .ticket-day {
         font-weight: bold;
+        margin-bottom: 0;
     }
     
     .ticket-date, .ticket-quantity, .ticket-price {
-        font-size: 14px;
+        font-size: 16px;
     }
     
-    .total {
-        text-align: center;
-        margin-top: 20px;
+    .ticket-date{
+      margin-top: 0;
     }
     
     .total p {
         font-size: 16px;
-        font-weight: bold;
+        /* font-weight: lighter; */
     }
     
     .total span {
-        color: #3498db;
+        color: #242565;
+        font-weight: bolder;
+        margin-left: 20px;
+        font-size: 28px;
     }
     
     .total button {
         background-color: #2c3e50;
         color: #fff;
         border: none;
-        padding: 10px 20px;
+        padding: 5px 20px;
         border-radius: 4px;
         cursor: pointer;
         transition: background-color 0.3s;
@@ -217,221 +310,225 @@ body {
   
     .ticket-container{
       width: 75%;
-      background-color: lightgreen;
+      background-color: white;
+      border: 1px solid #ccc;
+      box-shadow: 0px 0px 15px rgb(182, 182, 182);
+      border-radius: 10px;
       margin: 10px auto;
       .header{
       display: flex;
       margin: 10px 2% 10px 2%;
-      
       h1{
-        margin-right: 55%;
-      }
-      }
-      .total{
-        display: flex;
-        align-items: center;
-        p{
-          margin: 10px 57% 10px 20px;
-          span{
-            margin-left: 10px;
-            font-size: 40px;
-          }
-        }
-        button{
-          width: 200px;
-          height: 50px;
-          
+          margin-right: 55%;
         }
       }
+      button{
+        width: 160px;
+        height: 30px;
+        
+      }
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      gap: 5%;
+      align-items:center;
+      height: 30px;
+      margin: 20px 20px 10px 10px;
     }
 
     .ticket-container hr{
       width: 98%;
+      size: 20px;
+      border-color: #4c4d8b;
+      border-width: 0.1px;
     }
 
     .ticket{
       width: 98%;
       margin: 10px auto;
-      background-color: lightcoral;
+      /* background-color: lightcoral; */
       display: flex;
-      .ticket-details2{
-       
-        display: flex;
-        .ticket-quantity{
-          margin: 10px 90% 10px 10px;
-        }
-      }
+    }
+
+    .ticket-details2 {
+      display: flex;
+      justify-content: space-between;
+      gap: 5%;
+      align-items:center;
+      height: 30px;
+      margin: 20px 20px 20px 0px;
     }
 
     
     /* main */
   
-    /* footer */
-    
-    .containft {
-      width: 100%;
-      height: 100%;
-      background-color: #242565;
-      margin-top: 100px;
-      text-align: center;
-    }
-    
-    .abtus {
-      margin-top: 20px;
-    }
-    
-    .abtus img {
-      width: 50px;
-      height: 50px;
-    }
-    
-    .abtus h1 {
-      display: inline;
-      font-size: 24px;
-      font-style: italic;
-      color: white;
-    }
-    
-    #jdul {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%; 
-      margin-bottom: 20px;
-    }
-    
-    #jdul img {
-      margin-right: 10px; 
-    }
-    
-    .abtus p {
-      width: 30%;
-      margin: 0 auto;
-      color: white;
-      font-size: 12px;
-      font-weight: lighter;
-    }
-    
-    .parent {
-      margin-top: 30px;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .parent .button {
-      border: none;
-      background-color: transparent;
-      font-size: 20px;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      position: absolute;
-    }
-    
-    .parent .button a{
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      height: 100%;
-    }
-    
-    .child {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      transform-style: preserve-3d;
-      transition: all 0.5s ease-in-out;
-      border-radius: 50%;
-      margin: 0 5px;
-    }
-    
-    .child:hover {
-      background-color: #242565;
-      width: 50px;
-      height: 50px;
-    }
-    
-    .child-1, btn-1{
-      background-color: #1DA1F2; 
-    }
-    
-    .child-2, btn-2 {
-      background-color: #E1306C; 
-    }
-    
-    .child-3, btn-3 {
-      background-color: #6e5494; 
-    }
-    
-    .child-4, btn-4 {
-      background-color: #3b5998;
-    }
-    
-    footer button {
-      border: none;
-      background-color: transparent;
-      font-size: 20px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-    
-    .button:hover {
-      width: inherit;
-      height: inherit;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-    }
-    /* button sosmed */
-    
-    hr {
-      width: 80%;
-      /* color: red; */
-    }
-    
-    footer #copyright {
-      margin: 0;
-      color: white;
-      font-size: 14px;
-      font-style: normal;
-    }
-    
-    footer a{
-      margin: 0;
-      color: #FFF48F;
-      text-decoration: none;
-      font-style: italic;
-    }
-    
-    footer a:hover{
-      color: #3b5998;
-      text-decoration: underline;
-    }
-    
-    hr {
-      width:100%;
-      size: 20px;
-      border-color: #4C4D8B;
-    }
-    
-    #plgbwh {
-      margin-top: 35px;
-      text-align: center;
-      padding: 10px;
-      bottom: 1;
-    }
-    
-    /* footer */
+   /* footer */
+.containft {
+  width: 100%;
+  height: 100%;
+  background-color: #242565;
+  margin-top: 100px;
+  text-align: center;
+}
+
+.abtus {
+  margin-top: 20px;
+}
+
+.abtus img {
+  width: 50px;
+  height: 50px;
+}
+
+.abtus h1 {
+  display: inline;
+  font-size: 24px;
+  font-style: italic;
+  color: white;
+}
+
+#jdul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 30px;
+  margin-bottom: 20px;
+}
+
+#jdul img {
+  margin-right: 10px;
+}
+
+.abtus p {
+  width: 30%;
+  margin: 0 auto;
+  color: white;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.parent {
+  margin-top: 30px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.parent .button {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.parent .button a {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.child {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+  border-radius: 50%;
+  margin: 0 5px;
+}
+
+.child:hover {
+  background-color: #242565;
+  width: 50px;
+  height: 50px;
+}
+
+.child-1,
+btn-1 {
+  background-color: #1da1f2;
+}
+
+.child-2,
+btn-2 {
+  background-color: #e1306c;
+}
+
+.child-3,
+btn-3 {
+  background-color: #6e5494;
+}
+
+.child-4,
+btn-4 {
+  background-color: #3b5998;
+}
+
+footer button {
+  border: none;
+  background-color: transparent;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.button:hover {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+/* button sosmed */
+
+footer #copyright {
+  margin: 0;
+  color: white;
+  font-size: 14px;
+  font-style: normal;
+}
+
+footer a {
+  margin: 0;
+  color: #fff48f;
+  text-decoration: none;
+  font-style: italic;
+}
+
+footer a:hover {
+  color: #3b5998;
+  text-decoration: underline;
+}
+
+hr {
+  width: 100%;
+  size: 20px;
+  border-color: #4c4d8b;
+}
+
+#plgbwh {
+  margin-top: 35px;
+  text-align: center;
+  padding: 10px;
+  bottom: 1;
+}
+
+/* footer */
