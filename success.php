@@ -36,21 +36,7 @@
 </head>
 <body>
 <header>
-    <div class="navigation">
-      <div id="judul">
-        <img src="Logo/Logo Mytic (White).png" alt="" />
-      </div>
-      <div id="kanan">
-        <ul>
-          <a href="main.php">Utama</a>
-          <a href="#">List Konser</a>
-          <a href="main.html">Tentang Kami</a>
-          <a href="#"><i data-feather="user"></i> Login</a>
-        </ul>
-      </div>
-    </div>
-</header>
-<main>
+
     <a href="detail.html" id="kembali"><button>
       <span><i data-feather="chevron-left"></i></span>
     </button></a>
