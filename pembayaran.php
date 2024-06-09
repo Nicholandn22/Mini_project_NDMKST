@@ -229,7 +229,41 @@ $total_price = 0;
         
         <button type='submit'>Lanjutkan Pembayaran</button>
 
+<script>
+          function validasiinput{
+            let nama_depan =document.getElementById(<?php "first_name_{$counter}" ?>).value.trim;
+            let nama_belakang =document.getElementById(<?php "last_name_{$counter}" ?>).value.trim;
+            let nomor =document.getElementById(<?php "email_{$counter}" ?>).value.trim;
+            let email =document.getElementById(<?php "phone_number_{$counter}" ?>).value.trim;
+            let id_tiket =document.getElementById(<?php "id_tiket_{$counter}"?>).value.trim;
 
+            if (nama_depan == ''){
+              alert('Nama depan tidak boleh kosong');
+              return false;
+            }
+
+            if (nama_belakang == ''){
+              alert('Nama belakang tidak boleh kosong');
+              return false;
+            }
+
+            if(!nomor.match(/^\d{10,14}$/)){
+              alert('Nomor HP harus terdiri dari 10-14 angka');
+              return false;
+            }
+
+            if(!validasiemail(email)){
+              alert('Format email tidak valid')
+              return false;
+            }
+        }
+
+        function validasiemail(email){
+          count re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          return re.test(String(email).toLowerCase());
+        }
+        </script>
+        <button type='submit'>Lanjutkan Pembayaran</button>
       
 
       
