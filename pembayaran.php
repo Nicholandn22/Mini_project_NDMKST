@@ -231,14 +231,14 @@
       }
       ?>
       
-        <script>
+      <script>
   // Function untuk menonaktifkan/mengaktifkan tombol submit berdasarkan validasi input
   function toggleSubmitButton() {
     // Ambil elemen tombol submit
     let submitButton = document.getElementById('submit_button');
 
     // Ambil nilai input dari setiap field
-    let inputFields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], select');
+    let inputFields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], select');
     let allFieldsFilled = true;
     let isValid = true;
     let selectedPaymentMethod = false; // Variabel untuk menyimpan status pemilihan metode pembayaran
@@ -254,7 +254,7 @@
     });
 
     // Cek validasi tambahan untuk nomor HP
-    let phoneNumbers = document.querySelectorAll('input[type="tel"]');
+    let phoneNumbers = document.querySelectorAll('input[type="number"]');
     phoneNumbers.forEach(function(phoneNumber) {
       let phoneNumberValue = phoneNumber.value.trim();
       if (!phoneNumberValue.match(/^\d{10,14}$/)) { // Memeriksa apakah nomor berisi angka dan panjangnya 10-14 karakter
@@ -272,9 +272,10 @@
 
     // Set properti disabled dari tombol submit berdasarkan hasil validasi, pengisian semua field, dan pemilihan minimal satu metode pembayaran
     submitButton.disabled = !isValid || !allFieldsFilled || !selectedPaymentMethod;
+  }
 
   document.addEventListener('DOMContentLoaded', function() {
-    let inputFields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="tel"], select');
+    let inputFields = document.querySelectorAll('input[type="text"], input[type="email"], input[type="number"], select');
     inputFields.forEach(function(field) {
       field.addEventListener('input', toggleSubmitButton); // Gunakan event input agar validasi dilakukan saat nilai berubah, bukan saat blur
     });
@@ -288,7 +289,7 @@
     let submitButton = document.getElementById('submit_button');
     submitButton.addEventListener('click', function(event) {
       let existingEmails = Array.from(document.querySelectorAll('input[type="email"]')).map(email => email.value.trim().toLowerCase());
-      let existingPhoneNumbers = Array.from(document.querySelectorAll('input[type="tel"]')).map(phone => phone.value.trim());
+      let existingPhoneNumbers = Array.from(document.querySelectorAll('input[type="number"]')).map(phone => phone.value.trim());
 
       let newEmail = document.getElementById('email').value.trim().toLowerCase();
       let newPhoneNumber = document.getElementById('nomor_hp').value.trim();
@@ -301,10 +302,12 @@
         toggleSubmitButton(); // Panggil kembali fungsi toggleSubmitButton() untuk memastikan tombol submit tetap nonaktif jika masih ada field yang belum valid
       }
     });
-  });
-  }
 
+    // Initial validation on page load
+    toggleSubmitButton();
+  });
 </script>
+
 
         <div class="payment">
           <h1>Metode Pembayaran</h1>
