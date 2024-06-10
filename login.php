@@ -51,7 +51,7 @@ $error = '';
           <div id="kanan">
             <ul>
               <a href="main.php">Utama</a>
-              <a href="#">List Konser</a>
+              <a href="listkonser.php">List Konser</a>
               <a href="#"><i data-feather="user"></i>Login</a>
             </ul>
           </div>

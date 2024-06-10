@@ -77,7 +77,7 @@
     });
   </script>
 
-    <a href="detail.html" id="kembali"><button>
+    <a href="listkonser.php" id="kembali"><button>
       <span><i data-feather="chevron-left"></i></span>
     </button></a>
 
