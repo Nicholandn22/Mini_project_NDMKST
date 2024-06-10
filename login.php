@@ -15,7 +15,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   if(mysqli_num_rows($result) == 1){
     $row = mysqli_fetch_assoc($result);
-    session_start();
     $_SESSION['id_user'] = $row['id_user'];
     $_SESSION['username'] = $row['username'];
 
