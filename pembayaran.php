@@ -16,6 +16,8 @@
       $deskripsi_konser = $_SESSION['Deskripsi_konser'];
       $tanggal_konser = $_SESSION['tanggal_konser'];
       $waktu_konser = $_SESSION['jam_mulai'];
+      $tempat = $_SESSION['tempat'];
+      
 
       // Retrieve form data
       $quantities = $_POST['quantity'];
@@ -67,27 +69,50 @@
         href="https://fonts.googleapis.com/css?family=Poppins"
         rel="stylesheet"
       />
+      <script src="https://unpkg.com/feather-icons"></script>
     </head>
     <body>
-      <header>
+    <header>
         <div class="navigation">
           <div id="judul">
             <img
               src="Logo/Logo Mytic (White).png"
               alt=""
             />
-            <!-- <h1>My.Tic</h1> -->
+            <h1>My.Tic</h1>
           </div>
           <div id="kanan">
             <ul>
               <a href="main.php">Utama</a>
               <a href="listkonser.php">List Konser</a>
-              <a href="main.html">Tentang Kami</a>
+              <li id="user-menu">
+              <a href="login.php"><i data-feather="user"></i> Login</a>
+            </li>
             </ul>
           </div>
         </div>
-        <!-- <h1 id="WELCOME">WELCOME</h1> -->
     </header>
+    <script>
+    const isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
+    const username = <?php echo json_encode($username); ?>;
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const userMenu = document.getElementById('user-menu');
+
+      if (isLoggedIn) {
+        userMenu.innerHTML = `
+          <div class="dropdown">
+            <button class="dropdown-button"><i data-feather="user"></i> ${username} <i data-feather="chevron-down"></i></button>
+            <div class="dropdown-content">
+              <a href="logout.php">Log Out</a>
+              <a href="keranjang.php">Keranjang Saya</a>
+            </div>
+          </div>
+        `;
+        feather.replace();
+      }
+    });
+  </script>
       <main>
         <!-- breadcrumb -->
         <div class="breadcrumb">
@@ -95,7 +120,7 @@
           <h3><</h3>
           <a href="listkonser.php">Detail Konser</a>
           <h3><</h3>
-          <a href="pembayaran.php">Pembayaran</a>
+          <a href="#">Pembayaran</a>
         </div>
         <!-- breadcrumb -->
 
@@ -130,10 +155,10 @@
             <img src="<?php echo $gambar_konser; ?>" alt="ini gambar konser">
 
             <!-- menampilkan judul konser sekarang -->
-            <h3 id="judulanu"><?php echo $judul_konser; ?> abcc</h3>
+            <h3 id="judulanu"><?php echo $judul_konser; ?></h3>
             <h3>
               <!-- menampilkan deskripsi konser -->
-              <img src="Logo/detail_lokasi.png" alt="" /><?php echo $deskripsi_konser ?>
+              <img src="Logo/detail_lokasi.png" alt="" /><?php echo $tempat ?>
             </h3>
             <h3>
               <!-- menampilkan tanggal konser dimulai -->
@@ -216,17 +241,7 @@
           echo "</div>";
       }
       ?>
-      <!-- <div class="paymenbutton">
-              <a href="success.php"><button>Lanjutkan Pembayaran</button></a>
-          </div> -->
-          <div class="paymenbutton">
-        <button id="submit_button" type='submit' disabled>Lanjutkan Pembayaran</button>
-        </div>
-
-
-
-
-        
+      
         <script>
   // Function untuk menonaktifkan/mengaktifkan tombol submit berdasarkan validasi input
   function toggleSubmitButton() {
@@ -301,23 +316,8 @@
   });
   }
 
-  
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-        
-
-        
   <!-- INI ADALAH PEMBAYARAN YANG BISA MEMBRIKAN VALUE -->
         <div class="payment">
           <h1>Metode Pembayaran</h1>
@@ -367,6 +367,9 @@
         <img src="Pyment_metods/logo-shopeepay.png" alt="">
       </label>
     </div>
+        </div>
+        <div class="paymenbutton">
+        <button id="submit_button" type='submit' disabled>Lanjutkan Pembayaran</button>
         </div>
       </form>
 
@@ -458,3 +461,6 @@
       </footer>
     </body>
   </html>
+  <script>
+      feather.replace();
+</script> 
