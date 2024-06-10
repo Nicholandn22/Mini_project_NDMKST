@@ -1,6 +1,14 @@
 <?php
 include "koneksi.php";
 session_start();
+$username = isset($_SESSION['username']) ? $_SESSION['username'] : '';
+$idUser = isset($_SESSION['id_user']) ? $_SESSION['id_user'] : '';
+if(!isset($_SESSION['id_user'])){
+    echo "<script>
+      alert('Silahkan Login terlebih dahulu!');
+      window.location.href='login.php';
+    </script>";
+}
 
 // Periksa apakah koneksi berhasil
 if (!$conn) {
